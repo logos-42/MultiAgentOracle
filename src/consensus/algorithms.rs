@@ -3,8 +3,10 @@
 //! 包含各种共识算法的具体实现。
 
 use crate::consensus::{Vote, AggregationResult};
+use crate::diap::{DiapIdentityManager, AgentIdentity, DiapError};
 use anyhow::{Result, anyhow};
 use std::collections::HashMap;
+use std::sync::Arc;
 
 /// 拜占庭容错算法
 pub struct ByzantineFaultTolerance {
@@ -514,5 +516,248 @@ impl TimeWindowConsensus {
         let end = now + self.window_size_secs;
         
         (start, end)
+    }
+}
+
+/// DIAP增强的拜占庭容错算法
+pub struct DiapEnhancedBFT {
+    /// 基础BFT算法
+    base_bft: ByzantineFaultTolerance,
+    /// DIAP身份管理器
+    diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+    /// 是否要求DIAP身份验证
+    require_diap_auth: bool,
+    /// DIAP身份权重增强因子
+    diap_weight_boost: f64,
+}
+
+impl DiapEnhancedBFT {
+    /// 创建新的DIAP增强BFT算法
+    pub fn new(
+        fault_tolerance: usize,
+        total_nodes: usize,
+        diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+        require_diap_auth: bool,
+    ) -> Result<Self> {
+        let base_bft = ByzantineFaultTolerance::new(fault_tolerance, total_nodes)?;
+        
+        Ok(Self {
+            base_bft,
+            diap_identity_manager,
+            require_diap_auth,
+            diap_weight_boost: 1.2, // DIAP身份投票权重增加20%
+        })
+    }
+    
+    /// 检查是否达到法定人数（考虑DIAP身份）
+    pub async fn check_quorum_with_diap(&self, votes: &[Vote]) -> Result<bool> {
+        let mut valid_votes = 0;
+        let mut diap_authenticated_votes = 0;
+        
+        for vote in votes {
+            // 基础验证
+            if !vote.validate() {
+                continue;
+            }
+            
+            // DIAP身份验证
+            if let Some(manager) = &self.diap_identity_manager {
+                if let Some(identity_id) = &vote.diap_identity_id {
+                    match manager.verify_identity(identity_id, vote.diap_proof_hash.as_deref()).await {
+                        Ok(auth_result) if auth_result.authenticated => {
+                            diap_authenticated_votes += 1;
+                            valid_votes += 1;
+                            continue;
+                        }
+                        Ok(_) => {
+                            // DIAP身份验证失败
+                            if self.require_diap_auth {
+                                continue; // 如果要求DIAP身份，跳过此投票
+                            }
+                        }
+                        Err(e) => {
+                            log::warn!("DIAP身份验证错误: {}, 跳过投票", e);
+                            if self.require_diap_auth {
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 如果没有DIAP身份或不需要DIAP身份验证
+            if !self.require_diap_auth {
+                valid_votes += 1;
+            }
+        }
+        
+        log::debug!("有效投票: {}, DIAP认证投票: {}", valid_votes, diap_authenticated_votes);
+        
+        // 计算考虑DIAP身份的法定人数
+        let effective_votes = if self.require_diap_auth {
+            diap_authenticated_votes
+        } else {
+            // DIAP认证投票有更高权重
+            let weighted_votes = diap_authenticated_votes as f64 * self.diap_weight_boost;
+            (valid_votes as f64 + weighted_votes - diap_authenticated_votes as f64) as usize
+        };
+        
+        Ok(self.base_bft.check_quorum(effective_votes))
+    }
+    
+    /// 检查是否达成共识（考虑DIAP身份）
+    pub async fn check_consensus_with_diap(&self, votes: &[Vote]) -> Result<Option<f64>> {
+        // 过滤有效投票
+        let mut valid_votes = Vec::new();
+        let mut vote_weights = Vec::new();
+        
+        for vote in votes {
+            // 基础验证
+            if !vote.validate() {
+                continue;
+            }
+            
+            let mut weight = 1.0;
+            
+            // DIAP身份验证和权重增强
+            if let Some(manager) = &self.diap_identity_manager {
+                if let Some(identity_id) = &vote.diap_identity_id {
+                    match manager.verify_identity(identity_id, vote.diap_proof_hash.as_deref()).await {
+                        Ok(auth_result) if auth_result.authenticated => {
+                            // DIAP身份验证通过，增加权重
+                            weight *= self.diap_weight_boost;
+                            valid_votes.push(vote.clone());
+                            vote_weights.push(weight);
+                            continue;
+                        }
+                        Ok(_) => {
+                            // DIAP身份验证失败
+                            if self.require_diap_auth {
+                                continue;
+                            }
+                        }
+                        Err(e) => {
+                            log::warn!("DIAP身份验证错误: {}, 跳过投票", e);
+                            if self.require_diap_auth {
+                                continue;
+                            }
+                        }
+                    }
+                }
+            }
+            
+            // 如果没有DIAP身份或不需要DIAP身份验证
+            if !self.require_diap_auth {
+                valid_votes.push(vote.clone());
+                vote_weights.push(weight);
+            }
+        }
+        
+        if valid_votes.is_empty() {
+            return Ok(None);
+        }
+        
+        // 使用加权投票计算共识
+        let mut weighted_value_counts = HashMap::new();
+        let mut total_weight = 0.0;
+        
+        for (i, vote) in valid_votes.iter().enumerate() {
+            let key = format!("{:.6}", vote.value);
+            let weight = vote_weights[i];
+            *weighted_value_counts.entry(key).or_insert(0.0) += weight;
+            total_weight += weight;
+        }
+        
+        // 找到加权得票最多的值
+        let (best_value_str, best_weight) = weighted_value_counts
+            .into_iter()
+            .max_by(|(_, a), (_, b)| a.partial_cmp(b).unwrap())
+            .unwrap();
+        
+        let best_value: f64 = best_value_str.parse().unwrap();
+        
+        // 检查是否达到加权法定人数
+        let required_weight = total_weight * 2.0 / 3.0; // 需要2/3的加权投票
+        
+        if best_weight >= required_weight {
+            Ok(Some(best_value))
+        } else {
+            Ok(None)
+        }
+    }
+    
+    /// 获取DIAP身份统计信息
+    pub async fn get_diap_statistics(&self, votes: &[Vote]) -> DiapConsensusStats {
+        let mut stats = DiapConsensusStats::default();
+        
+        for vote in votes {
+            stats.total_votes += 1;
+            
+            if vote.diap_identity_id.is_some() {
+                stats.diap_votes += 1;
+                
+                if let Some(manager) = &self.diap_identity_manager {
+                    if let Some(identity_id) = &vote.diap_identity_id {
+                        match manager.verify_identity(identity_id, vote.diap_proof_hash.as_deref()).await {
+                            Ok(auth_result) if auth_result.authenticated => {
+                                stats.authenticated_diap_votes += 1;
+                            }
+                            _ => {
+                                stats.failed_diap_auth_votes += 1;
+                            }
+                        }
+                    }
+                }
+            } else {
+                stats.non_diap_votes += 1;
+            }
+        }
+        
+        stats
+    }
+}
+
+/// DIAP共识统计信息
+#[derive(Debug, Clone, Default)]
+pub struct DiapConsensusStats {
+    /// 总投票数
+    pub total_votes: usize,
+    /// DIAP投票数
+    pub diap_votes: usize,
+    /// 非DIAP投票数
+    pub non_diap_votes: usize,
+    /// 已认证的DIAP投票数
+    pub authenticated_diap_votes: usize,
+    /// DIAP认证失败的投票数
+    pub failed_diap_auth_votes: usize,
+}
+
+impl DiapConsensusStats {
+    /// 计算DIAP投票比例
+    pub fn diap_vote_ratio(&self) -> f64 {
+        if self.total_votes == 0 {
+            return 0.0;
+        }
+        self.diap_votes as f64 / self.total_votes as f64
+    }
+    
+    /// 计算DIAP认证成功率
+    pub fn diap_auth_success_rate(&self) -> f64 {
+        if self.diap_votes == 0 {
+            return 0.0;
+        }
+        self.authenticated_diap_votes as f64 / self.diap_votes as f64
+    }
+    
+    /// 获取统计摘要
+    pub fn summary(&self) -> String {
+        format!(
+            "总投票: {}, DIAP投票: {} ({:.1}%), 认证成功: {} ({:.1}%)",
+            self.total_votes,
+            self.diap_votes,
+            self.diap_vote_ratio() * 100.0,
+            self.authenticated_diap_votes,
+            self.diap_auth_success_rate() * 100.0
+        )
     }
 }

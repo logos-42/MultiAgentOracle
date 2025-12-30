@@ -1,9 +1,11 @@
 use crate::oracle_agent::{
     OracleAgentConfig, OracleDataType, OracleData, DataSource, DataCollectionResult,
 };
+use crate::diap::{DiapIdentityManager, DiapConfig, AgentIdentity, DiapError};
 use anyhow::{Result, anyhow};
 use serde_json::Value;
 use std::collections::HashMap;
+use std::sync::Arc;
 use std::time::{SystemTime, UNIX_EPOCH, Duration};
 use log::{info, warn, error};
 
@@ -23,6 +25,12 @@ pub struct OracleAgent {
     agent_did: Option<String>,
     /// 智能体私钥（用于签名）
     private_key: Option<Vec<u8>>,
+    /// DIAP身份管理器
+    diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+    /// 当前DIAP身份
+    current_diap_identity: Option<AgentIdentity>,
+    /// DIAP配置
+    diap_config: Option<DiapConfig>,
 }
 
 impl OracleAgent {
@@ -46,7 +54,66 @@ impl OracleAgent {
             data_collector,
             agent_did: None,
             private_key: None,
+            diap_identity_manager: None,
+            current_diap_identity: None,
+            diap_config: None,
         })
+    }
+    
+    /// 初始化DIAP身份系统
+    pub async fn init_diap_identity(&mut self, diap_config: Option<DiapConfig>) -> Result<()> {
+        info!("🔄 初始化DIAP身份系统");
+        
+        let config = diap_config.unwrap_or_else(|| {
+            let mut default_config = DiapConfig::default();
+            default_config.identity.name = self.config.name.clone();
+            default_config.identity.description = Some(format!("Oracle Agent: {}", self.config.name));
+            default_config
+        });
+        
+        // 保存配置
+        self.diap_config = Some(config.clone());
+        
+        // 创建DIAP身份管理器
+        match DiapIdentityManager::new(config).await {
+            Ok(manager) => {
+                let manager_arc = Arc::new(manager);
+                self.diap_identity_manager = Some(manager_arc.clone());
+                
+                // 自动注册身份
+                if config.identity.auto_register {
+                    match self.register_diap_identity().await {
+                        Ok(identity) => {
+                            info!("✅ DIAP身份注册成功: {} ({})", identity.name, identity.id);
+                            self.current_diap_identity = Some(identity);
+                        }
+                        Err(e) => {
+                            warn!("⚠️ DIAP身份自动注册失败: {}, 将以匿名模式运行", e);
+                        }
+                    }
+                }
+                
+                info!("✅ DIAP身份系统初始化完成");
+                Ok(())
+            }
+            Err(e) => {
+                error!("❌ DIAP身份系统初始化失败: {}", e);
+                Err(anyhow!("DIAP身份系统初始化失败: {}", e))
+            }
+        }
+    }
+    
+    /// 注册DIAP身份
+    pub async fn register_diap_identity(&mut self) -> Result<AgentIdentity, DiapError> {
+        info!("📝 注册DIAP身份");
+        
+        let manager = self.diap_identity_manager.as_ref()
+            .ok_or_else(|| DiapError::RegistrationFailed("DIAP身份管理器未初始化".to_string()))?;
+        
+        let identity_name = format!("oracle-agent-{}", self.config.name);
+        let description = Some(format!("Multi-Agent Oracle System Agent: {}", self.config.name));
+        
+        manager.register_identity(&identity_name, description.as_deref()).await
     }
     
     /// 设置DIAP身份
@@ -236,6 +303,68 @@ impl OracleAgent {
             data_source_count: self.config.data_sources.len(),
             cache_size: self.data_cache.len(),
         }
+    }
+    
+    /// 获取当前DIAP身份
+    pub async fn get_current_diap_identity(&self) -> Option<AgentIdentity> {
+        if let Some(manager) = &self.diap_identity_manager {
+            manager.get_current_identity().await
+        } else {
+            None
+        }
+    }
+    
+    /// 验证DIAP身份
+    pub async fn verify_diap_identity(&self, identity_id: &str, proof: Option<&str>) -> Result<bool, DiapError> {
+        let manager = self.diap_identity_manager.as_ref()
+            .ok_or_else(|| DiapError::AuthenticationFailed("DIAP身份管理器未初始化".to_string()))?;
+        
+        let auth_result = manager.verify_identity(identity_id, proof).await?;
+        Ok(auth_result.authenticated)
+    }
+    
+    /// 获取DIAP身份状态
+    pub async fn get_diap_identity_status(&self) -> String {
+        match &self.current_diap_identity {
+            Some(identity) => {
+                format!("已注册: {} ({}) - 状态: {:?}", 
+                    identity.name, identity.id, identity.status)
+            }
+            None => {
+                if self.diap_identity_manager.is_some() {
+                    "已初始化但未注册身份".to_string()
+                } else {
+                    "未初始化DIAP身份系统".to_string()
+                }
+            }
+        }
+    }
+    
+    /// 使用DIAP身份签名数据
+    pub async fn sign_data_with_diap(&self, data: &[u8]) -> Result<String, DiapError> {
+        let identity = self.current_diap_identity.as_ref()
+            .ok_or_else(|| DiapError::AuthenticationFailed("当前无DIAP身份".to_string()))?;
+        
+        // 这里应该使用DIAP SDK进行签名
+        // 暂时使用简化版本
+        let signature = format!("{}-{:x}", identity.id, md5::compute(data));
+        Ok(signature)
+    }
+    
+    /// 验证DIAP身份签名
+    pub async fn verify_diap_signature(&self, data: &[u8], signature: &str, identity_id: &str) -> Result<bool, DiapError> {
+        let manager = self.diap_identity_manager.as_ref()
+            .ok_or_else(|| DiapError::AuthenticationFailed("DIAP身份管理器未初始化".to_string()))?;
+        
+        // 验证身份
+        let auth_result = manager.verify_identity(identity_id, None).await?;
+        if !auth_result.authenticated {
+            return Ok(false);
+        }
+        
+        // 验证签名（简化版本）
+        let expected_signature = format!("{}-{:x}", identity_id, md5::compute(data));
+        Ok(signature == expected_signature)
     }
 }
 
