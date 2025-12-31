@@ -1,4 +1,4 @@
-use crate::reputation::{ReputationScore, ReputationUpdate, ReputationHistory};
+use crate::reputation::{ReputationScore, ReputationHistory};
 use anyhow::{Result, anyhow};
 use serde::{Deserialize, Serialize};
 use serde_json;

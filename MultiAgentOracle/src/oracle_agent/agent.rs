@@ -4,6 +4,7 @@ use crate::oracle_agent::{
 use crate::oracle_agent::config::DataSource;
 use crate::diap::{DiapIdentityManager, DiapConfig, AgentIdentity, DiapError};
 use anyhow::{Result, anyhow};
+use base64::{Engine as _, engine::general_purpose};
 use serde::{Deserialize, Serialize};
 use serde_json::Value;
 use std::collections::HashMap;
@@ -286,7 +287,7 @@ impl OracleAgent {
         if let (Some(did), Some(private_key)) = (&self.agent_did, &self.private_key) {
             // 这里应该使用实际的签名算法
             // 简化版本：使用base64编码的伪签名
-            let signature = base64::encode(format!("{}-{:?}-{}", 
+            let signature = general_purpose::STANDARD.encode(format!("{}-{:?}-{}", 
                 did, data.data_type, data.timestamp));
             
             data.agent_did = Some(did.clone());

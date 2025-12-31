@@ -209,8 +209,114 @@ impl AggregationAlgorithm {
     }
 }
 
+/// 简单平均策略
+struct SimpleAverageStrategy;
+
+impl SimpleAverageStrategy {
+    fn new() -> Self {
+        Self
+    }
+}
+
+/// 中位数策略
+struct MedianStrategy;
+
+impl MedianStrategy {
+    fn new() -> Self {
+        Self
+    }
+}
+
 /// 加权平均策略
 struct WeightedAverageStrategy;
+
+impl WeightedAverageStrategy {
+    fn new() -> Self {
+        Self
+    }
+}
+
+impl AggregationStrategy for SimpleAverageStrategy {
+    fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
+        if votes.is_empty() {
+            return Err(anyhow!("没有投票数据"));
+        }
+        
+        // 计算简单平均值
+        let sum: f64 = votes.iter().map(|v| v.value).sum();
+        let value = sum / votes.len() as f64;
+        
+        // 计算平均置信度
+        let avg_confidence = votes.iter()
+            .map(|v| v.confidence)
+            .sum::<f64>() / votes.len() as f64;
+        
+        // 计算权重统计（对于简单平均，所有权重相等）
+        let weight_stats = WeightStatistics {
+            total_weight: votes.len() as f64,
+            average_weight: 1.0,
+            weight_std_dev: 0.0,
+            min_weight: 1.0,
+            max_weight: 1.0,
+        };
+        
+        Ok(AggregationResult {
+            value,
+            confidence: avg_confidence,
+            method: AggregationMethod::SimpleAverage,
+            votes_used: votes.len(),
+            total_votes: votes.len(),
+            weight_stats,
+        })
+    }
+    
+    fn name(&self) -> &str {
+        "简单平均"
+    }
+}
+
+impl AggregationStrategy for MedianStrategy {
+    fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
+        if votes.is_empty() {
+            return Err(anyhow!("没有投票数据"));
+        }
+        
+        // 提取值并排序
+        let mut values: Vec<f64> = votes.iter().map(|v| v.value).collect();
+        values.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        
+        // 计算中位数
+        let value = if values.len() % 2 == 0 {
+            // 偶数个值，取中间两个的平均值
+            let mid = values.len() / 2;
+            (values[mid - 1] + values[mid]) / 2.0
+        } else {
+            // 奇数个值，取中间值
+            values[values.len() / 2]
+        };
+        
+        // 计算平均置信度
+        let avg_confidence = votes.iter()
+            .map(|v| v.confidence)
+            .sum::<f64>() / votes.len() as f64;
+        
+        // 计算权重统计
+        let weight_stats = calculate_weight_statistics(weights);
+        
+        Ok(AggregationResult {
+            value,
+            confidence: avg_confidence,
+            method: AggregationMethod::Median,
+            votes_used: votes.len(),
+            total_votes: votes.len(),
+            weight_stats,
+        })
+    }
+    
+    fn name(&self) -> &str {
+        "中位数"
+    }
+}
 
 impl AggregationStrategy for WeightedAverageStrategy {
     fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
@@ -256,6 +362,38 @@ impl AggregationStrategy for WeightedAverageStrategy {
 
 /// 加权中位数策略
 struct WeightedMedianStrategy;
+
+impl WeightedMedianStrategy {
+    fn new() -> Self {
+        Self
+    }
+}
+
+/// 截尾均值策略
+struct TrimmedMeanStrategy {
+    trim_percentage: f64,
+}
+
+impl TrimmedMeanStrategy {
+    fn new(trim_percentage: f64) -> Self {
+        Self {
+            trim_percentage: trim_percentage.clamp(0.0, 0.5),
+        }
+    }
+}
+
+/// 自适应聚合策略
+struct AdaptiveStrategy {
+    threshold: f64,
+}
+
+impl AdaptiveStrategy {
+    fn new(threshold: f64) -> Self {
+        Self {
+            threshold: threshold.clamp(0.0, 1.0),
+        }
+    }
+}
 
 impl AggregationStrategy for WeightedMedianStrategy {
     fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
@@ -328,19 +466,6 @@ impl AggregationStrategy for WeightedMedianStrategy {
     }
 }
 
-/// 截尾均值策略
-struct TrimmedMeanStrategy {
-    trim_percentage: f64,
-}
-
-impl TrimmedMeanStrategy {
-    fn new(trim_percentage: f64) -> Self {
-        Self {
-            trim_percentage: trim_percentage.clamp(0.0, 0.5),
-        }
-    }
-}
-
 impl AggregationStrategy for TrimmedMeanStrategy {
     fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
         if votes.len() != weights.len() {
@@ -400,19 +525,6 @@ impl AggregationStrategy for TrimmedMeanStrategy {
     
     fn name(&self) -> &str {
         "截尾均值"
-    }
-}
-
-/// 自适应策略
-struct AdaptiveStrategy {
-    threshold: f64,
-}
-
-impl AdaptiveStrategy {
-    fn new(threshold: f64) -> Self {
-        Self {
-            threshold: threshold.clamp(0.0, 1.0),
-        }
     }
 }
 

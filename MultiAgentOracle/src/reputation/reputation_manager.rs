@@ -1,12 +1,12 @@
 use crate::reputation::algorithms;
 use crate::reputation::reputation_score::{
-    ReputationScore, ReputationUpdate, UpdateReason, ReputationTier, ReputationSummary,
+    ReputationScore, ReputationUpdate, UpdateReason, ReputationSummary,
 };
 use anyhow::{Result, anyhow};
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use log::{info, warn, error};
+use log::info;
 use serde::{Deserialize, Serialize};
 
 /// 信誉管理器

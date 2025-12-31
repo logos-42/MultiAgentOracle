@@ -261,17 +261,6 @@ pub mod solana_oracle {
         Ok(())
     }
 
-    /// Get agent tier based on reputation score
-    pub fn get_agent_tier(reputation_score: u64) -> String {
-        match reputation_score {
-            0..=199 => "gateway".to_string(),
-            200..=399 => "data".to_string(),
-            400..=699 => "validator".to_string(),
-            700..=899 => "core".to_string(),
-            900..=1000 => "elite".to_string(),
-            _ => "unknown".to_string(),
-        }
-    }
 }
 
 /// Account contexts
@@ -401,6 +390,7 @@ pub struct BatchRegisterAgents<'info> {
 #[account]
 #[derive(InitSpace)]
 pub struct AgentIdentity {
+    #[max_len(128)]
     pub did: String,           // Decentralized Identifier (max 128 chars)
     pub owner: Pubkey,         // Agent's wallet address
     pub public_key: [u8; 32],  // Agent's public key
@@ -408,6 +398,7 @@ pub struct AgentIdentity {
     pub last_verified_at: i64, // Last verification timestamp
     pub is_active: bool,       // Whether identity is active
     pub is_verified: bool,     // Whether identity is verified
+    #[max_len(256)]
     pub metadata_uri: String,  // Metadata URI (max 256 chars)
     pub reputation_score: u64, // Reputation score (0-1000)
 }
@@ -415,8 +406,10 @@ pub struct AgentIdentity {
 #[account]
 #[derive(InitSpace)]
 pub struct VerificationRequest {
+    #[max_len(128)]
     pub did: String,           // Agent DID
     pub requester: Pubkey,     // Requesting agent
+    #[max_len(1024)]
     pub proof_data: Vec<u8>,   // Verification proof data
     pub requested_at: i64,     // Request timestamp
     pub status: VerificationStatus, // Current status
@@ -533,8 +526,10 @@ pub enum ErrorCode {
 /// Agent data for batch registration
 #[derive(AnchorSerialize, AnchorDeserialize, Clone, InitSpace)]
 pub struct AgentData {
+    #[max_len(128)]
     pub did: String,           // Decentralized Identifier
     pub public_key: [u8; 32],  // Agent's public key
+    #[max_len(256)]
     pub metadata_uri: String,  // Metadata URI
     pub initial_reputation: u64, // Initial reputation score
 }

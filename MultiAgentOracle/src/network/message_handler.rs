@@ -131,7 +131,7 @@ impl MessageHandler {
     /// 注册默认处理器
     fn register_default_handlers(&mut self) {
         // 心跳消息处理器
-        self.register_handler(MessageType::Heartbeat, Box::new(|message, sender| {
+        self.register_handler(MessageType::Heartbeat, Box::new(|message: &NetworkMessage, sender: &NodeId| {
             if let NetworkMessage::Heartbeat { node_id, timestamp } = message {
                 println!("💓 收到来自 {} 的心跳消息，时间戳: {}", node_id, timestamp);
                 Ok(())
@@ -141,7 +141,7 @@ impl MessageHandler {
         }));
         
         // 数据提交处理器
-        self.register_handler(MessageType::DataSubmission, Box::new(|message, sender| {
+        self.register_handler(MessageType::DataSubmission, Box::new(|message: &NetworkMessage, sender: &NodeId| {
             if let NetworkMessage::DataSubmission { node_id, data_type, data, signature } = message {
                 println!("📊 收到来自 {} 的数据提交: {} (签名: {})", 
                     node_id, data_type, &signature[..10.min(signature.len())]);
@@ -152,7 +152,7 @@ impl MessageHandler {
         }));
         
         // 共识投票处理器
-        self.register_handler(MessageType::ConsensusVote, Box::new(|message, sender| {
+        self.register_handler(MessageType::ConsensusVote, Box::new(|message: &NetworkMessage, sender: &NodeId| {
             if let NetworkMessage::ConsensusVote { node_id, proposal_id, vote, weight } = message {
                 println!("🗳️  收到来自 {} 的共识投票: 提案 {}，投票: {}，权重: {}", 
                     node_id, proposal_id, vote, weight);
@@ -163,7 +163,7 @@ impl MessageHandler {
         }));
         
         // 层级变更处理器
-        self.register_handler(MessageType::TierChange, Box::new(|message, sender| {
+        self.register_handler(MessageType::TierChange, Box::new(|message: &NetworkMessage, sender: &NodeId| {
             if let NetworkMessage::TierChange { node_id, old_tier, new_tier, reason } = message {
                 println!("📈 节点 {} 层级变更: {} -> {}，原因: {}", 
                     node_id, old_tier, new_tier, reason);
@@ -174,7 +174,7 @@ impl MessageHandler {
         }));
         
         // 错误消息处理器
-        self.register_handler(MessageType::Error, Box::new(|message, sender| {
+        self.register_handler(MessageType::Error, Box::new(|message: &NetworkMessage, sender: &NodeId| {
             if let NetworkMessage::Error { code, message: error_msg, details } = message {
                 println!("❌ 收到错误消息: 代码 {}，消息: {}", code, error_msg);
                 Ok(())

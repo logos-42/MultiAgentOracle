@@ -126,22 +126,22 @@ impl PreconfiguredReputation {
     pub fn simulate_reputation_update(&mut self, node_id: &str, delta: f64) -> Result<String, String> {
         let old_reputation = *self.node_reputation.get(node_id).ok_or("节点不存在")?;
         let old_tier = self.determine_tier(old_reputation);
+        let new_reputation = (old_reputation + delta).max(0.0).min(1000.0);
+        let new_tier = self.determine_tier(new_reputation);
         
         if let Some(current_reputation) = self.node_reputation.get_mut(node_id) {
             // 更新信誉分
-            *current_reputation = (old_reputation + delta).max(0.0).min(1000.0);
-            
-            let new_tier = self.determine_tier(*current_reputation);
+            *current_reputation = new_reputation;
             
             if old_tier != new_tier {
                 Ok(format!(
                     "节点 {} 信誉分更新: {:.1} -> {:.1}, 层级变更: {} -> {}",
-                    node_id, *current_reputation - delta, *current_reputation, old_tier, new_tier
+                    node_id, old_reputation, new_reputation, old_tier, new_tier
                 ))
             } else {
                 Ok(format!(
                     "节点 {} 信誉分更新: {:.1} -> {:.1}, 层级不变: {}",
-                    node_id, *current_reputation - delta, *current_reputation, old_tier
+                    node_id, old_reputation, new_reputation, old_tier
                 ))
             }
         } else {

@@ -330,10 +330,22 @@ impl PerformanceMetrics {
     
     /// 分析趋势
     pub fn analyze_trends(&mut self) {
-        let historical = self.get_historical_metrics(10);
+        // 先获取历史数据的副本
+        let historical_count = self.metrics_by_window.len();
         
-        if let Some(window) = &mut self.current_window {
-            if historical.len() >= 3 {
+        if historical_count >= 3 {
+            if let Some(window) = &mut self.current_window {
+                // 获取最近的历史数据
+                let historical: Vec<ReputationMetrics> = self.metrics_by_window.values()
+                    .cloned()
+                    .collect();
+                let mut historical_sorted: Vec<ReputationMetrics> = historical;
+                historical_sorted.sort_by(|a, b| b.window_start.cmp(&a.window_start));
+                let historical: Vec<ReputationMetrics> = historical_sorted
+                    .iter()
+                    .take(10.min(historical_count))
+                    .cloned()
+                    .collect();
                 // 简单趋势分析：比较最近几个窗口的评分
                 let recent_scores: Vec<f64> = historical.iter()
                     .take(3)

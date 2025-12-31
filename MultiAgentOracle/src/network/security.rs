@@ -135,7 +135,7 @@ impl SecurityManager {
         
         let session_id = format!("sess_{}_{}_{}", 
             self.local_node_id, remote_node_id, 
-            chrono::Utc::now().timestamp_nanos());
+            chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0));
         
         // 生成会话密钥（模拟）
         let session_key = if self.config.enable_encryption {

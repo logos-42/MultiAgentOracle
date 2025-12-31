@@ -433,7 +433,7 @@ impl NetworkManager {
     
     /// 注册协议处理器
     pub fn register_protocol(&mut self, protocol: Protocol) -> Result<()> {
-        let protocol_name = protocol.config.name.clone();
+        let protocol_name = protocol.name().to_string();
         
         if self.protocols.contains_key(&protocol_name) {
             return Err(anyhow!("协议已注册: {}", protocol_name));

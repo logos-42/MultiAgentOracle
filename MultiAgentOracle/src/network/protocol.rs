@@ -86,9 +86,14 @@ impl Protocol {
         }
     }
     
+    /// 获取协议名称
+    pub fn name(&self) -> &str {
+        "multi-agent-oracle-protocol"
+    }
+    
     /// 编码消息
     pub fn encode_message(&self, message: &NetworkMessage, receiver_id: Option<&NodeId>) -> Result<ProtocolMessage, String> {
-        let message_id = format!("msg_{}_{}", self.local_node_id, chrono::Utc::now().timestamp_nanos());
+        let message_id = format!("msg_{}_{}", self.local_node_id, chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0));
         
         // 确定消息类型
         let message_type = match message {
@@ -181,7 +186,7 @@ impl Protocol {
         self.encode_message(&heartbeat, None).unwrap_or_else(|e| {
             // 如果编码失败，返回一个简单的心跳消息
             ProtocolMessage {
-                message_id: format!("hb_{}_{}", self.local_node_id, chrono::Utc::now().timestamp_nanos()),
+                message_id: format!("hb_{}_{}", self.local_node_id, chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0)),
                 sender_id: self.local_node_id.clone(),
                 receiver_id: None,
                 message_type: MessageType::Heartbeat,

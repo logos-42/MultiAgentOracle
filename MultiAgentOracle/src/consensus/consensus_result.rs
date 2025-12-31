@@ -47,6 +47,10 @@ pub enum ConsensusStatus {
 /// 聚合方法
 #[derive(Debug, Clone, Serialize, Deserialize, Eq, Hash, PartialEq)]
 pub enum AggregationMethod {
+    /// 简单平均值
+    SimpleAverage,
+    /// 中位数
+    Median,
     /// 加权平均值
     WeightedAverage,
     /// 加权中位数

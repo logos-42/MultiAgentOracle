@@ -154,7 +154,8 @@ impl RoutingTable {
     
     /// 添加邻居节点
     pub fn add_neighbor(&mut self, node_id: NodeId) {
-        self.neighbors.insert(node_id);
+        let node_id_clone = node_id.clone();
+        self.neighbors.insert(node_id_clone);
         
         // 为邻居添加直接路由
         self.add_entry(node_id.clone(), node_id, 1, 1.0);
