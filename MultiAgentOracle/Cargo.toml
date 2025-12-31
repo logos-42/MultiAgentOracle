@@ -13,10 +13,11 @@ keywords = ["oracle", "blockchain", "decentralized", "diap", "multi-agent"]
 categories = ["cryptography", "blockchain", "network-programming"]
 
 [features]
-default = ["p2p", "bs58", "hex"]
+default = ["p2p", "bs58", "hex", "web-server"]
 p2p = ["libp2p", "iroh"]
 solana = ["bs58", "hex"]  # 轻量级Solana支持
 ethereum = ["ethers"]
+web-server = ["axum", "tower-http"]  # Web服务器支持
 bs58 = ["dep:bs58"]
 hex = ["dep:hex"]
 
@@ -79,14 +80,6 @@ criterion = "0.5"
 [[bin]]
 name = "oracle-agent"
 path = "src/bin/oracle_agent.rs"
-
-[[bin]]
-name = "consensus-node"
-path = "src/bin/consensus_node.rs"
-
-[[bin]]
-name = "reputation-manager"
-path = "src/bin/reputation_manager.rs"
 
 [[bin]]
 name = "test_console"

@@ -5,6 +5,7 @@
 use crate::test::config::LocalTestConfig;
 use crate::test::preconfigured_reputation::PreconfiguredReputation;
 use crate::test::simple_prompt_support::SimplePromptSupport;
+use crate::test::{ConsensusTestResult, WeightInfluenceAnalysis};
 use crate::consensus::{ConsensusEngine, ConsensusConfig};
 use crate::network::NetworkManager;
 use crate::oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, DataSource};
@@ -268,11 +269,11 @@ impl LocalTestNodeManager {
         // 2. 验证层节点聚合和验证
         // 3. 核心层节点进行最终共识
         
-        Ok(crate::test::ConsensusTestResult {
+        Ok(ConsensusTestResult {
             consensus_success_rate: 0.95,
             average_consensus_time_ms: 120.5,
             tier_consensus_stats: HashMap::new(),
-            weight_influence_analysis: crate::test::WeightInfluenceAnalysis {
+            weight_influence_analysis: WeightInfluenceAnalysis {
                 reputation_weight_correlation: 0.85,
                 stake_weight_correlation: 0.75,
                 tier_weight_correlation: 0.90,

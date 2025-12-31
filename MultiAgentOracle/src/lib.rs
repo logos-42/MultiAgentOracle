@@ -21,13 +21,13 @@ pub mod solana;
 pub mod test;
 
 // 重新导出主要类型
-pub use oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, OracleData};
-pub use reputation::{ReputationManager, ReputationScore, ReputationConfig, ReputationMetrics};
+pub use oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, OracleData, DataSource};
+pub use reputation::{ReputationManager, ReputationScore, ReputationConfig, ReputationMetrics, ReputationUpdate};
 pub use consensus::{ConsensusEngine, ConsensusResult};
 pub use blockchain::{BlockchainAdapter, ChainType};
-pub use network::{NetworkManager, PeerInfo};
+pub use network::{NetworkManager, NetworkConfig, PeerInfo};
 pub use diap::{DiapConfig, DiapIdentityManager, AgentIdentity, DiapNetworkAdapter, DiapError, AuthResult, IdentityStatus};
-pub use types::*;
+pub use types::{NodeId, NodeInfo, Timestamp, current_timestamp, SystemError, NetworkMessage};
 
 /// 库版本信息
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
