@@ -124,11 +124,12 @@ impl PreconfiguredReputation {
     
     /// 模拟信誉更新（用于测试层级迁移）
     pub fn simulate_reputation_update(&mut self, node_id: &str, delta: f64) -> Result<String, String> {
+        let old_reputation = *self.node_reputation.get(node_id).ok_or("节点不存在")?;
+        let old_tier = self.determine_tier(old_reputation);
+        
         if let Some(current_reputation) = self.node_reputation.get_mut(node_id) {
-            let old_tier = self.determine_tier(*current_reputation);
-            
             // 更新信誉分
-            *current_reputation = (*current_reputation + delta).max(0.0).min(1000.0);
+            *current_reputation = (old_reputation + delta).max(0.0).min(1000.0);
             
             let new_tier = self.determine_tier(*current_reputation);
             

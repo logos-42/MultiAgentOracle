@@ -5,9 +5,9 @@
 use crate::test::config::LocalTestConfig;
 use crate::test::preconfigured_reputation::PreconfiguredReputation;
 use crate::test::simple_prompt_support::SimplePromptSupport;
-use crate::consensus::ConsensusEngine;
+use crate::consensus::{ConsensusEngine, ConsensusConfig};
 use crate::network::NetworkManager;
-use crate::oracle_agent::OracleAgent;
+use crate::oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, DataSource};
 use crate::reputation::ReputationManager;
 
 use std::collections::HashMap;
@@ -56,7 +56,12 @@ impl LocalTestNodeManager {
         println!("🔧 初始化测试节点管理器...");
         
         // 验证配置
-        config.validate()?;
+        if let Err(errors) = config.validate() {
+            return Err(Box::new(std::io::Error::new(
+                std::io::ErrorKind::InvalidInput,
+                format!("配置验证失败: {:?}", errors)
+            )));
+        }
         
         // 创建DIAP客户端
         let diap_client = DiapClient {
@@ -98,30 +103,70 @@ impl LocalTestNodeManager {
     
     /// 创建单个测试节点
     async fn create_test_node(node_id: &str, config: &crate::test::config::NodeConfig) -> Result<TestNode, Box<dyn std::error::Error>> {
+        // 创建网络配置
+        let listen_port = 30000 + rand::random::<u16>() % 1000;
+        let network_config = crate::network::NetworkConfig {
+            listen_address: "0.0.0.0".to_string(),
+            listen_port,
+            bootstrap_nodes: vec![],
+            max_connections: 100,
+            connection_timeout_secs: 30,
+            heartbeat_interval_secs: 10,
+            enable_nat_traversal: true,
+            enable_relay: false,
+            relay_nodes: vec![],
+        };
+        
         // 创建网络管理器
         let network_manager = Arc::new(NetworkManager::new(
             node_id.to_string(),
-            config.tier.clone(),
-        ));
+            network_config,
+        )?);
+        
+        // 创建信誉配置
+        let reputation_config = crate::reputation::ReputationConfig {
+            initial_score: config.reputation,
+            min_score: 0.0,
+            max_score: 100.0,
+            accuracy_weight: 0.4,
+            response_time_weight: 0.2,
+            availability_weight: 0.3,
+            decay_rate_per_day: 0.95,
+            min_active_services: 10,
+            penalty_multiplier: 1.5,
+            reward_multiplier: 1.2,
+            auto_cleanup_interval_secs: 3600,
+        };
         
         // 创建信誉管理器
         let reputation_manager = Arc::new(ReputationManager::new(
-            node_id.to_string(),
-            config.reputation,
+            reputation_config,
         ));
         
         // 创建共识引擎
         let consensus_engine = Arc::new(ConsensusEngine::new(
-            node_id.to_string(),
-            config.tier.clone(),
+            Arc::clone(&reputation_manager),
+            ConsensusConfig::default(),
         ));
         
         // 创建Oracle代理
-        let agent = Arc::new(OracleAgent::new(
-            node_id.to_string(),
-            config.tier.clone(),
-            config.data_types.clone(),
-        ));
+        let agent_config = OracleAgentConfig {
+            name: node_id.to_string(),
+            data_sources: vec![], // 需要根据实际情况设置
+            min_confidence: 0.8,
+            max_timeout_secs: 30,
+            initial_reputation: config.reputation,
+            initial_stake: config.stake as u64, // 将 f64 转换为 u64
+            supported_data_types: config.data_types.iter().map(|dt| {
+                // 将字符串转换为 OracleDataType
+                // 这里需要根据实际情况进行转换，暂时使用默认值
+                OracleDataType::CryptoPrice { symbol: dt.clone() }
+            }).collect(),
+            cache_ttl_secs: 300,
+            auto_cache_cleanup: true,
+            cache_cleanup_interval_secs: 60,
+        };
+        let agent = Arc::new(OracleAgent::new(agent_config)?);
         
         Ok(TestNode {
             id: node_id.to_string(),
@@ -213,7 +258,7 @@ impl LocalTestNodeManager {
     }
     
     /// 运行分层共识测试
-    pub async fn run_consensus_test(&self, data_type: crate::oracle_agent::data_types::OracleDataType) 
+    pub async fn run_consensus_test(&self, data_type: crate::OracleDataType) 
         -> Result<crate::test::ConsensusTestResult, Box<dyn std::error::Error>> 
     {
         println!("🤝 运行分层共识测试 (数据类型: {:?})", data_type);
@@ -236,7 +281,7 @@ impl LocalTestNodeManager {
     }
     
     /// 测试DIAP身份验证流程
-    pub async fn test_diap_authentication(&self) -> Result<Vec<crate::AuthResult>, Box<dyn std::error::Error>> {
+    pub async fn test_diap_authentication(&self) -> Result<Vec<AuthResult>, Box<dyn std::error::Error>> {
         println!("🔐 测试DIAP身份验证流程...");
         
         let mut results = Vec::new();
@@ -245,7 +290,7 @@ impl LocalTestNodeManager {
             println!("  验证节点 {} 的身份...", node_id);
             
             // 模拟DIAP身份验证
-            let auth_result = crate::AuthResult {
+            let auth_result = AuthResult {
                 node_id: node_id.clone(),
                 tier: node.tier.clone(),
                 success: true,

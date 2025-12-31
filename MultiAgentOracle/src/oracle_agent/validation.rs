@@ -1,8 +1,7 @@
 use crate::oracle_agent::OracleData;
-use anyhow::{Result, anyhow};
+use anyhow::Result;
 use serde_json::Value;
 use std::collections::HashMap;
-use log::{info, warn};
 
 /// 数据验证器
 pub struct DataValidator {

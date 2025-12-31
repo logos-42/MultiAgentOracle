@@ -213,7 +213,7 @@ impl RoutingManager {
     /// 添加邻居节点
     pub async fn add_neighbor(&self, node_id: NodeId) {
         let mut routing_table = self.routing_table.write().await;
-        routing_table.add_neighbor(node_id);
+        routing_table.add_neighbor(node_id.clone());
         
         let mut stats = self.stats.write().await;
         stats.neighbor_count = routing_table.neighbors.len();

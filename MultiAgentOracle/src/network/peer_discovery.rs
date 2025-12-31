@@ -113,6 +113,13 @@ impl PeerDiscovery {
         Ok(())
     }
     
+    /// 停止节点发现
+    pub async fn stop_discovery(&self) -> Result<(), String> {
+        println!("🛑 停止节点发现...");
+        // 这里可以添加停止逻辑，目前只是简单返回成功
+        Ok(())
+    }
+    
     /// 主动发现节点
     async fn active_discovery(&self) -> Result<(), String> {
         println!("  主动发现节点...");

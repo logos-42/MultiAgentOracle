@@ -2,6 +2,7 @@ use crate::reputation::ReputationConfig;
 use std::f64::consts::E;
 
 /// 信誉算法
+#[derive(Clone)]
 pub struct ReputationAlgorithms {
     config: ReputationConfig,
 }

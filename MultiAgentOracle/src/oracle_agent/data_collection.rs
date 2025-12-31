@@ -1,5 +1,5 @@
 use crate::oracle_agent::{OracleDataType, OracleData};
-use crate::oracle_agent::config::DataSource;
+use super::config::DataSource;
 use crate::oracle_agent::http_client::{HttpClient, api_templates, response_parsers};
 use anyhow::{Result, anyhow};
 use serde_json::Value;
@@ -41,9 +41,10 @@ impl DataCollector {
         let start_time = SystemTime::now();
         
         // 过滤可用的数据源
-        let available_sources: Vec<&DataSource> = self.data_sources
+        let available_sources: Vec<DataSource> = self.data_sources
             .iter()
             .filter(|source| source.is_available())
+            .cloned()
             .collect();
         
         if available_sources.is_empty() {

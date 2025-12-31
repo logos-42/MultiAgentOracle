@@ -4774,6 +4774,7 @@ dependencies = [
  "aes-gcm",
  "anyhow",
  "axum",
+ "base64 0.22.1",
  "bincode",
  "bs58",
  "chrono",

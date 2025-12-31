@@ -465,7 +465,7 @@ impl VoteCollector {
         let stats = self.get_statistics();
         
         for vote in &self.votes {
-            let mut anomaly_score = 0.0;
+            let mut anomaly_score: f64 = 0.0;
             let mut anomaly_types = Vec::new();
             let mut reasons = Vec::new();
             

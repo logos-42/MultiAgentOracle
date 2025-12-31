@@ -9,9 +9,9 @@ mod config;
 
 // 重新导出
 pub use agent::OracleAgent;
-pub use data_collection::{DataSource, DataCollectionResult, DataCollector};
+pub use data_collection::{DataCollectionResult, DataCollector};
 pub use data_types::{OracleDataType, OracleData, DataValue};
-pub use config::OracleAgentConfig;
+pub use config::{OracleAgentConfig, DataSource};
 
 // 内部模块
 pub(crate) mod http_client;

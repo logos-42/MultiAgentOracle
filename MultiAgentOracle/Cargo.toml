@@ -13,10 +13,12 @@ keywords = ["oracle", "blockchain", "decentralized", "diap", "multi-agent"]
 categories = ["cryptography", "blockchain", "network-programming"]
 
 [features]
-default = ["p2p"]
+default = ["p2p", "bs58", "hex"]
 p2p = ["libp2p", "iroh"]
 solana = ["bs58", "hex"]  # 轻量级Solana支持
 ethereum = ["ethers"]
+bs58 = ["dep:bs58"]
+hex = ["dep:hex"]
 
 [dependencies]
 # 核心依赖
@@ -68,6 +70,7 @@ tower-http = { version = "0.5", features = ["cors"], optional = true }
 # 消息编码
 rmp-serde = "1.1"
 bincode = "1.3"
+base64 = "0.22.1"
 
 [dev-dependencies]
 tempfile = "3.8"

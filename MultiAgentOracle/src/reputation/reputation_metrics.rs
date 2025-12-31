@@ -330,9 +330,9 @@ impl PerformanceMetrics {
     
     /// 分析趋势
     pub fn analyze_trends(&mut self) {
+        let historical = self.get_historical_metrics(10);
+        
         if let Some(window) = &mut self.current_window {
-            let historical = self.get_historical_metrics(10);
-            
             if historical.len() >= 3 {
                 // 简单趋势分析：比较最近几个窗口的评分
                 let recent_scores: Vec<f64> = historical.iter()

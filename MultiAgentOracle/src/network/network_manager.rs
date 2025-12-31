@@ -1,4 +1,4 @@
-use crate::network::{PeerDiscovery, MessageHandler, Protocol};
+use crate::network::{PeerDiscovery, MessageHandler, Protocol, DiscoveryConfig};
 use crate::diap::{DiapNetworkAdapter, DiapConfig, DiapIdentityManager, AgentIdentity};
 use anyhow::{Result, anyhow};
 use std::collections::{HashMap, HashSet};
@@ -135,8 +135,15 @@ pub enum ConnectionType {
 impl NetworkManager {
     /// 创建新的网络管理器
     pub fn new(node_id: String, config: NetworkConfig) -> Result<Self> {
-        let peer_discovery = PeerDiscovery::new(config.clone());
-        let message_handler = MessageHandler::new();
+        let discovery_config = DiscoveryConfig {
+            discovery_interval: 30,
+            max_nodes: 100,
+            enable_active_discovery: true,
+            enable_passive_discovery: true,
+            discovery_timeout: 10,
+        };
+        let peer_discovery = PeerDiscovery::new(node_id.clone(), discovery_config);
+        let message_handler = MessageHandler::new(node_id.clone());
         
         Ok(Self {
             node_id,
@@ -180,7 +187,7 @@ impl NetworkManager {
         });
         
         // 创建DIAP网络适配器
-        match DiapNetworkAdapter::new(config, identity_manager.unwrap_or_else(|| {
+        match DiapNetworkAdapter::new(config, identity_manager.clone().unwrap_or_else(|| {
             Arc::new(DiapIdentityManager::default())
         })).await {
             Ok(adapter) => {
@@ -237,7 +244,8 @@ impl NetworkManager {
             .as_secs();
         
         // 启动对等节点发现
-        self.peer_discovery.start().await?;
+        self.peer_discovery.start_discovery().await
+            .map_err(|e| anyhow::anyhow!("启动节点发现失败: {}", e))?;
         
         // 连接到引导节点
         self.connect_to_bootstrap_nodes().await?;
@@ -258,7 +266,8 @@ impl NetworkManager {
         info!("🛑 停止网络管理器");
         
         // 停止对等节点发现
-        self.peer_discovery.stop().await?;
+        self.peer_discovery.stop_discovery().await
+            .map_err(|e| anyhow::anyhow!("停止节点发现失败: {}", e))?;
         
         // 关闭所有连接
         self.close_all_connections().await?;
@@ -526,7 +535,7 @@ impl NetworkManager {
         };
         
         // 发送消息
-        adapter.send_message(network_message).await
+        adapter.send_message(network_message.clone()).await
             .map_err(|e| anyhow!("发送DIAP消息失败: {}", e))?;
         
         info!("📤 通过DIAP发送消息: {} -> {:?}", 

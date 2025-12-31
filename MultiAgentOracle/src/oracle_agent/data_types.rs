@@ -3,7 +3,7 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /// 预言机数据类型
-#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq, Hash)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq, Eq)]
 pub enum OracleDataType {
     /// 加密货币价格
     CryptoPrice {

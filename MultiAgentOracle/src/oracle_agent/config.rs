@@ -101,19 +101,11 @@ impl Default for OracleAgentConfig {
                 DataSource::new("CoinGecko", "https://api.coingecko.com/api/v3/simple/price", 0.8),
                 DataSource::new("Binance", "https://api.binance.com/api/v3/ticker/price", 0.9),
                 // 股票数据源（需要API密钥）
-                DataSource::new_with_api_key(
-                    "AlphaVantage", 
-                    "https://www.alphavantage.co/query", 
-                    0.7,
-                    Some("demo".to_string()), // 使用demo API密钥
-                ),
+                DataSource::new("AlphaVantage", "https://www.alphavantage.co/query", 0.7)
+                    .with_api_key("demo"), // 使用demo API密钥
                 // 天气数据源（需要API密钥）
-                DataSource::new_with_api_key(
-                    "OpenWeather",
-                    "https://api.openweathermap.org/data/2.5/weather",
-                    0.8,
-                    Some("demo_key".to_string()),
-                ),
+                DataSource::new("OpenWeather", "https://api.openweathermap.org/data/2.5/weather", 0.8)
+                    .with_api_key("demo_key"),
             ],
             min_confidence: 0.7,
             max_timeout_secs: 30,

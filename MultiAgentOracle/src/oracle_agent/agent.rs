@@ -45,8 +45,8 @@ impl OracleAgent {
         info!("✅ 预言机智能体创建成功: {}", config.name);
         info!("   支持的数据类型: {} 种", config.supported_data_types.len());
         info!("   数据源数量: {} 个", config.data_sources.len());
-        info!("   初始信誉分: {}", config.reputation_score);
-        info!("   质押金额: {}", config.staked_amount);
+        info!("   初始信誉分: {}", config.initial_reputation);
+        info!("   质押金额: {}", config.initial_stake);
         
         Ok(OracleAgent {
             config,
@@ -77,7 +77,7 @@ impl OracleAgent {
         self.diap_config = Some(config.clone());
         
         // 创建DIAP身份管理器
-        match DiapIdentityManager::new(config).await {
+        match DiapIdentityManager::new(config.clone()).await {
             Ok(manager) => {
                 let manager_arc = Arc::new(manager);
                 self.diap_identity_manager = Some(manager_arc.clone());
@@ -120,9 +120,10 @@ impl OracleAgent {
     
     /// 设置DIAP身份
     pub fn set_diap_identity(&mut self, did: String, private_key: Vec<u8>) {
+        let did_clone = did.clone();
         self.agent_did = Some(did);
         self.private_key = Some(private_key);
-        info!("🔐 设置DIAP身份: {}", did);
+        info!("🔐 设置DIAP身份: {}", did_clone);
     }
     
     /// 获取智能体DID
@@ -177,7 +178,7 @@ impl OracleAgent {
     }
     
     /// 采集数据
-    pub async fn collect_data(&self, data_type: &OracleDataType) -> Result<DataCollectionResult> {
+    pub async fn collect_data(&mut self, data_type: &OracleDataType) -> Result<DataCollectionResult> {
         if !self.supports_data_type(data_type) {
             return Ok(DataCollectionResult {
                 success: false,
@@ -254,13 +255,14 @@ impl OracleAgent {
     
     /// 缓存数据（内部使用）
     pub(crate) fn cache_data_internal(&mut self, key: String, data: OracleData, ttl_secs: u64) {
+        let key_clone = key.clone();
         let expiry = SystemTime::now()
             .duration_since(UNIX_EPOCH)
             .unwrap()
             .as_secs() + ttl_secs;
         
         self.data_cache.insert(key, (data, expiry));
-        info!("💾 缓存数据: {} (TTL: {}s)", key, ttl_secs);
+        info!("💾 缓存数据: {} (TTL: {}s)", key_clone, ttl_secs);
     }
     
     /// 清理过期缓存

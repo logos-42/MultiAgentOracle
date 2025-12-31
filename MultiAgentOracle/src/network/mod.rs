@@ -10,7 +10,8 @@ mod protocol;
 // 重新导出
 pub use network_manager::{NetworkManager, NetworkConfig, NetworkStatus};
 pub use peer_discovery::{PeerDiscovery, PeerInfo, DiscoveryConfig};
-pub use message_handler::{MessageHandler, NetworkMessage, MessageType};
+pub use message_handler::{MessageHandler, MessageType};
+pub use crate::types::NetworkMessage;
 pub use protocol::{Protocol, ProtocolConfig, ProtocolMessage};
 
 // 内部模块

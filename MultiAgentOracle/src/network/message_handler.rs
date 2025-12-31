@@ -37,9 +37,19 @@ pub struct MessageHandler {
 }
 
 /// 消息处理器函数trait
-pub trait MessageHandlerFn {
+pub trait MessageHandlerFn: Send + Sync {
     /// 处理消息
     fn handle(&self, message: &NetworkMessage, sender: &NodeId) -> Result<(), String>;
+}
+
+// 为闭包实现 MessageHandlerFn trait
+impl<F> MessageHandlerFn for F
+where
+    F: Fn(&NetworkMessage, &NodeId) -> Result<(), String> + Send + Sync,
+{
+    fn handle(&self, message: &NetworkMessage, sender: &NodeId) -> Result<(), String> {
+        self(message, sender)
+    }
 }
 
 /// 处理后的消息

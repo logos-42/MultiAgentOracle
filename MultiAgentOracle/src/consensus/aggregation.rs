@@ -4,12 +4,42 @@ use anyhow::{Result, anyhow};
 use std::collections::HashMap;
 
 /// 聚合算法
-#[derive(Debug, Clone)]
 pub struct AggregationAlgorithm {
     /// 配置
     config: AggregationConfig,
     /// 算法实现
     algorithms: HashMap<AggregationMethod, Box<dyn AggregationStrategy + Send + Sync>>,
+}
+
+impl std::fmt::Debug for AggregationAlgorithm {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        f.debug_struct("AggregationAlgorithm")
+            .field("config", &self.config)
+            .field("algorithms", &format!("HashMap<AggregationMethod, Box<dyn AggregationStrategy>> with {} entries", self.algorithms.len()))
+            .finish()
+    }
+}
+
+impl Clone for AggregationAlgorithm {
+    fn clone(&self) -> Self {
+        // 由于 dyn AggregationStrategy 不能克隆，我们需要重新创建算法
+        let mut algorithms = HashMap::new();
+        
+        // 重新注册所有聚合策略
+        // 注意：需要实现具体的聚合策略类
+        // 暂时使用简单的实现
+        algorithms.insert(AggregationMethod::SimpleAverage, Box::new(SimpleAverageStrategy::new()) as Box<dyn AggregationStrategy + Send + Sync>);
+        algorithms.insert(AggregationMethod::WeightedAverage, Box::new(WeightedAverageStrategy::new()) as Box<dyn AggregationStrategy + Send + Sync>);
+        algorithms.insert(AggregationMethod::Median, Box::new(MedianStrategy::new()) as Box<dyn AggregationStrategy + Send + Sync>);
+        algorithms.insert(AggregationMethod::WeightedMedian, Box::new(WeightedMedianStrategy::new()) as Box<dyn AggregationStrategy + Send + Sync>);
+        algorithms.insert(AggregationMethod::TrimmedMean, Box::new(TrimmedMeanStrategy::new(self.config.trimmed_mean_trim)) as Box<dyn AggregationStrategy + Send + Sync>);
+        algorithms.insert(AggregationMethod::Adaptive, Box::new(AdaptiveStrategy::new(self.config.adaptive_threshold)) as Box<dyn AggregationStrategy + Send + Sync>);
+        
+        Self {
+            config: self.config.clone(),
+            algorithms,
+        }
+    }
 }
 
 /// 聚合配置

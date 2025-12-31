@@ -223,6 +223,55 @@ pub mod solana_oracle {
         
         Ok(())
     }
+
+    /// Batch register multiple agents (admin only)
+    pub fn batch_register_agents(
+        ctx: Context<BatchRegisterAgents>,
+        agents_data: Vec<AgentData>,
+    ) -> Result<()> {
+        require!(
+            ctx.accounts.admin.key() == ctx.accounts.admin_authority.key(),
+            ErrorCode::Unauthorized
+        );
+        require!(agents_data.len() <= 10, ErrorCode::BatchTooLarge);
+        
+        let clock = Clock::get()?;
+        
+        for agent_data in agents_data.iter() {
+            // Validate agent data
+            require!(agent_data.did.len() > 0, ErrorCode::InvalidDid);
+            require!(agent_data.did.len() <= 128, ErrorCode::DidTooLong);
+            require!(agent_data.metadata_uri.len() <= 256, ErrorCode::MetadataUriTooLong);
+            
+            // In production, you would create PDA for each agent
+            // For simplicity, we just emit events
+            emit!(AgentRegistered {
+                did: agent_data.did.clone(),
+                owner: Pubkey::default(), // Will be set by client
+                registered_at: clock.unix_timestamp,
+            });
+        }
+        
+        emit!(BatchRegistrationCompleted {
+            count: agents_data.len() as u64,
+            registered_at: clock.unix_timestamp,
+            admin: ctx.accounts.admin.key(),
+        });
+        
+        Ok(())
+    }
+
+    /// Get agent tier based on reputation score
+    pub fn get_agent_tier(reputation_score: u64) -> String {
+        match reputation_score {
+            0..=199 => "gateway".to_string(),
+            200..=399 => "data".to_string(),
+            400..=699 => "validator".to_string(),
+            700..=899 => "core".to_string(),
+            900..=1000 => "elite".to_string(),
+            _ => "unknown".to_string(),
+        }
+    }
 }
 
 /// Account contexts
@@ -337,6 +386,17 @@ pub struct ReactivateIdentity<'info> {
     pub admin_authority: Signer<'info>,
 }
 
+/// Batch registration context
+#[derive(Accounts)]
+pub struct BatchRegisterAgents<'info> {
+    /// CHECK: Admin authority
+    pub admin: UncheckedAccount<'info>,
+    
+    pub admin_authority: Signer<'info>,
+    
+    pub system_program: Program<'info, System>,
+}
+
 /// Data structures
 #[account]
 #[derive(InitSpace)]
@@ -424,6 +484,23 @@ pub struct IdentityReactivated {
     pub reactivated_at: i64,
 }
 
+/// Batch registration completed event
+#[event]
+pub struct BatchRegistrationCompleted {
+    pub count: u64,
+    pub registered_at: i64,
+    pub admin: Pubkey,
+}
+
+/// Agent tier updated event
+#[event]
+pub struct AgentTierUpdated {
+    pub did: String,
+    pub old_tier: String,
+    pub new_tier: String,
+    pub updated_at: i64,
+}
+
 /// Error codes
 #[error_code]
 pub enum ErrorCode {
@@ -449,4 +526,15 @@ pub enum ErrorCode {
     ReputationOverflow,
     #[msg("Reputation underflow")]
     ReputationUnderflow,
+    #[msg("Batch too large (max 10 agents)")]
+    BatchTooLarge,
+}
+
+/// Agent data for batch registration
+#[derive(AnchorSerialize, AnchorDeserialize, Clone, InitSpace)]
+pub struct AgentData {
+    pub did: String,           // Decentralized Identifier
+    pub public_key: [u8; 32],  // Agent's public key
+    pub metadata_uri: String,  // Metadata URI
+    pub initial_reputation: u64, // Initial reputation score
 }

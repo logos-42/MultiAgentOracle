@@ -5,15 +5,40 @@ package_manager = "yarn"
 resolution = true
 skip-lint = false
 
+# 本地网络配置
 [programs.localnet]
+solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+
+# 开发网配置
+[programs.devnet]
+solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+
+# 测试网配置
+[programs.testnet]
 solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
 
 [registry]
 url = "https://api.apr.dev"
 
+# 默认提供者配置（本地网络）
 [provider]
 cluster = "localnet"
 wallet = '~\.config\solana\id.json'
 
+# 开发网提供者配置
+[provider.devnet]
+cluster = "devnet"
+wallet = '~\.config\solana\id.json'
+
+# 测试网提供者配置
+[provider.testnet]
+cluster = "testnet"
+wallet = '~\.config\solana\id.json'
+
 [scripts]
 test = "yarn run ts-mocha -p ./tsconfig.json -t 1000000 \"tests/**/*.ts\""
+localnet = "anchor localnet"
+deploy-devnet = "anchor deploy --provider.cluster devnet"
+deploy-testnet = "anchor deploy --provider.cluster testnet"
+test-devnet = "anchor test --provider.cluster devnet"
+test-testnet = "anchor test --provider.cluster testnet"
