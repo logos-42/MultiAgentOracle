@@ -5,10 +5,10 @@
 use crate::test::config::LocalTestConfig;
 use crate::test::preconfigured_reputation::PreconfiguredReputation;
 use crate::test::simple_prompt_support::SimplePromptSupport;
-use crate::consensus::consensus_engine::ConsensusEngine;
-use crate::network::network_manager::NetworkManager;
-use crate::oracle_agent::agent::OracleAgent;
-use crate::reputation::reputation_manager::ReputationManager;
+use crate::consensus::ConsensusEngine;
+use crate::network::NetworkManager;
+use crate::oracle_agent::OracleAgent;
+use crate::reputation::ReputationManager;
 
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -236,7 +236,7 @@ impl LocalTestNodeManager {
     }
     
     /// 测试DIAP身份验证流程
-    pub async fn test_diap_authentication(&self) -> Result<Vec<crate::test::AuthResult>, Box<dyn std::error::Error>> {
+    pub async fn test_diap_authentication(&self) -> Result<Vec<crate::AuthResult>, Box<dyn std::error::Error>> {
         println!("🔐 测试DIAP身份验证流程...");
         
         let mut results = Vec::new();
@@ -245,7 +245,7 @@ impl LocalTestNodeManager {
             println!("  验证节点 {} 的身份...", node_id);
             
             // 模拟DIAP身份验证
-            let auth_result = crate::test::AuthResult {
+            let auth_result = crate::AuthResult {
                 node_id: node_id.clone(),
                 tier: node.tier.clone(),
                 success: true,

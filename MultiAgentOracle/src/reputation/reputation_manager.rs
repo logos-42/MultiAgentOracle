@@ -1,3 +1,4 @@
+use crate::reputation::algorithms;
 use crate::reputation::reputation_score::{
     ReputationScore, ReputationUpdate, UpdateReason, ReputationTier, ReputationSummary,
 };

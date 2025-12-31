@@ -1707,6 +1707,8 @@ dependencies = [
 [[package]]
 name = "diap-rs-sdk"
 version = "0.2.11"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "5034d31942da2c9bd4208993260e32c1b2c40fb816a89d8fc7c7b07c5b77fdca"
 dependencies = [
  "aes-gcm",
  "anyhow",
@@ -4778,6 +4780,7 @@ dependencies = [
  "clap",
  "criterion",
  "diap-rs-sdk",
+ "ed25519-dalek 2.2.0",
  "env_logger",
  "ethers",
  "futures",

@@ -1,6 +1,7 @@
 use serde::{Deserialize, Serialize};
 use std::time::{SystemTime, UNIX_EPOCH};
 use crate::diap::AgentIdentity;
+use crate::{DiapIdentityManager, DiapError};
 
 /// 投票
 #[derive(Debug, Clone, Serialize, Deserialize)]

@@ -3,6 +3,7 @@
 //! 包含各种共识算法的具体实现。
 
 use crate::consensus::{Vote, AggregationResult};
+use crate::consensus::consensus_result::AggregationMethod;
 use crate::diap::{DiapIdentityManager, AgentIdentity, DiapError};
 use anyhow::{Result, anyhow};
 use std::collections::HashMap;
@@ -340,7 +341,7 @@ impl ReputationWeightedBFT {
                 return Some(AggregationResult {
                     value,
                     confidence: avg_confidence,
-                    method: crate::consensus::AggregationMethod::WeightedAverage,
+                    method: AggregationMethod::WeightedAverage,
                     votes_used: votes.len(),
                     total_votes: votes.len(),
                     weight_stats: crate::consensus::aggregation::WeightStatistics {
@@ -492,7 +493,7 @@ impl TimeWindowConsensus {
         Some(AggregationResult {
             value,
             confidence: avg_confidence,
-            method: crate::consensus::AggregationMethod::WeightedAverage,
+            method: AggregationMethod::WeightedAverage,
             votes_used: window_votes.len(),
             total_votes: votes.len(),
             weight_stats: crate::consensus::aggregation::WeightStatistics {
