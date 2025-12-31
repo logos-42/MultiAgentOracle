@@ -15,6 +15,10 @@ Thumbs.db
 # Ignore diap directory
 src/diap/
 
+# External dependencies (outside project directory)
+# Note: These are referenced via relative paths in Cargo.toml
+# DIAP-Rust-SDK/
+
 # Contracts
 contracts/node_modules/
 contracts/artifacts/

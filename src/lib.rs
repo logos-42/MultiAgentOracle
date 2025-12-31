@@ -17,6 +17,7 @@ pub mod blockchain;
 pub mod network;
 pub mod types;
 pub mod diap;
+pub mod test;
 
 // 重新导出主要类型
 pub use oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, OracleData};

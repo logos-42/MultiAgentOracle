@@ -13,9 +13,10 @@ keywords = ["oracle", "blockchain", "decentralized", "diap", "multi-agent"]
 categories = ["cryptography", "blockchain", "network-programming"]
 
 [features]
-default = ["p2p", "blockchain"]
+default = ["p2p"]
 p2p = ["libp2p", "iroh"]
-blockchain = ["ethers", "solana-client"]
+solana = ["reqwest", "bs58", "hex"]  # 轻量级Solana支持
+ethereum = ["ethers"]
 
 [dependencies]
 # 核心依赖
@@ -26,6 +27,7 @@ serde = { version = "1.0", features = ["derive"] }
 serde_json = "1.0"
 log = "0.4"
 env_logger = "0.10"
+toml = "0.8"
 
 # DIAP身份系统
 diap-rs-sdk = { path = "../DIAP-Rust-SDK", version = "0.2.11", features = ["default"] }
@@ -35,9 +37,12 @@ libp2p = { version = "0.53", features = ["tcp", "dns", "noise", "yamux"], option
 iroh = { version = "0.93.2", optional = true }
 reqwest = { version = "0.11", features = ["json"], optional = true }
 
-# 区块链交互
+# 区块链交互 - 轻量级Solana支持 (通过HTTP RPC)
+bs58 = { version = "0.5", optional = true }
+hex = { version = "0.4", optional = true }
+
+# 区块链交互 - 以太坊（可选）
 ethers = { version = "2.0", features = ["rustls"], optional = true }
-solana-client = { version = "1.17", optional = true }
 
 # 密码学
 ring = "0.17"
@@ -81,6 +86,10 @@ path = "examples/consensus_demo.rs"
 [[example]]
 name = "reputation_demo"
 path = "examples/reputation_demo.rs"
+
+[[example]]
+name = "solana_demo"
+path = "examples/solana_demo.rs"
 
 [profile.dev]
 opt-level = 0
