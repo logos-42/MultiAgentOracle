@@ -1,0 +1,41 @@
+﻿# 多智能体测试配置
+# 支持多个智能体注册和交互
+
+agents:
+  - name: "预言机核心节点"
+    did: "did:example:oracle-core-001"
+    public_key: "0x1111111111111111111111111111111111111111111111111111111111111111"
+    metadata_uri: "https://ipfs.io/ipfs/QmCoreAgent"
+    reputation: 850
+    tier: "core"
+    
+  - name: "数据验证节点"
+    did: "did:example:validator-002"
+    public_key: "0x2222222222222222222222222222222222222222222222222222222222222222"
+    metadata_uri: "https://ipfs.io/ipfs/QmValidatorAgent"
+    reputation: 650
+    tier: "validator"
+    
+  - name: "数据提供节点"
+    did: "did:example:data-provider-003"
+    public_key: "0x3333333333333333333333333333333333333333333333333333333333333333"
+    metadata_uri: "https://ipfs.io/ipfs/QmDataProvider"
+    reputation: 350
+    tier: "data"
+    
+  - name: "轻量级网关"
+    did: "did:example:gateway-004"
+    public_key: "0x4444444444444444444444444444444444444444444444444444444444444444"
+    metadata_uri: "https://ipfs.io/ipfs/QmGateway"
+    reputation: 200
+    tier: "gateway"
+
+network:
+  rpc_url: "http://localhost:8899"
+  program_id: "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+  cluster: "localnet"
+
+testing:
+  enable_mock: true
+  simulate_interactions: true
+  test_duration: 300
