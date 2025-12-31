@@ -3,7 +3,7 @@
 //! 启动和管理预言机智能体节点。
 
 use multi_agent_oracle::{
-    OracleAgent, OracleAgentConfig, OracleDataType, DataSource,
+    OracleAgent, OracleAgentConfig, OracleDataType,
     ReputationManager, ReputationConfig,
     NetworkManager, NetworkConfig,
 };
@@ -184,7 +184,7 @@ async fn start_node(
     info!("📡 启动预言机节点: {}", node_name);
     
     // 创建预言机智能体配置
-    let mut config = OracleAgentConfig::default_with_name(&node_name);
+    let config = OracleAgentConfig::default_with_name(&node_name);
     
     // 如果有数据源配置文件，加载它
     if let Some(ds_path) = data_sources {
@@ -238,7 +238,7 @@ async fn start_node(
     };
     
     // 启动网络（如果启用）
-    if let Some(mut nm) = network_manager {
+    if let Some(nm) = network_manager {
         info!("📡 启动网络监听端口: {}", port);
         // 这里应该启动网络监听
         // 简化版本：只显示信息

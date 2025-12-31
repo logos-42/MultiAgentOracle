@@ -35,7 +35,7 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // 程序ID
     let program_id = solana_sdk::pubkey::Pubkey::from_str(
-        "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+        "GoQFXtbPyBaghGLF138djbmBTKKZXwTPfesh4J7SSPot"
     )?;
     println!("📋 程序ID: {}", program_id);
     

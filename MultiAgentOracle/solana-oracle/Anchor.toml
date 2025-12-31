@@ -7,15 +7,15 @@ skip-lint = false
 
 # 本地网络配置
 [programs.localnet]
-solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+solana_oracle = "GoQFXtbPyBaghGLF138djbmBTKKZXwTPfesh4J7SSPot"
 
 # 开发网配置
 [programs.devnet]
-solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+solana_oracle = "GoQFXtbPyBaghGLF138djbmBTKKZXwTPfesh4J7SSPot"
 
 # 测试网配置
 [programs.testnet]
-solana_oracle = "DPZTkPxJcXZ3tHxqYrTkw6shLoR73pywLDJX82wXAZ7b"
+solana_oracle = "GoQFXtbPyBaghGLF138djbmBTKKZXwTPfesh4J7SSPot"
 
 [registry]
 url = "https://api.apr.dev"
@@ -24,6 +24,12 @@ url = "https://api.apr.dev"
 [provider]
 cluster = "localnet"
 wallet = '~\.config\solana\id.json'
+
+# 本地网络提供者配置（添加明确的RPC URL）
+[provider.localnet]
+cluster = "localnet"
+wallet = '~/.config/solana/id.json'
+rpc_url = "http://localhost:8899"
 
 # 开发网提供者配置
 [provider.devnet]
