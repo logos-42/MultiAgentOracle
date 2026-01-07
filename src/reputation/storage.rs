@@ -1,3 +1,7 @@
+//! 信誉存储管理器 - 因果指纹版
+//!
+//! 负责信誉数据的持久化和文件操作
+
 use crate::reputation::{ReputationScore, ReputationHistory};
 use anyhow::{Result, anyhow};
 use serde::{Deserialize, Serialize};
@@ -347,8 +351,7 @@ impl ReputationStorage {
         let mut stats = StorageStats {
             total_agents: cache.len(),
             active_agents: 0,
-            average_score: 0.0,
-            total_staked: 0,
+            average_credit: 0.0,
             tier_distribution: HashMap::new(),
             total_history_entries: 0,
             storage_size_mb: 0.0,
@@ -359,8 +362,7 @@ impl ReputationStorage {
                 stats.active_agents += 1;
             }
             
-            stats.average_score += score.score;
-            stats.total_staked += score.staked_amount;
+            stats.average_credit += score.causal_credit;
             stats.total_history_entries += score.history.len();
             
             *stats.tier_distribution.entry(score.tier.name().to_string())
@@ -368,7 +370,7 @@ impl ReputationStorage {
         }
         
         if !cache.is_empty() {
-            stats.average_score /= cache.len() as f64;
+            stats.average_credit /= cache.len() as f64;
         }
         
         // 计算存储大小
@@ -427,17 +429,15 @@ impl ReputationStorage {
     }
 }
 
-/// 存储统计
+/// 存储统计 - 因果指纹版
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct StorageStats {
     /// 总智能体数
     pub total_agents: usize,
     /// 活跃智能体数
     pub active_agents: usize,
-    /// 平均信誉分
-    pub average_score: f64,
-    /// 总质押金额
-    pub total_staked: u64,
+    /// 平均因果信用分
+    pub average_credit: f64,
     /// 等级分布
     pub tier_distribution: HashMap<String, usize>,
     /// 总历史记录条目数

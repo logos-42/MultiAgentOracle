@@ -1,5 +1,5 @@
 use crate::consensus::{
-    ConsensusResult, ConsensusStatus, ConsensusError, Vote, VotingResult, AggregationAlgorithm,
+    ConsensusResult, ConsensusStatus, Vote, AggregationAlgorithm,
     aggregation::AggregationConfig,
 };
 use crate::reputation::ReputationManager;
@@ -241,11 +241,11 @@ impl ConsensusEngine {
         
         for agent_did in participants {
             if let Some(score) = self.reputation_manager.get_score(agent_did).await {
-                if score.is_active && score.score >= self.config.min_reputation_threshold {
+                if score.is_active && score.causal_credit >= self.config.min_reputation_threshold {
                     valid_participants.push(agent_did.clone());
                 } else {
-                    warn!("参与者无效: {} (活跃: {}, 信誉分: {})", 
-                        agent_did, score.is_active, score.score);
+                    warn!("参与者无效: {} (活跃: {}, 因果信用分: {:.2})", 
+                        agent_did, score.is_active, score.causal_credit);
                 }
             } else {
                 warn!("参与者未注册: {}", agent_did);

@@ -124,19 +124,20 @@ impl LocalTestNodeManager {
             network_config,
         )?);
         
-        // 创建信誉配置
+        // 创建信誉配置 - 因果指纹版
         let reputation_config = crate::reputation::ReputationConfig {
-            initial_score: config.reputation,
-            min_score: 0.0,
-            max_score: 100.0,
-            accuracy_weight: 0.4,
-            response_time_weight: 0.2,
-            availability_weight: 0.3,
-            decay_rate_per_day: 0.95,
-            min_active_services: 10,
-            penalty_multiplier: 1.5,
-            reward_multiplier: 1.2,
+            initial_credit: config.reputation,
+            min_credit: 0.0,
+            max_credit: 1000.0,
+            logical_consistency_weight: 0.6,
+            spectral_consistency_weight: 0.4,
+            decay_rate_per_day: 0.005,
+            min_active_tasks: 5,
+            penalty_multiplier: 2.0,
+            reward_multiplier: 1.0,
             auto_cleanup_interval_secs: 3600,
+            cosine_threshold: 0.85,
+            homogeneity_threshold: 0.95,
         };
         
         // 创建信誉管理器

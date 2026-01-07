@@ -213,7 +213,7 @@ async fn start_node(
     
     // 注册智能体到信誉系统
     if let Some(did) = agent.get_did() {
-        reputation_manager.register_agent(did.to_string(), 1000).await?;
+        reputation_manager.register_agent(did.to_string()).await?;
         info!("📊 注册到信誉系统: {}", did);
     }
     
@@ -362,34 +362,26 @@ async fn handle_reputation_command(
             
             // 注册一些测试智能体
             let test_agents = vec![
-                ("did:diap:agent_1".to_string(), 1000),
-                ("did:diap:agent_2".to_string(), 2000),
-                ("did:diap:agent_3".to_string(), 1500),
+                "did:diap:agent_1".to_string(),
+                "did:diap:agent_2".to_string(),
+                "did:diap:agent_3".to_string(),
             ];
             
-            for (did, stake) in test_agents {
-                reputation_manager.register_agent(did.clone(), stake).await?;
-                // 模拟一些信誉更新
-                reputation_manager.update_for_data_accuracy(
-                    &did,
-                    45000.0,
-                    45100.0,
-                    0.02,
-                    Some("test_data".to_string()),
-                ).await?;
+            for did in &test_agents {
+                reputation_manager.register_agent(did.clone()).await?;
             }
             
             let rankings = reputation_manager.get_rankings(limit).await;
             println!("信誉排名 (前{}名):", limit);
-            println!("{:<5} {:<30} {:<10} {:<10}", "排名", "智能体DID", "信誉分", "质押金额");
+            println!("{:<5} {:<30} {:<10} {:<10}", "排名", "智能体DID", "因果信用分", "层级");
             println!("{}", "-".repeat(60));
             
             for (i, ranking) in rankings.iter().enumerate() {
                 println!("{:<5} {:<30} {:<10.2} {:<10}", 
                     i + 1, 
                     ranking.agent_did, 
-                    ranking.score,
-                    ranking.staked_amount
+                    ranking.causal_credit,
+                    ranking.tier
                 );
             }
         }
@@ -398,11 +390,12 @@ async fn handle_reputation_command(
             
             if let Some(score) = reputation_manager.get_score(&did).await {
                 println!("智能体DID: {}", did);
-                println!("信誉分: {:.2}", score.score);
-                println!("质押金额: {}", score.staked_amount);
+                println!("因果信用分: {:.2}", score.causal_credit);
                 println!("成功率: {:.2}%", score.success_rate() * 100.0);
-                println!("服务次数: {}", score.total_services);
-                println!("是否活跃: {}", score.is_active);
+                println!("总任务数: {}", score.total_tasks);
+                println!("成功任务数: {}", score.successful_tasks);
+                println!("离群次数: {}", score.outlier_count);
+                println!("是否活跃: {}", score.is_active());
             } else {
                 println!("未找到智能体: {}", did);
             }
