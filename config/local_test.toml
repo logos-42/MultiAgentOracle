@@ -1,21 +1,21 @@
 [test_environment]
-name = "local_hierarchical_test"
-node_count = 10
+name = "local_flat_test"
+agent_count = 10
 simulate_network_latency = true
 enable_diap_mock = true  # 使用模拟DIAP身份
 
-[nodes]
-# 预定义10个节点的配置
-node1 = { tier = "core", reputation = 850, stake = "1.0" }
-node2 = { tier = "core", reputation = 820, stake = "0.8" }
-node3 = { tier = "validator", reputation = 650, stake = "0.5" }
-node4 = { tier = "validator", reputation = 580, stake = "0.4" }
-node5 = { tier = "validator", reputation = 520, stake = "0.3" }
-node6 = { tier = "data", reputation = 350, stake = "0.2" }
-node7 = { tier = "data", reputation = 280, stake = "0.15" }
-node8 = { tier = "data", reputation = 220, stake = "0.1" }
-node9 = { tier = "data", reputation = 150, stake = "0.05" }
-node10 = { tier = "data", reputation = 80, stake = "0.02" }
+[agents]
+# 预定义10个扁平化智能体配置（都是预言机节点，无层级）
+agent1 = { reputation = 850, stake = "1.0", prompt_type = "analytical" }
+agent2 = { reputation = 820, stake = "0.8", prompt_type = "cautious" }
+agent3 = { reputation = 650, stake = "0.5", prompt_type = "aggressive" }
+agent4 = { reputation = 580, stake = "0.4", prompt_type = "neutral" }
+agent5 = { reputation = 520, stake = "0.3", prompt_type = "analytical" }
+agent6 = { reputation = 350, stake = "0.2", prompt_type = "cautious" }
+agent7 = { reputation = 280, stake = "0.15", prompt_type = "neutral" }
+agent8 = { reputation = 220, stake = "0.1", prompt_type = "aggressive" }
+agent9 = { reputation = 150, stake = "0.05", prompt_type = "analytical" }
+agent10 = { reputation = 80, stake = "0.02", prompt_type = "suspicious" }
 
 [gateways]
 light_gateway_count = 2
@@ -28,17 +28,23 @@ data_api_mock = true
 prompt_support = true
 
 [consensus]
-hierarchical_enabled = true
-core_consensus_threshold = 0.67  # 核心层共识阈值
-validator_consensus_threshold = 0.75  # 验证层共识阈值
-data_submission_threshold = 0.6  # 数据提交阈值
+hierarchical_enabled = false  # 改为扁平化架构
+zk_verification_enabled = true  # 启用ZK验证
+zproof_threshold = 0.85  # ZK证明验证阈值
+consensus_threshold = 0.67  # 共识阈值
 
 [network]
-max_core_connections = 5
-max_validator_connections = 8
-max_data_connections = 3
+max_connections = 10  # 所有智能体平等，无层级限制
 simulated_latency_ms = 50
 packet_loss_rate = 0.01
+
+[zk_proof]
+enabled = true
+nori_circuit_path = "circuits/causal_fingerprint.circom"
+verification_key_path = "circuits/keys/verification_key.json"
+proving_key_path = "circuits/keys/causal_fingerprint.zkey"
+num_eigenvalues = 3
+scale_factor = 1000000
 
 [testing]
 enable_visualization = true

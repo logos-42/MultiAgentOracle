@@ -1,0 +1,159 @@
+# Causal Fingerprint Circuit Configuration
+# Nori circuit configuration for ZK proof generation and verification
+
+[metadata]
+name = "causal_fingerprint_svd"
+version = "0.1.0"
+description = "ZK circuit for verifying causal fingerprint spectral analysis"
+
+[circuit]
+# Circuit file path relative to project root
+circuit_file = "causal_fingerprint.circom"
+target = "r1cs"  # Rank-1 Constraint System
+
+[public_inputs]
+# Intervention vector (δX) - generated on-chain from random seed
+[[public_inputs.intervention_vector]]
+name = "intervention_vector"
+type = "Field"
+length = 5
+description = "Random intervention vector from Solana blockhash"
+
+# Causal response (Δy) - agent's computation result
+[[public_inputs.delta_response]]
+name = "delta_response"
+type = "Field"
+length = 5
+description = "Agent's causal response vector"
+
+# Claimed eigenvalues (λ₁, λ₂, λ₃)
+[[public_inputs.expected_eigenvalues]]
+name = "expected_eigenvalues"
+type = "Field"
+length = 3
+description = "Dominant eigenvalues from spectral analysis"
+
+# Spectral properties
+[[public_inputs.spectral_properties]]
+name = "spectral_radius"
+type = "Field"
+description = "Maximum eigenvalue magnitude: max(|λ[i]|)"
+
+[[public_inputs.spectral_properties]]
+name = "spectral_entropy"
+type = "Field"
+description = "Spectral entropy: -Σ(p[i] * log2(p[i]))"
+
+[[public_inputs.spectral_properties]]
+name = "cosine_similarity"
+type = "Field"
+description = "Similarity to global fingerprint consensus"
+
+[private_inputs]
+# Historical response matrix (10 agents × 5 dimensions)
+[[private_inputs.response_history]]
+name = "response_history"
+type = "Field"
+length = 50  # Flattened 10x5 matrix
+description = "Historical causal responses from all agents"
+
+# Covariance matrix (5x5)
+[[private_inputs.covariance_matrix]]
+name = "covariance_matrix"
+type = "Field"
+length = 25  # Flattened 5x5 matrix
+description = "Computed covariance matrix for eigenvalue decomposition"
+
+# Eigenvectors (3 principal components)
+[[private_inputs.eigenvectors]]
+name = "eigenvectors"
+type = "Field"
+length = 15  # Flattened 3x5 matrix
+description = "Eigenvectors corresponding to the eigenvalues"
+
+[constraints]
+# Mathematical constraints that the circuit must prove
+
+[[constraints.rayleigh_quotient]]
+description = "Eigenvalues satisfy Rayleigh quotient: λ = (v^T * M * v) / (v^T * v)"
+constraint = "eigenvalue * (v^T * v) - (v^T * M * v) == 0"
+
+[[constraints.spectral_radius]]
+description = "Spectral radius equals maximum absolute eigenvalue"
+constraint = "spectral_radius - max(|λ[i]|) == 0"
+
+[[constraints.spectral_entropy]]
+description = "Entropy computed from normalized eigenvalues"
+constraint = "entropy - (-Σ(p[i] * log2(p[i]))) == tolerance"
+
+[[constraints.cosine_similarity]]
+description = "Cosine similarity with global fingerprint"
+constraint = "cosine_similarity - (dot / (norm_a * norm_b)) == tolerance"
+
+[[constraints.covariance]]
+description = "Covariance matrix correctly computed from responses"
+constraint = "cov[i][j] = (1/(n-1)) * Σ (x[k][i] - μ[i]) * (x[k][j] - μ[j])"
+
+[optimizations]
+# Circuit optimization settings
+[optimizations.power_iteration]
+enabled = true
+iterations = 100
+convergence_threshold = "1e-10"
+
+[optimizations.fixed_point]
+enabled = true
+scale_factor = 1000000  # 1e6 for 6 decimal places
+description = "Convert floating-point to fixed-point arithmetic"
+
+[optimizations.eigenvalue_limit]
+enabled = true
+max_eigenvalues = 3
+description = "Only compute top 3 eigenvalues to reduce circuit size"
+
+[output]
+# Output format for ZK proof
+[[output.proof]]
+format = "binary"
+encoding = "be"  # Big-endian
+fields = ["pi_a", "pi_b", "pi_c", "public_inputs"]
+
+[[output.metadata]]
+fields = ["circuit_hash", "proving_time", "memory_usage"]
+
+[verification]
+# Verification settings
+[verification.solana]
+enabled = true
+program_id = "DiapOracle1111111111111111111111111111111111"
+account_name = "FingerprintProof"
+verify_instruction = "verify_zk_proof"
+
+[verification.thresholds]
+entropy_min = 0.5
+entropy_max = 1.0
+similarity_min = 0.7
+spectral_radius_max = 1000.0
+
+[development]
+# Development settings
+[development.testing]
+test_vectors_file = "test_vectors.json"
+num_test_cases = 100
+
+[development.profiling]
+enabled = true
+log_file = "circuit_profile.log"
+
+[deployment]
+# Deployment configuration
+[deployment.circuit_files]
+r1cs = "causal_fingerprint.r1cs"
+wasm = "causal_fingerprint.wasm"
+verification_key = "verification_key.json"
+proving_key = "proving_key.json"
+
+[deployment.compilation]
+circom_version = "2.0.0"
+nori_version = "0.1.0"
+optimization_flags = "-O2 --prime p --r1cs -l ../node_modules/circomlib/circuits"

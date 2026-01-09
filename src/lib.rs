@@ -19,6 +19,7 @@ pub mod types;
 pub mod diap;
 pub mod solana;
 pub mod test;
+pub mod zkp;
 
 // 重新导出主要类型
 pub use oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, OracleData, DataSource};
@@ -28,6 +29,7 @@ pub use blockchain::{BlockchainAdapter, ChainType};
 pub use network::{NetworkManager, NetworkConfig, PeerInfo};
 pub use diap::{DiapConfig, DiapIdentityManager, AgentIdentity, DiapNetworkAdapter, DiapError, AuthResult, IdentityStatus};
 pub use types::{NodeId, NodeInfo, Timestamp, current_timestamp, SystemError, NetworkMessage};
+pub use zkp::{ZkpGenerator, ZkpConfig, ZkProof, PublicInputs, PrivateInputs, CircuitInputs};
 
 /// 库版本信息
 pub const VERSION: &str = env!("CARGO_PKG_VERSION");
