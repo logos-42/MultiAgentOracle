@@ -102,32 +102,31 @@ async fn demo_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     
     // 注册测试智能体
     let test_agents = vec![
-        ("did:diap:agent_alpha".to_string(), 1000),
-        ("did:diap:agent_beta".to_string(), 2000),
-        ("did:diap:agent_gamma".to_string(), 1500),
+        "did:diap:agent_alpha".to_string(),
+        "did:diap:agent_beta".to_string(),
+        "did:diap:agent_gamma".to_string(),
     ];
-    
-    for (did, stake) in &test_agents {
-        reputation_manager.register_agent(did.clone(), *stake).await?;
-        info!("  ✅ 注册智能体: {}, 质押: {}", did, stake);
+
+    for did in &test_agents {
+        reputation_manager.register_agent(did.clone()).await?;
+        info!("  ✅ 注册智能体: {}", did);
     }
     
-    // 模拟数据准确性更新
-    info!("  模拟数据准确性更新...");
-    
+    // 模拟逻辑一致性更新
+    info!("  模拟逻辑一致性更新...");
+
     let updates = vec![
-        ("did:diap:agent_alpha", 45000.0, 45100.0, 0.02), // 误差0.22%，在容忍范围内
-        ("did:diap:agent_beta", 45000.0, 46000.0, 0.02),  // 误差2.22%，超出容忍范围
-        ("did:diap:agent_gamma", 45000.0, 44900.0, 0.02), // 误差0.22%，在容忍范围内
+        ("did:diap:agent_alpha", 0.95, false, 0), // 高一致性，不是离群点
+        ("did:diap:agent_beta", 0.75, true, 1),  // 低一致性，是离群点
+        ("did:diap:agent_gamma", 0.92, false, 2), // 高一致性，不是离群点
     ];
-    
-    for (did, expected, actual, tolerance) in updates {
-        match reputation_manager.update_for_data_accuracy(
+
+    for (did, cosine_similarity, is_outlier, cluster_position) in updates {
+        match reputation_manager.update_for_logical_consistency(
             did,
-            expected,
-            actual,
-            tolerance,
-            Some("test_data".to_string()),
+            *cosine_similarity,
+            *is_outlier,
+            *cluster_position,
         ).await {
             Ok(delta) => {
                 info!("     📊 {}: Δ = {:.2}", did, delta);
@@ -145,15 +144,14 @@ async fn demo_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     info!("  ✅ 信誉排名获取成功: {} 个智能体", rankings.len());
     
     println!("\n信誉排名:");
-    println!("{:<5} {:<30} {:<10} {:<10}", "排名", "智能体DID", "信誉分", "质押金额");
-    println!("{}", "-".repeat(60));
-    
+    println!("{:<5} {:<30} {:<10}", "排名", "智能体DID", "因果信用分");
+    println!("{}", "-".repeat(50));
+
     for (i, ranking) in rankings.iter().enumerate() {
-        println!("{:<5} {:<30} {:<10.2} {:<10}", 
-            i + 1, 
-            ranking.agent_did, 
-            ranking.score,
-            ranking.staked_amount
+        println!("{:<5} {:<30} {:<10.2}",
+            i + 1,
+            ranking.agent_did,
+            ranking.causal_credit
         );
     }
     
@@ -163,11 +161,10 @@ async fn demo_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     if let Some(score) = reputation_manager.get_score("did:diap:agent_alpha").await {
         println!("\n智能体详情:");
         println!("  DID: {}", score.agent_did);
-        println!("  信誉分: {:.2}", score.score);
-        println!("  质押金额: {}", score.staked_amount);
+        println!("  因果信用分: {:.2}", score.causal_credit);
         println!("  成功率: {:.2}%", score.success_rate() * 100.0);
-        println!("  服务次数: {}", score.total_services);
-        println!("  成功次数: {}", score.successful_services);
+        println!("  总任务数: {}", score.total_tasks);
+        println!("  成功任务数: {}", score.successful_tasks);
     }
     
     Ok(())
@@ -231,8 +228,7 @@ async fn demo_data_collection() -> Result<(), Box<dyn std::error::Error>> {
     println!("\n智能体信息:");
     println!("  名称: {}", info.name);
     println!("  DID: {}", info.did);
-    println!("  信誉分: {:.2}", info.reputation_score);
-    println!("  质押金额: {}", info.staked_amount);
+    println!("  当前信誉分: {:.2}", agent.get_reputation_score());
     println!("  支持的数据类型: {} 种", info.supported_data_types.len());
     println!("  数据源数量: {}", info.data_source_count);
     println!("  缓存大小: {} 个条目", info.cache_size);

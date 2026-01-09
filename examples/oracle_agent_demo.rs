@@ -55,7 +55,6 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 注册智能体到信誉系统
     reputation_manager.register_agent(
         oracle_agent.get_did().unwrap().to_string(),
-        1000, // 初始质押
     ).await?;
     
     info!("✅ 信誉管理器初始化成功");
@@ -94,13 +93,12 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     // 6. 演示信誉更新
     info!("📈 开始信誉更新演示");
     
-    // 模拟数据准确性更新
-    match reputation_manager.update_for_data_accuracy(
+    // 模拟逻辑一致性更新
+    match reputation_manager.update_for_logical_consistency(
         oracle_agent.get_did().unwrap(),
-        45000.0, // 预期值
-        45100.0, // 实际值
-        0.02,    // 2%容忍度
-        Some("test_data_1".to_string()),
+        0.85,   // 高余弦相似度
+        false,   // 不是离群点
+        0,       // 聚类位置
     ).await {
         Ok(delta) => {
             info!("✅ 信誉更新成功: Δ = {:.2}", delta);
@@ -112,10 +110,10 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // 获取当前信誉分
     if let Some(score) = reputation_manager.get_score(oracle_agent.get_did().unwrap()).await {
-        info!("📊 当前信誉分: {:.2}", score.score);
-        info!("   质押金额: {}", score.staked_amount);
-        info!("   总服务次数: {}", score.total_services);
+        info!("📊 当前因果信用分: {:.2}", score.causal_credit);
         info!("   成功率: {:.2}%", score.success_rate() * 100.0);
+        info!("   总任务数: {}", score.total_tasks);
+        info!("   成功任务数: {}", score.successful_tasks);
     }
     
     // 7. 演示共识过程

@@ -1,12 +1,12 @@
 //! 交互式测试控制台
-//! 
+//!
 //! 提供分层架构测试的交互式控制界面
 
 use clap::{Parser, Subcommand};
 use multi_agent_oracle::test::{
-    LocalTestConfig, LocalTestNodeManager, PreconfiguredReputation, 
+    LocalTestConfig, LocalTestNodeManager, PreconfiguredReputation,
     SimplePromptSupport, visualize_test_results, TestResults,
-    NetworkTestResult, ConsensusTestResult, DiapTestResult, 
+    NetworkTestResult, ConsensusTestResult, DiapTestResult,
     GatewayTestResult, PromptTestResult, WeightInfluenceAnalysis
 };
 use multi_agent_oracle::OracleDataType;
@@ -80,8 +80,11 @@ enum Commands {
 }
 
 /// 主函数
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // 创建Tokio运行时
+    let rt = tokio::runtime::Runtime::new()?;
+    
+    // 解析命令行参数
     let cli = Cli::parse();
     
     println!("🔧 分层架构测试控制台");
@@ -120,11 +123,11 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // 处理命令行参数
     if cli.init {
-        return initialize_test_environment(&config).await;
+        return rt.block_on(initialize_test_environment(&config));
     }
     
     if cli.report {
-        return generate_test_report(&config).await;
+        return rt.block_on(generate_test_report(&config));
     }
     
     if cli.clean {
@@ -133,12 +136,13 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
     
     // 处理子命令
     if let Some(command) = cli.command {
-        return handle_command(command, &config).await;
+        return rt.block_on(handle_command(command, &config));
     }
     
     // 交互式模式
-    interactive_mode(&config).await
+    rt.block_on(interactive_mode(&config))
 }
+
 
 /// 初始化测试环境
 async fn initialize_test_environment(config: &LocalTestConfig) -> Result<(), Box<dyn std::error::Error>> {

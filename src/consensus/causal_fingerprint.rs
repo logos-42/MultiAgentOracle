@@ -5,6 +5,8 @@
 //! - Cosine similarity clustering for consensus
 //! - Outlier detection based on logical consistency
 
+#![allow(dead_code, missing_docs)]
+
 use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::collections::HashSet;

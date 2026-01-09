@@ -126,25 +126,24 @@ async fn test_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     
     // 注册测试智能体
     let test_agents = vec![
-        ("did:diap:agent_1".to_string(), 1000),
-        ("did:diap:agent_2".to_string(), 2000),
-        ("did:diap:agent_3".to_string(), 1500),
+        "did:diap:agent_1".to_string(),
+        "did:diap:agent_2".to_string(),
+        "did:diap:agent_3".to_string(),
     ];
-    
-    for (did, stake) in test_agents {
-        reputation_manager.register_agent(did.clone(), stake).await?;
-        info!("  ✅ 注册智能体: {}, 质押: {}", did, stake);
+
+    for did in test_agents {
+        reputation_manager.register_agent(did.clone()).await?;
+        info!("  ✅ 注册智能体: {}", did);
     }
     
     // 测试信誉更新
     info!("  测试信誉更新...");
-    
-    match reputation_manager.update_for_data_accuracy(
+
+    match reputation_manager.update_for_logical_consistency(
         "did:diap:agent_1",
-        45000.0,
-        45100.0,
-        0.02,
-        Some("test_data_1".to_string()),
+        0.95,  // 高余弦相似度
+        false,  // 不是离群点
+        0,      // 聚类位置
     ).await {
         Ok(delta) => {
             info!("  ✅ 信誉更新成功: Δ = {:.2}", delta);
@@ -160,8 +159,7 @@ async fn test_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     
     if let Some(score) = reputation_manager.get_score("did:diap:agent_1").await {
         info!("  ✅ 信誉查询成功");
-        info!("     当前分数: {:.2}", score.score);
-        info!("     质押金额: {}", score.staked_amount);
+        info!("     当前因果信用分: {:.2}", score.causal_credit);
         info!("     成功率: {:.2}%", score.success_rate() * 100.0);
     }
     
@@ -172,7 +170,7 @@ async fn test_reputation_system() -> Result<(), Box<dyn std::error::Error>> {
     info!("  ✅ 信誉排名获取成功: {} 个智能体", rankings.len());
     
     for (i, ranking) in rankings.iter().enumerate() {
-        info!("     {}. {}: {:.2}分", i + 1, ranking.agent_did, ranking.score);
+        info!("     {}. {}: {:.2}分", i + 1, ranking.agent_did, ranking.causal_credit);
     }
     
     Ok(())
@@ -195,7 +193,7 @@ async fn test_consensus_engine() -> Result<(), Box<dyn std::error::Error>> {
     ];
     
     for participant in &participants {
-        reputation_manager.register_agent(participant.clone(), 1000).await?;
+        reputation_manager.register_agent(participant.clone()).await?;
     }
     
     // 创建共识引擎
@@ -309,7 +307,7 @@ async fn test_end_to_end() -> Result<(), Box<dyn std::error::Error>> {
     // 注册所有智能体
     for agent in &agents {
         if let Some(did) = agent.get_did() {
-            reputation_manager.register_agent(did.to_string(), 1000).await?;
+            reputation_manager.register_agent(did.to_string()).await?;
             info!("     ✅ 注册到信誉系统: {}", did);
         }
     }
@@ -321,16 +319,15 @@ async fn test_end_to_end() -> Result<(), Box<dyn std::error::Error>> {
     
     for agent in &agents {
         if let Some(did) = agent.get_did() {
-            // 模拟数据准确性更新
-            let expected = 45000.0;
-            let actual = 45000.0 + (rand::random::<f64>() - 0.5) * 1000.0; // ±500变化
+            // 模拟逻辑一致性更新
+            let cosine_similarity = 0.8 + (rand::random::<f64>() - 0.5) * 0.2; // 0.7-0.9范围
+            let is_outlier = cosine_similarity < 0.75;
             
-            match reputation_manager.update_for_data_accuracy(
+            match reputation_manager.update_for_logical_consistency(
                 did,
-                expected,
-                actual,
-                0.02,
-                Some(format!("test_{}", did)),
+                cosine_similarity,
+                is_outlier,
+                0, // 聚类位置
             ).await {
                 Ok(delta) => {
                     info!("     📊 {}: Δ = {:.2}", did, delta);

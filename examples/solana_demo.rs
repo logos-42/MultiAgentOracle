@@ -5,12 +5,13 @@
 use multi_agent_oracle::solana::{demo_identity_registration, SolanaConfig, IdentityRegistryClient, SolanaClient};
 use solana_sdk::signature::Keypair;
 use std::error::Error;
+use std::iter;
 
 #[tokio::main]
 async fn main() -> Result<(), Box<dyn Error>> {
-    println!("=".repeat(60));
+    println!("{}", "=".repeat(60));
     println!("Solana集成演示程序");
-    println!("=".repeat(60));
+    println!("{}", "=".repeat(60));
     
     // 演示1: 运行完整的演示
     println!("\n📋 演示1: 完整的Solana身份注册演示");

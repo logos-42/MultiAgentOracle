@@ -102,6 +102,7 @@ pub struct WeightStatistics {
 }
 
 /// 聚合策略 trait
+#[allow(dead_code)]
 pub trait AggregationStrategy {
     /// 聚合投票
     fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult>;
@@ -236,8 +237,9 @@ impl WeightedAverageStrategy {
     }
 }
 
+#[allow(dead_code)]
 impl AggregationStrategy for SimpleAverageStrategy {
-    fn aggregate(&self, votes: &[Vote], weights: &[f64]) -> Result<AggregationResult> {
+    fn aggregate(&self, votes: &[Vote], _weights: &[f64]) -> Result<AggregationResult> {
         if votes.is_empty() {
             return Err(anyhow!("没有投票数据"));
         }
@@ -270,6 +272,7 @@ impl AggregationStrategy for SimpleAverageStrategy {
         })
     }
     
+    #[allow(dead_code)]
     fn name(&self) -> &str {
         "简单平均"
     }
@@ -590,6 +593,7 @@ fn calculate_weight_statistics(weights: &[f64]) -> WeightStatistics {
 }
 
 /// 自定义聚合策略
+#[allow(dead_code)]
 pub struct CustomAggregationStrategy {
     name: String,
     aggregator: Box<dyn Fn(&[Vote], &[f64]) -> Result<AggregationResult> + Send + Sync>,
@@ -597,6 +601,7 @@ pub struct CustomAggregationStrategy {
 
 impl CustomAggregationStrategy {
     /// 创建自定义聚合策略
+    #[allow(dead_code)]
     pub fn new<F>(name: &str, aggregator: F) -> Self
     where
         F: Fn(&[Vote], &[f64]) -> Result<AggregationResult> + Send + Sync + 'static,
@@ -605,6 +610,11 @@ impl CustomAggregationStrategy {
             name: name.to_string(),
             aggregator: Box::new(aggregator),
         }
+    }
+    
+    #[allow(dead_code)]
+    pub fn name(&self) -> &str {
+        &self.name
     }
 }
 

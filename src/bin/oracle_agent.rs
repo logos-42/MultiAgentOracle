@@ -88,9 +88,6 @@ enum Commands {
         #[command(subcommand)]
         command: ReputationCommands,
     },
-    
-    /// 查看帮助
-    Help,
 }
 
 /// 信誉系统子命令
@@ -123,10 +120,13 @@ enum ReputationCommands {
     },
 }
 
-#[tokio::main]
-async fn main() -> Result<(), Box<dyn std::error::Error>> {
+fn main() -> Result<(), Box<dyn std::error::Error>> {
+    // 创建Tokio运行时
+    let rt = tokio::runtime::Runtime::new()?;
+
+    // 解析命令行参数
     let cli = Cli::parse();
-    
+
     // 初始化日志
     env_logger::Builder::new()
         .filter_level(match cli.log_level.as_str() {
@@ -138,11 +138,17 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
             _ => log::LevelFilter::Info,
         })
         .init();
-    
+
     info!("🚀 多智能体预言机节点启动");
     info!("版本: {}", multi_agent_oracle::VERSION);
     info!("描述: {}", multi_agent_oracle::DESCRIPTION);
-    
+
+    // 运行异步主函数
+    rt.block_on(async_main(cli))
+}
+
+/// 异步主函数
+async fn async_main(cli: Cli) -> Result<(), Box<dyn std::error::Error>> {
     match cli.command {
         Commands::Start { name, data_sources, port, enable_p2p } => {
             start_node(name, data_sources, port, enable_p2p).await?;
@@ -159,11 +165,8 @@ async fn main() -> Result<(), Box<dyn std::error::Error>> {
         Commands::Reputation { command } => {
             handle_reputation_command(command).await?;
         }
-        Commands::Help => {
-            print_help();
-        }
     }
-    
+
     Ok(())
 }
 
@@ -238,7 +241,7 @@ async fn start_node(
     };
     
     // 启动网络（如果启用）
-    if let Some(nm) = network_manager {
+    if let Some(_) = network_manager {
         info!("📡 启动网络监听端口: {}", port);
         // 这里应该启动网络监听
         // 简化版本：只显示信息
@@ -417,6 +420,7 @@ async fn handle_reputation_command(
 }
 
 /// 打印帮助信息
+#[allow(dead_code)]
 fn print_help() {
     println!("多智能体预言机节点命令行工具");
     println!();

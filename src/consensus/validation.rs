@@ -199,7 +199,7 @@ impl TierValidator {
     }
     
     /// 验证节点层级
-    pub fn validate_node_tier(&self, node_id: &NodeId, reputation: f64, current_tier: &str) -> Option<String> {
+    pub fn validate_node_tier(&self, node_id: &str, reputation: f64, current_tier: &str) -> Option<String> {
         for config in &self.tier_config {
             if reputation >= config.min_reputation && reputation <= config.max_reputation {
                 if config.name != current_tier {

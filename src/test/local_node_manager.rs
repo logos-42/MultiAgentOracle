@@ -2,18 +2,19 @@
 //! 
 //! 管理10个测试节点的生命周期和分层网络模拟
 
+#![allow(missing_docs)]
+
 use crate::test::config::LocalTestConfig;
 use crate::test::preconfigured_reputation::PreconfiguredReputation;
 use crate::test::simple_prompt_support::SimplePromptSupport;
 use crate::test::{ConsensusTestResult, WeightInfluenceAnalysis};
 use crate::consensus::{ConsensusEngine, ConsensusConfig};
 use crate::network::NetworkManager;
-use crate::oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType, DataSource};
+use crate::oracle_agent::{OracleAgent, OracleAgentConfig, OracleDataType};
 use crate::reputation::ReputationManager;
 
 use std::collections::HashMap;
 use std::sync::Arc;
-use tokio::sync::RwLock;
 
 /// 测试节点结构
 pub struct TestNode {
@@ -247,7 +248,7 @@ impl LocalTestNodeManager {
         
         // 建立节点连接
         for (node_id, connections) in &self.topology.connections {
-            if let Some(node) = self.nodes.get(node_id) {
+            if let Some(_node) = self.nodes.get(node_id) {
                 println!("  节点 {} 连接到: {:?}", node_id, connections);
                 
                 // 在实际实现中，这里会调用网络管理器的连接方法

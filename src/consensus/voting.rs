@@ -1,6 +1,5 @@
 use serde::{Deserialize, Serialize};
 use std::time::{SystemTime, UNIX_EPOCH};
-use crate::diap::AgentIdentity;
 use crate::{DiapIdentityManager, DiapError};
 
 /// 投票
@@ -102,12 +101,12 @@ impl Vote {
             .unwrap()
             .as_secs();
         
-        if self.timestamp > now + 300 { // 不能是未来5分钟的时间
-            return false;
+        if self.timestamp > now && self.timestamp - now > 300 {
+            return false; // 超过未来5分钟
         }
         
-        if now - self.timestamp > 3600 { // 不能是1小时前的数据
-            return false;
+        if self.timestamp < now - 3600 {
+            return false; // 超过1小时前
         }
         
         true
@@ -353,7 +352,7 @@ impl VoteCollector {
             return false;
         }
         
-        let now = SystemTime::now()
+        let _now = SystemTime::now()
             .duration_since(UNIX_EPOCH)
             .unwrap()
             .as_secs();

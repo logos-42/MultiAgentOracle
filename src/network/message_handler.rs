@@ -2,7 +2,7 @@
 //! 
 //! 处理网络消息的接收、解析和分发
 
-use crate::types::{NetworkMessage, NodeId, Timestamp, current_timestamp, SystemError};
+use crate::types::{NetworkMessage, NodeId, Timestamp, current_timestamp};
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
@@ -131,7 +131,7 @@ impl MessageHandler {
     /// 注册默认处理器
     fn register_default_handlers(&mut self) {
         // 心跳消息处理器
-        self.register_handler(MessageType::Heartbeat, Box::new(|message: &NetworkMessage, sender: &NodeId| {
+        self.register_handler(MessageType::Heartbeat, Box::new(|message: &NetworkMessage, _sender: &NodeId| {
             if let NetworkMessage::Heartbeat { node_id, timestamp } = message {
                 println!("💓 收到来自 {} 的心跳消息，时间戳: {}", node_id, timestamp);
                 Ok(())
@@ -141,8 +141,8 @@ impl MessageHandler {
         }));
         
         // 数据提交处理器
-        self.register_handler(MessageType::DataSubmission, Box::new(|message: &NetworkMessage, sender: &NodeId| {
-            if let NetworkMessage::DataSubmission { node_id, data_type, data, signature } = message {
+        self.register_handler(MessageType::DataSubmission, Box::new(|message: &NetworkMessage, _sender: &NodeId| {
+            if let NetworkMessage::DataSubmission { node_id, data_type, data: _data, signature } = message {
                 println!("📊 收到来自 {} 的数据提交: {} (签名: {})", 
                     node_id, data_type, &signature[..10.min(signature.len())]);
                 Ok(())
@@ -152,10 +152,10 @@ impl MessageHandler {
         }));
         
         // 共识投票处理器
-        self.register_handler(MessageType::ConsensusVote, Box::new(|message: &NetworkMessage, sender: &NodeId| {
-            if let NetworkMessage::ConsensusVote { node_id, proposal_id, vote, weight } = message {
-                println!("🗳️  收到来自 {} 的共识投票: 提案 {}，投票: {}，权重: {}", 
-                    node_id, proposal_id, vote, weight);
+        self.register_handler(MessageType::ConsensusVote, Box::new(|message: &NetworkMessage, _sender: &NodeId| {
+            if let NetworkMessage::ConsensusVote { node_id, proposal_id, vote, weight: _weight } = message {
+                println!("🗳️  收到来自 {} 的共识投票: 提案 {}，投票: {}", 
+                    node_id, proposal_id, vote);
                 Ok(())
             } else {
                 Err("消息类型不匹配".to_string())
@@ -163,7 +163,7 @@ impl MessageHandler {
         }));
         
         // 层级变更处理器
-        self.register_handler(MessageType::TierChange, Box::new(|message: &NetworkMessage, sender: &NodeId| {
+        self.register_handler(MessageType::TierChange, Box::new(|message: &NetworkMessage, _sender: &NodeId| {
             if let NetworkMessage::TierChange { node_id, old_tier, new_tier, reason } = message {
                 println!("📈 节点 {} 层级变更: {} -> {}，原因: {}", 
                     node_id, old_tier, new_tier, reason);
@@ -174,8 +174,8 @@ impl MessageHandler {
         }));
         
         // 错误消息处理器
-        self.register_handler(MessageType::Error, Box::new(|message: &NetworkMessage, sender: &NodeId| {
-            if let NetworkMessage::Error { code, message: error_msg, details } = message {
+        self.register_handler(MessageType::Error, Box::new(|message: &NetworkMessage, _sender: &NodeId| {
+            if let NetworkMessage::Error { code, message: error_msg, details: _details } = message {
                 println!("❌ 收到错误消息: 代码 {}，消息: {}", code, error_msg);
                 Ok(())
             } else {
@@ -261,16 +261,16 @@ impl MessageHandler {
             NetworkMessage::Heartbeat { node_id, timestamp } => {
                 format!("心跳 from {} at {}", node_id, timestamp)
             }
-            NetworkMessage::DataSubmission { node_id, data_type, data, signature } => {
+            NetworkMessage::DataSubmission { node_id, data_type, data, signature: _signature } => {
                 format!("数据提交 from {}: {} ({} bytes)", node_id, data_type, data.to_string().len())
             }
-            NetworkMessage::ConsensusVote { node_id, proposal_id, vote, weight } => {
+            NetworkMessage::ConsensusVote { node_id, proposal_id, vote, weight: _weight } => {
                 format!("共识投票 from {}: 提案 {}，投票 {}", node_id, proposal_id, vote)
             }
             NetworkMessage::TierChange { node_id, old_tier, new_tier, reason } => {
                 format!("层级变更 from {}: {} -> {}，原因: {}", node_id, old_tier, new_tier, reason)
             }
-            NetworkMessage::Error { code, message: error_msg, details } => {
+            NetworkMessage::Error { code, message: error_msg, details: _details } => {
                 format!("错误: 代码 {}，消息: {}", code, error_msg)
             }
         }

@@ -2,6 +2,8 @@
 //! 
 //! 处理网络连接的建立、维护和数据传输
 
+#![allow(dead_code, unused_variables, missing_docs)]
+
 use crate::types::NodeId;
 use std::collections::HashMap;
 use std::net::SocketAddr;

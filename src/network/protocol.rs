@@ -55,7 +55,7 @@ pub struct ProtocolMessage {
 }
 
 /// 消息类型
-#[derive(Debug, Clone, Serialize, Deserialize)]
+#[derive(Debug, Clone, Serialize, Deserialize, PartialEq)]
 pub enum MessageType {
     /// 心跳消息
     Heartbeat,
@@ -183,7 +183,7 @@ impl Protocol {
             timestamp: chrono::Utc::now().timestamp() as u64,
         };
         
-        self.encode_message(&heartbeat, None).unwrap_or_else(|e| {
+        self.encode_message(&heartbeat, None).unwrap_or_else(|_e| {
             // 如果编码失败，返回一个简单的心跳消息
             ProtocolMessage {
                 message_id: format!("hb_{}_{}", self.local_node_id, chrono::Utc::now().timestamp_nanos_opt().unwrap_or(0)),
@@ -199,7 +199,7 @@ impl Protocol {
     }
     
     /// 验证消息签名
-    pub fn verify_signature(&self, message: &ProtocolMessage) -> bool {
+    pub fn verify_signature(&self, _message: &ProtocolMessage) -> bool {
         // 在实际实现中，这里会验证消息签名
         // 目前返回true表示验证通过
         true
@@ -211,7 +211,7 @@ impl Protocol {
     }
     
     /// 检查消息是否来自可信来源
-    pub fn is_trusted_source(&self, sender_id: &NodeId) -> bool {
+    pub fn is_trusted_source(&self, _sender_id: &NodeId) -> bool {
         // 在实际实现中，这里会检查发送者是否在可信列表中
         // 目前返回true表示可信
         true

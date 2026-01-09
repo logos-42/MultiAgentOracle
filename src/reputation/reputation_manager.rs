@@ -3,7 +3,7 @@
 //! 基于逻辑一致性的信誉评分系统，用于评估和激励预言机智能体。
 
 use crate::reputation::reputation_score::{
-    ReputationScore, ReputationUpdate, UpdateReason, ReputationSummary, ReputationTier,
+    ReputationScore, ReputationUpdate, UpdateReason, ReputationSummary,
 };
 use anyhow::{Result, anyhow};
 use std::collections::HashMap;

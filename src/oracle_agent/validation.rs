@@ -4,6 +4,7 @@ use serde_json::Value;
 use std::collections::HashMap;
 
 /// 数据验证器
+#[allow(dead_code)]
 pub struct DataValidator {
     /// 验证规则
     rules: HashMap<String, ValidationRule>,
@@ -15,6 +16,7 @@ pub struct DataValidator {
 
 /// 验证规则
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct ValidationRule {
     /// 规则名称
     pub name: String,
@@ -30,6 +32,7 @@ pub struct ValidationRule {
 
 /// 历史数据
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 struct HistoricalData {
     timestamp: u64,
     value: f64,
@@ -52,6 +55,7 @@ impl DataValidator {
     }
     
     /// 验证数据
+    #[allow(dead_code)]
     pub fn validate(&mut self, data: &OracleData) -> Result<ValidationResult> {
         let mut result = ValidationResult {
             is_valid: true,
@@ -147,7 +151,7 @@ impl DataValidator {
         &self,
         data_key: &str,
         value: f64,
-        data: &OracleData,
+        _data: &OracleData,
         result: &mut ValidationResult,
     ) {
         if let Some(history) = self.history.get(data_key) {
@@ -219,6 +223,7 @@ impl DataValidator {
     }
     
     /// 获取验证统计
+    #[allow(dead_code)]
     pub fn get_stats(&self) -> ValidationStats {
         let mut stats = ValidationStats {
             total_validations: 0,
@@ -240,6 +245,7 @@ impl DataValidator {
 
 /// 验证结果
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct ValidationResult {
     /// 是否有效
     pub is_valid: bool,
@@ -253,6 +259,7 @@ pub struct ValidationResult {
 
 impl ValidationResult {
     /// 获取调整后的置信度
+    #[allow(dead_code)]
     pub fn get_adjusted_confidence(&self, original_confidence: f64) -> f64 {
         (original_confidence + self.confidence_adjustment).clamp(0.0, 1.0)
     }
@@ -270,6 +277,7 @@ impl ValidationResult {
 
 /// 验证统计
 #[derive(Debug, Clone)]
+#[allow(dead_code)]
 pub struct ValidationStats {
     /// 总验证次数
     pub total_validations: usize,

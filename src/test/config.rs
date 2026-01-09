@@ -2,6 +2,8 @@
 //! 
 //! 定义本地分层架构测试的配置结构
 
+#![allow(missing_docs)]
+
 use serde::{Deserialize, Serialize};
 use std::collections::HashMap;
 

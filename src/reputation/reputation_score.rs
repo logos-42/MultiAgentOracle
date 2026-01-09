@@ -7,6 +7,8 @@
 //! - fingerprint_stability: 全局指纹稳定性（EMA一致性）
 //! - spectral_diversity: 谱多样性（模型异构性）
 
+#![allow(missing_docs)]
+
 use serde::{Deserialize, Serialize};
 use std::time::{SystemTime, UNIX_EPOCH};
 use chrono::{DateTime, Utc};

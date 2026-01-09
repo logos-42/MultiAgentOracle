@@ -2,6 +2,8 @@
 //!
 //! 负责信誉数据的持久化和文件操作
 
+#![allow(dead_code, unused_variables, missing_docs)]
+
 use crate::reputation::{ReputationScore, ReputationHistory};
 use anyhow::{Result, anyhow};
 use serde::{Deserialize, Serialize};

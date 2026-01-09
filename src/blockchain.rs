@@ -2,7 +2,7 @@
 //! 
 //! 提供对不同区块链网络的适配支持
 
-use std::collections::HashMap;
+// use std::collections::HashMap;
 
 /// 区块链类型
 #[derive(Debug, Clone, Copy, PartialEq, Eq, Hash)]

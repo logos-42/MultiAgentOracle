@@ -1,6 +1,8 @@
 //! 测试模块
-//! 
+//!
 //! 本地分层架构测试的实现
+
+use std::collections::HashMap;
 
 pub mod config;
 pub mod local_node_manager;
@@ -133,5 +135,3 @@ pub struct TierResponseStats {
     pub response_success_rate: f64,
     pub average_response_quality: f64,
 }
-
-use std::collections::HashMap;

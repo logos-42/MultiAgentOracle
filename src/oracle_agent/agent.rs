@@ -255,6 +255,7 @@ impl OracleAgent {
     }
     
     /// 缓存数据（内部使用）
+    #[allow(dead_code)]
     pub(crate) fn cache_data_internal(&mut self, key: String, data: OracleData, ttl_secs: u64) {
         let key_clone = key.clone();
         let expiry = SystemTime::now()
@@ -284,7 +285,7 @@ impl OracleAgent {
     
     /// 签名数据
     fn sign_data(&self, mut data: OracleData) -> Result<OracleData> {
-        if let (Some(did), Some(private_key)) = (&self.agent_did, &self.private_key) {
+        if let (Some(did), Some(_private_key)) = (&self.agent_did, &self.private_key) {
             // 这里应该使用实际的签名算法
             // 简化版本：使用base64编码的伪签名
             let signature = general_purpose::STANDARD.encode(format!("{}-{:?}-{}", 
@@ -387,6 +388,7 @@ pub struct OracleAgentInfo {
 
 /// 数据采集器
 pub struct DataCollector {
+    #[allow(dead_code)]
     data_sources: Vec<DataSource>,
     last_used_sources: Vec<String>,
 }
@@ -406,13 +408,13 @@ impl DataCollector {
         self.last_used_sources = vec!["mock_source".to_string()];
         
         let value = match data_type {
-            OracleDataType::CryptoPrice { symbol } => {
+            OracleDataType::CryptoPrice { symbol: _sym } => {
                 Value::Number((1000 + rand::random::<u16>() % 1000).into())
             }
-            OracleDataType::StockPrice { symbol, exchange } => {
+            OracleDataType::StockPrice { symbol: _sym, exchange: _exchange } => {
                 Value::Number((50 + rand::random::<u16>() % 100).into())
             }
-            OracleDataType::WeatherData { location, metric } => {
+            OracleDataType::WeatherData { location: _location, metric: _metric } => {
                 Value::Number((20 + rand::random::<u8>() % 20).into())
             }
             _ => Value::String("mock_data".to_string()),

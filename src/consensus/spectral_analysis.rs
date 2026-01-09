@@ -8,6 +8,8 @@
 //! - Different models (GPT-4, Claude) have different spectral distributions
 //! - Homogeneity detection identifies when agents share the same underlying model
 
+#![allow(missing_docs)]
+
 use serde::{Deserialize, Serialize};
 
 /// Spectral features extracted from agent responses
@@ -45,6 +47,7 @@ impl Default for SpectralConfig {
 /// 
 /// In a real implementation, this would use nalgebra or similar for SVD.
 /// For now, we use a simplified approach that captures the essence.
+#[allow(dead_code)]
 pub fn extract_spectral_features(responses: &[Vec<f64>]) -> SpectralFeatures {
     let num_eigenvalues = 8;
     
@@ -61,7 +64,7 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> SpectralFeatures {
     
     let n = responses.len();
     let m = responses[0].len();
-    let dim = m.min(num_eigenvalues);
+    let _dim = m.min(num_eigenvalues);
     
     // Calculate mean for each dimension
     let mut means = vec![0.0; m];
@@ -126,6 +129,7 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> SpectralFeatures {
 }
 
 /// Approximate eigenvalues using power iteration and deflation
+#[allow(dead_code)]
 fn approximate_eigenvalues(matrix: &[Vec<f64>], num: usize) -> Vec<f64> {
     let n = matrix.len();
     if n == 0 {
@@ -244,6 +248,7 @@ pub fn spectral_similarity(a: &[f64], b: &[f64]) -> f64 {
 }
 
 /// Detect if agents are using the same underlying model
+#[allow(dead_code)]
 pub fn detect_model_homogeneity(features: &[SpectralFeatures], threshold: f64) -> Vec<(usize, usize)> {
     let mut homogeneous_pairs = Vec::new();
     
@@ -278,6 +283,7 @@ pub fn fingerprint_consistency_score(
 }
 
 /// Check if spectral features indicate a valid model (not hallucinating)
+#[allow(dead_code)]
 pub fn is_valid_spectral(features: &SpectralFeatures, min_entropy: f64) -> bool {
     // Valid models should have non-trivial spectral structure
     features.spectral_radius > 0.0 && 

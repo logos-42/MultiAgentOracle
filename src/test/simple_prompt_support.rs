@@ -2,6 +2,8 @@
 //! 
 //! 支持智能体响应简单prompt，用于测试分层架构的交互能力
 
+#![allow(missing_docs)]
+
 use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;

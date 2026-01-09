@@ -129,6 +129,7 @@ pub enum ResolutionMethod {
     Manual,
 }
 
+#[allow(dead_code)]
 impl ConsensusEngine {
     /// 创建新的共识引擎
     pub fn new(
@@ -291,6 +292,7 @@ impl ConsensusEngine {
     }
     
     /// 聚合投票
+    #[allow(dead_code)]
     async fn aggregate_votes(&self) -> Result<()> {
         let state = self.state.read().await.clone();
         
@@ -360,6 +362,7 @@ impl ConsensusEngine {
     }
     
     /// 检查争议
+    #[allow(dead_code)]
     async fn check_disputes(
         &self,
         votes: &[Vote],
@@ -389,6 +392,7 @@ impl ConsensusEngine {
     }
     
     /// 解决争议
+    #[allow(dead_code)]
     async fn resolve_disputes(&self) -> Result<()> {
         let state = self.state.read().await.clone();
         
@@ -432,7 +436,7 @@ impl ConsensusEngine {
     }
     
     /// 解决单个争议
-    async fn resolve_dispute(&self, dispute: &Dispute) -> Result<DisputeResolution> {
+    async fn resolve_dispute(&self, _dispute: &Dispute) -> Result<DisputeResolution> {
         // 简化实现：使用重新投票
         // 实际实现应该更复杂，可能包括仲裁、备用数据源等
         
