@@ -1,0 +1,43 @@
+{
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "prompt_type": "cautious",
+      "model_characteristics": ["极度保守", "风险厌恶", "稳健第一"],
+      "sensitivity": 0.3,
+      "noise_level": 0.03
+    },
+    {
+      "agent_id": "agent_2",
+      "prompt_type": "cautious",
+      "model_characteristics": ["保守估计", "注重安全性", "低风险容忍度"],
+      "sensitivity": 0.4,
+      "noise_level": 0.04
+    },
+    {
+      "agent_id": "agent_3",
+      "prompt_type": "conservative",
+      "model_characteristics": ["零风险偏好", "资本保值", "极度谨慎"],
+      "sensitivity": 0.2,
+      "noise_level": 0.02
+    },
+    {
+      "agent_id": "agent_4",
+      "prompt_type": "conservative",
+      "model_characteristics": ["安全第一", "渐进策略", "防御性思维"],
+      "sensitivity": 0.25,
+      "noise_level": 0.025
+    },
+    {
+      "agent_id": "agent_5",
+      "prompt_type": "cautious",
+      "model_characteristics": ["风险规避", "多重验证", "缓慢决策"],
+      "sensitivity": 0.35,
+      "noise_level": 0.035
+    }
+  ],
+  "intervention_dimensions": 3,
+  "consensus_threshold": 0.90,
+  "global_fingerprint": [2.0, 1.5, 1.0],
+  "test_runs": 5
+}

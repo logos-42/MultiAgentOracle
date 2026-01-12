@@ -1,0 +1,78 @@
+{
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "prompt_type": "analytical",
+      "model_characteristics": ["逻辑推理", "数据分析", "理性决策"],
+      "sensitivity": 1.0,
+      "noise_level": 0.1
+    },
+    {
+      "agent_id": "agent_2",
+      "prompt_type": "analytical",
+      "model_characteristics": ["统计方法", "量化分析", "数据驱动"],
+      "sensitivity": 1.1,
+      "noise_level": 0.08
+    },
+    {
+      "agent_id": "agent_3",
+      "prompt_type": "cautious",
+      "model_characteristics": ["保守估计", "注重安全性", "低风险容忍度"],
+      "sensitivity": 0.5,
+      "noise_level": 0.05
+    },
+    {
+      "agent_id": "agent_4",
+      "prompt_type": "cautious",
+      "model_characteristics": ["风险厌恶", "保守策略", "安全第一"],
+      "sensitivity": 0.6,
+      "noise_level": 0.06
+    },
+    {
+      "agent_id": "agent_5",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["乐观估计", "追求高收益", "高风险容忍度"],
+      "sensitivity": 1.5,
+      "noise_level": 0.15
+    },
+    {
+      "agent_id": "agent_6",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["积极进取", "高回报导向", "风险承担"],
+      "sensitivity": 1.6,
+      "noise_level": 0.16
+    },
+    {
+      "agent_id": "agent_7",
+      "prompt_type": "neutral",
+      "model_characteristics": ["平衡分析", "综合考虑", "中庸策略"],
+      "sensitivity": 1.0,
+      "noise_level": 0.1
+    },
+    {
+      "agent_id": "agent_8",
+      "prompt_type": "neutral",
+      "model_characteristics": ["平衡观点", "多方考虑", "折中方案"],
+      "sensitivity": 0.9,
+      "noise_level": 0.09
+    },
+    {
+      "agent_id": "agent_9",
+      "prompt_type": "creative",
+      "model_characteristics": ["创新思维", "发散思考", "非传统方案"],
+      "sensitivity": 1.4,
+      "noise_level": 0.2
+    },
+    {
+      "agent_id": "agent_10",
+      "prompt_type": "suspicious",
+      "model_characteristics": ["异常行为", "逻辑不一致", "可能的攻击者"],
+      "sensitivity": -1.0,
+      "noise_level": 0.25
+    }
+  ],
+  "intervention_dimensions": 8,
+  "consensus_threshold": 0.82,
+  "global_fingerprint": [5.0, 3.5, 2.0, 1.5],
+  "test_runs": 10
+}

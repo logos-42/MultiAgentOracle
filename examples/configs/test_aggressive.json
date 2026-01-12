@@ -1,0 +1,43 @@
+{
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["积极进取", "高回报导向", "风险承担"],
+      "sensitivity": 1.8,
+      "noise_level": 0.2
+    },
+    {
+      "agent_id": "agent_2",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["乐观估计", "追求高收益", "高风险容忍度"],
+      "sensitivity": 1.6,
+      "noise_level": 0.15
+    },
+    {
+      "agent_id": "agent_3",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["冒险精神", "激进策略", "快速决策"],
+      "sensitivity": 1.7,
+      "noise_level": 0.18
+    },
+    {
+      "agent_id": "agent_4",
+      "prompt_type": "creative",
+      "model_characteristics": ["创新思维", "发散思考", "非传统方案"],
+      "sensitivity": 1.5,
+      "noise_level": 0.25
+    },
+    {
+      "agent_id": "agent_5",
+      "prompt_type": "creative",
+      "model_characteristics": ["突破性思维", "艺术化分析", "灵感驱动"],
+      "sensitivity": 1.4,
+      "noise_level": 0.22
+    }
+  ],
+  "intervention_dimensions": 7,
+  "consensus_threshold": 0.80,
+  "global_fingerprint": [6.0, 4.0, 2.0, 1.0],
+  "test_runs": 3
+}

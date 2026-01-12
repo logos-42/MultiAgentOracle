@@ -1,0 +1,43 @@
+{
+  "agents": [
+    {
+      "agent_id": "agent_1",
+      "prompt_type": "analytical",
+      "model_characteristics": ["逻辑推理能力强", "数据分析严谨", "风险偏好中性"],
+      "sensitivity": 1.0,
+      "noise_level": 0.1
+    },
+    {
+      "agent_id": "agent_2",
+      "prompt_type": "cautious",
+      "model_characteristics": ["保守估计", "注重安全性", "低风险容忍度"],
+      "sensitivity": 0.5,
+      "noise_level": 0.05
+    },
+    {
+      "agent_id": "agent_3",
+      "prompt_type": "aggressive",
+      "model_characteristics": ["乐观估计", "追求高收益", "高风险容忍度"],
+      "sensitivity": 1.5,
+      "noise_level": 0.15
+    },
+    {
+      "agent_id": "agent_4",
+      "prompt_type": "neutral",
+      "model_characteristics": ["平衡分析", "综合考虑", "中庸策略"],
+      "sensitivity": 1.0,
+      "noise_level": 0.1
+    },
+    {
+      "agent_id": "agent_5",
+      "prompt_type": "suspicious",
+      "model_characteristics": ["异常行为", "逻辑不一致", "可能的攻击者"],
+      "sensitivity": -1.0,
+      "noise_level": 0.2
+    }
+  ],
+  "intervention_dimensions": 5,
+  "consensus_threshold": 0.85,
+  "global_fingerprint": [5.0, 3.0, 1.0],
+  "test_runs": 1
+}

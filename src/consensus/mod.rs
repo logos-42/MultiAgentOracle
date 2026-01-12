@@ -12,6 +12,8 @@ mod voting;
 mod aggregation;
 mod causal_fingerprint;
 mod spectral_analysis;
+mod commitment_reveal;
+mod malicious_defense;
 
 // 重新导出
 pub use consensus_engine::{ConsensusEngine, ConsensusConfig, ConsensusState};
@@ -37,6 +39,31 @@ pub use spectral_analysis::{
     fingerprint_consistency_score,
     features_to_i64,
     i64_to_features,
+};
+pub use commitment_reveal::{
+    CommitmentRevealProtocol,
+    IndependentThinkingGuard,
+    AnomalyDetector,
+    Commitment,
+    Reveal,
+    VerificationResult,
+    ProtocolError,
+    ProtocolPhase,
+    ProtocolStatus,
+    compute_commitment_hash,
+    generate_nonce,
+    current_timestamp_ms,
+    serialize_data,
+    deserialize_data,
+};
+pub use malicious_defense::{
+    MaliciousDefenseManager,
+    DefenseConfig,
+    MaliciousBehaviorType,
+    MaliciousNodeRecord,
+    SybilAttackEvidence,
+    CollusionEvidence,
+    HomogeneityEvidence,
 };
 
 // 内部模块

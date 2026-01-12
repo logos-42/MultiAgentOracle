@@ -105,6 +105,10 @@ path = "examples/reputation_demo.rs"
 name = "solana_demo"
 path = "examples/solana_demo.rs"
 
+[[example]]
+name = "secure_commitment_reveal"
+path = "examples/secure_commitment_reveal.rs"
+
 [profile.dev]
 opt-level = 0
 debug = true
