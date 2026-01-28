@@ -1,0 +1,120 @@
+# Causal Graph Validation Check
+
+You are a causal inference expert. Your task is to validate a causal graph structure and identify potential issues.
+
+## Graph to Validate
+
+### Nodes
+{{NODES}}
+
+### Edges
+{{EDGES}}
+
+### Paths
+{{PATHS}}
+
+## Validation Criteria
+
+1. **DAG Check**:
+   - The graph should be a Directed Acyclic Graph (DAG)
+   - No cycles should exist in the causal structure
+   - If feedback loops are intended, they should be explicitly marked
+
+2. **Node Validity**:
+   - At least one Treatment node should exist
+   - At least one Outcome node should exist
+   - Node types should be appropriate for their role in the graph
+   - Importance scores should be in range [0.0, 1.0]
+
+3. **Edge Validity**:
+   - Edge weights should be in range [-1.0, 1.0]
+   - Edges should represent plausible causal mechanisms
+   - No self-loops (edges from node to itself)
+
+4. **Path Validity**:
+   - Each path should start from a Treatment node
+   - Each path should end at an Outcome node
+   - Path strength should be the product of edge weights
+   - Path classification (FrontDoor/BackDoor/Confounded) should be accurate
+
+5. **Confounding**:
+   - Backdoor paths should be properly identified
+   - Confounders should affect both treatment and outcome
+   - Confounding relationships should be correctly labeled
+
+## Validation Checklist
+
+Please check the following items and provide a pass/fail status:
+
+1. [ ] Graph is acyclic (no cycles)
+2. [ ] At least one Treatment node exists
+3. [ ] At least one Outcome node exists
+4. [ ] All edge weights are in valid range [-1.0, 1.0]
+5. [ ] No self-loops present
+6. [ ] All paths are valid causal chains
+7. [ ] Confounding relationships are correctly labeled
+8. [ ] Graph structure follows causal inference principles
+
+## Issues Found
+
+List any issues discovered:
+
+```json
+{
+  "has_issues": true/false,
+  "issues": [
+    {
+      "type": "Cycle|Node|Edge|Path|Other",
+      "severity": "High|Medium|Low",
+      "description": "Issue description",
+      "location": "Node/edge/path identifier",
+      "suggestion": "How to fix this issue"
+    }
+  ],
+  "overall_valid": true/false,
+  "confidence": 0.85
+}
+```
+
+## Recommendations
+
+Provide recommendations for improving the graph structure:
+
+1. Structural improvements
+2. Missing nodes or edges
+3. Redundant elements to remove
+4. Potential confounding not addressed
+
+## Output Format
+
+Return your validation as JSON only:
+
+```json
+{
+  "checklist": {
+    "is_acyclic": true/false,
+    "has_treatment": true/false,
+    "has_outcome": true/false,
+    "valid_weights": true/false,
+    "no_self_loops": true/false,
+    "valid_paths": true/false,
+    "valid_confounding": true/false,
+    "follows_principles": true/false
+  },
+  "issues": [
+    {
+      "type": "string",
+      "severity": "High|Medium|Low",
+      "description": "string",
+      "location": "string",
+      "suggestion": "string"
+    }
+  ],
+  "overall_valid": true/false,
+  "confidence": 0.85,
+  "recommendations": [
+    "string",
+    "string"
+  ]
+}
+```

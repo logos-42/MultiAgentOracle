@@ -140,7 +140,7 @@ impl CommitmentRevealProtocol {
     pub fn new(
         participating_agents: Vec<NodeId>,
         commitment_timeout_ms: u64,
-        reveal_timeout_ms: u64,
+        _reveal_timeout_ms: u64,
     ) -> Self {
         let now = current_timestamp_ms();
         Self {

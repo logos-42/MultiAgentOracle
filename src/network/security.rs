@@ -180,7 +180,7 @@ impl SecurityManager {
             }
             
             // 模拟加密过程
-            let mut ciphertext = plaintext.to_vec();
+            let ciphertext = plaintext.to_vec();
             
             // 在实际实现中，这里会使用真正的加密算法
             // 这里只是简单地在数据前后添加标记
@@ -226,7 +226,7 @@ impl SecurityManager {
     }
     
     /// 认证消息
-    pub async fn authenticate_message(&self, remote_node_id: &NodeId, message: &[u8], auth_tag: &[u8]) -> Result<bool, String> {
+    pub async fn authenticate_message(&self, remote_node_id: &NodeId, _message: &[u8], auth_tag: &[u8]) -> Result<bool, String> {
         if !self.config.enable_message_auth {
             return Ok(true); // 不认证
         }
@@ -276,7 +276,7 @@ impl SecurityManager {
     }
     
     /// 生成认证标签
-    pub async fn generate_auth_tag(&self, remote_node_id: &NodeId, message: &[u8]) -> Result<Vec<u8>, String> {
+    pub async fn generate_auth_tag(&self, remote_node_id: &NodeId, _message: &[u8]) -> Result<Vec<u8>, String> {
         if !self.config.enable_message_auth {
             return Ok(Vec::new()); // 不生成认证标签
         }

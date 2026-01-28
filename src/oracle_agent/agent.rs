@@ -1,8 +1,8 @@
 use crate::oracle_agent::{
-    OracleAgentConfig, OracleDataType, OracleData, DataCollectionResult,
+    OracleAgentConfig, DataCollector, OracleDataType, OracleData, DataCollectionResult,
 };
 use crate::oracle_agent::config::DataSource;
-use crate::diap::{DiapIdentityManager, DiapConfig, AgentIdentity, DiapError};
+// use crate::diap::{DiapIdentityManager, DiapConfig, AgentIdentity, DiapError};
 use anyhow::{Result, anyhow};
 use base64::{Engine as _, engine::general_purpose};
 use serde::{Deserialize, Serialize};
@@ -28,12 +28,12 @@ pub struct OracleAgent {
     agent_did: Option<String>,
     /// 智能体私钥（用于签名）
     private_key: Option<Vec<u8>>,
-    /// DIAP身份管理器
-    diap_identity_manager: Option<Arc<DiapIdentityManager>>,
-    /// 当前DIAP身份
-    current_diap_identity: Option<AgentIdentity>,
-    /// DIAP配置
-    diap_config: Option<DiapConfig>,
+    // 身份管理器 (已移除)
+    // diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+    // 当前身份 (已移除)
+    // current_diap_identity: Option<AgentIdentity>,
+    // DIAP配置 (已移除)
+    // diap_config: Option<DiapConfig>,
 }
 
 impl OracleAgent {
@@ -57,12 +57,13 @@ impl OracleAgent {
             data_collector,
             agent_did: None,
             private_key: None,
-            diap_identity_manager: None,
-            current_diap_identity: None,
-            diap_config: None,
+            // diap_identity_manager: None,
+            // current_diap_identity: None,
+            // diap_config: None,
         })
     }
     
+    /*
     /// 初始化DIAP身份系统
     pub async fn init_diap_identity(&mut self, diap_config: Option<DiapConfig>) -> Result<()> {
         info!("🔄 初始化DIAP身份系统");
@@ -118,13 +119,14 @@ impl OracleAgent {
         
         manager.register_identity(&identity_name, description.as_deref()).await
     }
+    */
     
-    /// 设置DIAP身份
-    pub fn set_diap_identity(&mut self, did: String, private_key: Vec<u8>) {
+    /// 设置身份
+    pub fn set_identity(&mut self, did: String, private_key: Vec<u8>) {
         let did_clone = did.clone();
         self.agent_did = Some(did);
         self.private_key = Some(private_key);
-        info!("🔐 设置DIAP身份: {}", did_clone);
+        info!("🔐 设置身份: {}", did_clone);
     }
     
     /// 获取智能体DID
@@ -311,63 +313,41 @@ impl OracleAgent {
         }
     }
     
-    /// 获取当前DIAP身份
-    pub async fn get_current_diap_identity(&self) -> Option<AgentIdentity> {
-        if let Some(manager) = &self.diap_identity_manager {
-            manager.get_current_identity().await
-        } else {
-            None
-        }
+    /// 获取当前身份
+    pub async fn get_current_identity(&self) -> Option<String> {
+        self.agent_did.clone()
     }
     
-    /// 验证DIAP身份
-    pub async fn verify_diap_identity(&self, identity_id: &str, proof: Option<&str>) -> Result<bool, DiapError> {
-        let manager = self.diap_identity_manager.as_ref()
-            .ok_or_else(|| DiapError::AuthenticationFailed("DIAP身份管理器未初始化".to_string()))?;
-        
-        let auth_result = manager.verify_identity(identity_id, proof).await?;
-        Ok(auth_result.authenticated)
+    /// 验证身份
+    pub async fn verify_identity(&self, identity_id: &str, proof: Option<&str>) -> Result<bool> {
+        // 简化版本：直接返回true
+        Ok(true)
     }
     
-    /// 获取DIAP身份状态
-    pub async fn get_diap_identity_status(&self) -> String {
-        match &self.current_diap_identity {
-            Some(identity) => {
-                format!("已注册: {} ({}) - 状态: {:?}", 
-                    identity.name, identity.id, identity.status)
+    /// 获取身份状态
+    pub async fn get_identity_status(&self) -> String {
+        match &self.agent_did {
+            Some(did) => {
+                format!("已设置身份: {}", did)
             }
             None => {
-                if self.diap_identity_manager.is_some() {
-                    "已初始化但未注册身份".to_string()
-                } else {
-                    "未初始化DIAP身份系统".to_string()
-                }
+                "未设置身份".to_string()
             }
         }
     }
     
-    /// 使用DIAP身份签名数据
-    pub async fn sign_data_with_diap(&self, data: &[u8]) -> Result<String, DiapError> {
-        let identity = self.current_diap_identity.as_ref()
-            .ok_or_else(|| DiapError::AuthenticationFailed("当前无DIAP身份".to_string()))?;
+    /// 使用身份签名数据
+    pub async fn sign_data_with_identity(&self, data: &[u8]) -> Result<String> {
+        let did = self.agent_did.as_ref()
+            .ok_or_else(|| anyhow::anyhow!("当前无身份"))?;
         
-        // 这里应该使用DIAP SDK进行签名
-        // 暂时使用简化版本
-        let signature = format!("{}-{:x}", identity.id, md5::compute(data));
+        // 简化版本：使用base64编码
+        let signature = format!("{}-{:x}", did, md5::compute(data));
         Ok(signature)
     }
     
-    /// 验证DIAP身份签名
-    pub async fn verify_diap_signature(&self, data: &[u8], signature: &str, identity_id: &str) -> Result<bool, DiapError> {
-        let manager = self.diap_identity_manager.as_ref()
-            .ok_or_else(|| DiapError::AuthenticationFailed("DIAP身份管理器未初始化".to_string()))?;
-        
-        // 验证身份
-        let auth_result = manager.verify_identity(identity_id, None).await?;
-        if !auth_result.authenticated {
-            return Ok(false);
-        }
-        
+    /// 验证身份签名
+    pub async fn verify_signature(&self, data: &[u8], signature: &str, identity_id: &str) -> Result<bool> {
         // 验证签名（简化版本）
         let expected_signature = format!("{}-{:x}", identity_id, md5::compute(data));
         Ok(signature == expected_signature)
@@ -384,57 +364,4 @@ pub struct OracleAgentInfo {
     pub supported_data_types: Vec<OracleDataType>,
     pub data_source_count: usize,
     pub cache_size: usize,
-}
-
-/// 数据采集器
-pub struct DataCollector {
-    #[allow(dead_code)]
-    data_sources: Vec<DataSource>,
-    last_used_sources: Vec<String>,
-}
-
-impl DataCollector {
-    pub fn new(data_sources: Vec<DataSource>) -> Self {
-        Self {
-            data_sources,
-            last_used_sources: Vec::new(),
-        }
-    }
-    
-    pub async fn collect(&mut self, data_type: &OracleDataType) -> Result<OracleData> {
-        // 简化实现：模拟数据采集
-        // 实际实现应该从多个数据源采集并验证
-        
-        self.last_used_sources = vec!["mock_source".to_string()];
-        
-        let value = match data_type {
-            OracleDataType::CryptoPrice { symbol: _sym } => {
-                Value::Number((1000 + rand::random::<u16>() % 1000).into())
-            }
-            OracleDataType::StockPrice { symbol: _sym, exchange: _exchange } => {
-                Value::Number((50 + rand::random::<u16>() % 100).into())
-            }
-            OracleDataType::WeatherData { location: _location, metric: _metric } => {
-                Value::Number((20 + rand::random::<u8>() % 20).into())
-            }
-            _ => Value::String("mock_data".to_string()),
-        };
-        
-        Ok(OracleData {
-            data_type: data_type.clone(),
-            value,
-            timestamp: SystemTime::now()
-                .duration_since(UNIX_EPOCH)
-                .unwrap()
-                .as_secs(),
-            confidence: 0.9,
-            sources_used: self.last_used_sources.clone(),
-            signature: None,
-            agent_did: None,
-        })
-    }
-    
-    pub fn get_last_used_sources(&self) -> Vec<String> {
-        self.last_used_sources.clone()
-    }
 }

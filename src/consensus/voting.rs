@@ -1,16 +1,16 @@
 use serde::{Deserialize, Serialize};
 use std::time::{SystemTime, UNIX_EPOCH};
-use crate::{DiapIdentityManager, DiapError};
+// use crate::{DiapIdentityManager, DiapError};
 
 /// 投票
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct Vote {
     /// 智能体DID
     pub agent_did: String,
-    /// DIAP身份ID（如果使用DIAP身份系统）
-    pub diap_identity_id: Option<String>,
-    /// DIAP身份证明哈希
-    pub diap_proof_hash: Option<String>,
+    /// 身份ID（如果使用身份系统）
+    // pub diap_identity_id: Option<String>,
+    /// 身份证明哈希
+    // pub diap_proof_hash: Option<String>,
     /// 投票值
     pub value: f64,
     /// 置信度 (0.0-1.0)
@@ -35,8 +35,8 @@ impl Vote {
     ) -> Self {
         Self {
             agent_did,
-            diap_identity_id: None,
-            diap_proof_hash: None,
+            // diap_identity_id: None,
+            // diap_proof_hash: None,
             value,
             confidence: confidence.clamp(0.0, 1.0),
             timestamp: SystemTime::now()
@@ -49,19 +49,19 @@ impl Vote {
         }
     }
     
-    /// 使用DIAP身份创建投票
-    pub fn new_with_diap_identity(
+    /// 使用身份创建投票
+    pub fn new_with_identity(
         agent_did: String,
-        diap_identity_id: String,
-        diap_proof_hash: Option<String>,
+        identity_id: String,
+        proof_hash: Option<String>,
         value: f64,
         confidence: f64,
         sources: Vec<String>,
     ) -> Self {
         Self {
             agent_did,
-            diap_identity_id: Some(diap_identity_id),
-            diap_proof_hash,
+            // identity_id: Some(identity_id),
+            // proof_hash,
             value,
             confidence: confidence.clamp(0.0, 1.0),
             timestamp: SystemTime::now()
@@ -88,12 +88,12 @@ impl Vote {
             return false;
         }
         
-        // 验证DIAP身份信息一致性
-        if self.diap_identity_id.is_some() && self.diap_proof_hash.is_none() {
-            // 如果有DIAP身份ID但没有证明哈希，需要进一步验证
-            // 这里可以添加额外的验证逻辑
-            log::debug!("投票包含DIAP身份ID但缺少证明哈希: {}", self.agent_did);
-        }
+        // 验证身份信息一致性
+        // if self.identity_id.is_some() && self.proof_hash.is_none() {
+        //     // 如果有身份ID但没有证明哈希，需要进一步验证
+        //     // 这里可以添加额外的验证逻辑
+        //     log::debug!("投票包含身份ID但缺少证明哈希: {}", self.agent_did);
+        // }
         
         // 检查时间戳（不能是未来时间，不能太旧）
         let now = SystemTime::now()
@@ -112,51 +112,37 @@ impl Vote {
         true
     }
     
-    /// 验证DIAP身份（异步）
-    pub async fn validate_diap_identity(
-        &self,
-        identity_manager: &std::sync::Arc<DiapIdentityManager>,
-    ) -> Result<bool, DiapError> {
-        if let Some(identity_id) = &self.diap_identity_id {
-            identity_manager.verify_identity(identity_id, self.diap_proof_hash.as_deref()).await
-                .map(|auth_result| auth_result.authenticated)
-        } else {
-            // 没有DIAP身份，返回true（允许传统身份投票）
-            Ok(true)
-        }
-    }
-    
-    /// 获取DIAP身份增强的投票权重
-    pub async fn get_diap_enhanced_weight(
+    /// 获取身份增强的投票权重
+    pub async fn get_enhanced_weight(
         &self,
         reputation_score: f64,
         staked_amount: u64,
-        identity_manager: &std::sync::Arc<DiapIdentityManager>,
-    ) -> Result<f64, DiapError> {
+        // identity_manager: &std::sync::Arc<IdentityManager>,
+    ) -> anyhow::Result<f64> {
         let base_weight = self.get_weight(reputation_score, staked_amount);
         
-        // 如果有DIAP身份且验证通过，增加权重
-        if let Some(identity_id) = &self.diap_identity_id {
-            match identity_manager.verify_identity(identity_id, self.diap_proof_hash.as_deref()).await {
-                Ok(auth_result) if auth_result.authenticated => {
-                    // DIAP身份验证通过，增加权重
-                    let enhanced_weight = base_weight * 1.2; // 增加20%权重
-                    Ok(enhanced_weight)
-                }
-                Ok(_) => {
-                    // DIAP身份验证失败，使用基础权重
-                    Ok(base_weight)
-                }
-                Err(e) => {
-                    // DIAP身份验证错误，使用基础权重
-                    log::warn!("DIAP身份验证错误: {}, 使用基础权重", e);
-                    Ok(base_weight)
-                }
-            }
-        } else {
-            // 没有DIAP身份，使用基础权重
+        // 如果有身份且验证通过，增加权重
+        // if let Some(identity_id) = &self.identity_id {
+        //     match identity_manager.verify_identity(identity_id, self.proof_hash.as_deref()).await {
+        //         Ok(auth_result) if auth_result.authenticated => {
+        //             // 身份验证通过，增加权重
+        //             let enhanced_weight = base_weight * 1.2; // 增加20%权重
+        //             Ok(enhanced_weight)
+        //         }
+        //         Ok(_) => {
+        //             // 身份验证失败，使用基础权重
+        //             Ok(base_weight)
+        //         }
+        //         Err(e) => {
+        //             // 身份验证错误，使用基础权重
+        //             log::warn!("身份验证错误: {}, 使用基础权重", e);
+        //             Ok(base_weight)
+        //         }
+        //     }
+        // } else {
+        //     // 没有身份，使用基础权重
             Ok(base_weight)
-        }
+        // }
     }
     
     /// 设置签名

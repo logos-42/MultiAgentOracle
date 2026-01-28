@@ -5,7 +5,6 @@
 
 use super::{types::*, ZkpConfig, Result};
 use std::path::Path;
-use std::hash::{Hash, Hasher};
 
 /// Nori circuit adapter for ZK proof operations
 pub struct NoriAdapter {
@@ -287,6 +286,9 @@ mod tests {
             spectral_radius: 5.0,
             spectral_entropy: 0.75,
             cosine_similarity: 0.9,
+            causal_graph_hash: [0u8; 32],
+            causal_effect: 0.8,
+            intervention_sensitivity: 1.0,
         };
 
         let private_inputs = PrivateInputs {

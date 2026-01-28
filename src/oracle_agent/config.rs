@@ -1,5 +1,6 @@
 use serde::{Deserialize, Serialize};
 use crate::oracle_agent::OracleDataType;
+use std::env;
 
 /// 数据源配置
 #[derive(Debug, Clone, Serialize, Deserialize)]
@@ -192,5 +193,37 @@ impl OracleAgentConfig {
         
         std::fs::write(path, content)
             .map_err(|e| format!("保存配置文件失败: {}", e))
+    }
+    
+    /// 创建使用真实API的配置（从环境变量读取API密钥）
+    pub fn with_real_apis() -> Self {
+        println!("🔧 创建真实API配置...");
+        
+        let mut config = Self::default();
+        
+        // 更新数据源为真实API密钥
+        for source in &mut config.data_sources {
+            match source.name.as_str() {
+                "AlphaVantage" => {
+                    if let Ok(api_key) = env::var("ALPHA_VANTAGE_API_KEY") {
+                        if !api_key.is_empty() && api_key != "demo" {
+                            println!("  ✅ AlphaVantage: 使用真实API密钥");
+                            source.api_key = Some(api_key);
+                        }
+                    }
+                }
+                "OpenWeather" => {
+                    if let Ok(api_key) = env::var("OPENWEATHER_API_KEY") {
+                        if !api_key.is_empty() && api_key != "demo_key" {
+                            println!("  ✅ OpenWeather: 使用真实API密钥");
+                            source.api_key = Some(api_key);
+                        }
+                    }
+                }
+                _ => {}
+            }
+        }
+        
+        config
     }
 }

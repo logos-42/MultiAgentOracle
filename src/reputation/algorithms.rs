@@ -3,7 +3,6 @@
 //! 基于逻辑一致性的信誉评分算法
 
 use crate::reputation::ReputationConfig;
-use std::f64::consts::E;
 
 /// 信誉算法 - 因果指纹版
 #[derive(Clone)]

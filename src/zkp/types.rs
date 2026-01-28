@@ -68,6 +68,18 @@ pub struct PublicInputs {
 
     /// Cosine similarity to global fingerprint
     pub cosine_similarity: f64,
+
+    /// Causal graph hash (for causal verification)
+    #[serde(default)]
+    pub causal_graph_hash: [u8; 32],
+
+    /// Causal effect computed from graph
+    #[serde(default)]
+    pub causal_effect: f64,
+
+    /// Intervention sensitivity (from causal graph analysis)
+    #[serde(default)]
+    pub intervention_sensitivity: f64,
 }
 
 impl PublicInputs {
@@ -76,13 +88,13 @@ impl PublicInputs {
         self.intervention_vector.len()
             + self.delta_response.len()
             + self.expected_eigenvalues.len()
-            + 3 // spectral_radius, spectral_entropy, cosine_similarity
+            + 5 // spectral_radius, spectral_entropy, cosine_similarity, causal_effect, intervention_sensitivity
     }
 
     /// Convert public inputs to i64 array for on-chain storage
-    pub fn to_i64_array(&self) -> [i64; 16] {
+    pub fn to_i64_array(&self) -> [i64; 32] {
         let scale = 1_000_000.0;
-        let mut result = [0i64; 16];
+        let mut result = [0i64; 32];
 
         // intervention_vector (5 values)
         for (i, val) in self.intervention_vector.iter().take(5).enumerate() {
@@ -108,11 +120,22 @@ impl PublicInputs {
         // cosine_similarity (scaled to 0-100)
         result[15] = ((self.cosine_similarity * 100.0) as i64).clamp(0, 100);
 
+        // causal_effect (1 value)
+        result[16] = (self.causal_effect * scale) as i64;
+
+        // intervention_sensitivity (1 value)
+        result[17] = (self.intervention_sensitivity * scale) as i64;
+
+        // causal_graph_hash (store first 8 bytes of hash as 2 i64 values)
+        for (i, &byte) in self.causal_graph_hash[0..8].iter().enumerate() {
+            result[18 + i] = byte as i64;
+        }
+
         result
     }
 
     /// Create public inputs from i64 array
-    pub fn from_i64_array(data: &[i64; 16]) -> Self {
+    pub fn from_i64_array(data: &[i64; 32]) -> Self {
         let scale = 1_000_000.0;
 
         let intervention_vector = data[0..5].iter().map(|v| *v as f64 / scale).collect();
@@ -121,6 +144,14 @@ impl PublicInputs {
         let spectral_radius = data[13] as f64 / scale;
         let spectral_entropy = data[14] as f64 / 100.0;
         let cosine_similarity = data[15] as f64 / 100.0;
+        let causal_effect = data[16] as f64 / scale;
+        let intervention_sensitivity = data[17] as f64 / scale;
+
+        // Reconstruct causal_graph_hash from first 8 bytes
+        let mut causal_graph_hash = [0u8; 32];
+        for (i, &val) in data[18..26].iter().enumerate() {
+            causal_graph_hash[i] = val as u8;
+        }
 
         Self {
             intervention_vector,
@@ -129,6 +160,9 @@ impl PublicInputs {
             spectral_radius,
             spectral_entropy,
             cosine_similarity,
+            causal_graph_hash,
+            causal_effect,
+            intervention_sensitivity,
         }
     }
 
@@ -151,10 +185,18 @@ impl PublicInputs {
         self.spectral_radius.to_bits().hash(&mut hasher);
         self.spectral_entropy.to_bits().hash(&mut hasher);
         self.cosine_similarity.to_bits().hash(&mut hasher);
+        self.causal_effect.to_bits().hash(&mut hasher);
+        self.intervention_sensitivity.to_bits().hash(&mut hasher);
+
+        // Hash causal_graph_hash bytes
+        for byte in &self.causal_graph_hash {
+            byte.hash(&mut hasher);
+        }
 
         let hash = hasher.finish();
         let mut bytes = [0u8; 32];
-        bytes.copy_from_slice(&hash.to_be_bytes()[..32]);
+        let hash_bytes = hash.to_be_bytes();
+        bytes[..hash_bytes.len()].copy_from_slice(&hash_bytes);
         bytes
     }
 }
@@ -237,10 +279,10 @@ impl Default for CircuitMetadata {
     fn default() -> Self {
         Self {
             name: "causal_fingerprint".to_string(),
-            version: "0.1.0".to_string(),
-            num_constraints: 10_000,
-            num_public_inputs: 15,
-            num_private_inputs: 90,
+            version: "2.0.0".to_string(),
+            num_constraints: 12_000,  // Increased for causal graph verification
+            num_public_inputs: 18,  // Added causal graph hash, causal_effect, intervention_sensitivity
+            num_private_inputs: 100,  // Increased for causal graph private inputs
             field_size_bits: 254,
             security_level_bits: 128,
         }
@@ -281,6 +323,18 @@ pub struct FingerprintData {
     /// Cosine similarity to global (0-100)
     pub cosine_similarity_i64: i64,
 
+    /// Causal effect (i64 format)
+    pub causal_effect_i64: i64,
+
+    /// Intervention sensitivity (i64 format)
+    pub intervention_sensitivity_i64: i64,
+
+    /// Causal graph hash (first 8 bytes as i64)
+    pub causal_graph_hash_i64: [i64; 8],
+
+    /// Causal graph path count
+    pub causal_path_count: u8,
+
     /// Effective rank
     pub rank: usize,
 
@@ -313,6 +367,10 @@ mod tests {
 
     #[test]
     fn test_public_inputs_conversion() {
+        let mut causal_graph_hash = [0u8; 32];
+        causal_graph_hash[0] = 0xAB;
+        causal_graph_hash[1] = 0xCD;
+
         let public_inputs = PublicInputs {
             intervention_vector: vec![1.0, -1.0, 0.5, -0.5, 0.0],
             delta_response: vec![1.2, 0.8, 1.5, -0.3, 0.9],
@@ -320,6 +378,9 @@ mod tests {
             spectral_radius: 5.0,
             spectral_entropy: 0.75,
             cosine_similarity: 0.9,
+            causal_graph_hash,
+            causal_effect: 0.85,
+            intervention_sensitivity: 1.2,
         };
 
         let i64_array = public_inputs.to_i64_array();
@@ -345,6 +406,8 @@ mod tests {
         assert!((public_inputs.spectral_radius - recovered.spectral_radius).abs() < 0.001);
         assert!((public_inputs.spectral_entropy - recovered.spectral_entropy).abs() < 0.01);
         assert!((public_inputs.cosine_similarity - recovered.cosine_similarity).abs() < 0.01);
+        assert!((public_inputs.causal_effect - recovered.causal_effect).abs() < 0.001);
+        assert!((public_inputs.intervention_sensitivity - recovered.intervention_sensitivity).abs() < 0.001);
     }
 
     #[test]
@@ -356,6 +419,9 @@ mod tests {
             spectral_radius: 1.0,
             spectral_entropy: 0.8,
             cosine_similarity: 0.85,
+            causal_graph_hash: [0u8; 32],
+            causal_effect: 0.75,
+            intervention_sensitivity: 1.0,
         };
 
         let hash1 = public_inputs.hash();

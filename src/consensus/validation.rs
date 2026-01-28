@@ -102,7 +102,7 @@ impl DataValidator {
     }
     
     /// 验证签名
-    pub fn verify_signature(&self, data_hash: &DataHash, signature: &str, timestamp: Timestamp) -> bool {
+    pub fn verify_signature(&self, _data_hash: &DataHash, signature: &str, timestamp: Timestamp) -> bool {
         // 简单的签名验证逻辑
         // 在实际实现中，这里会有真正的加密签名验证
         signature == format!("sig_{}_{}", self.validator_id, timestamp)
@@ -129,7 +129,7 @@ impl ProposalValidator {
     /// 验证共识提案
     pub fn validate_proposal(
         &self,
-        proposal_id: &str,
+        _proposal_id: &str,
         yes_votes: u32,
         no_votes: u32,
         total_voters: u32,
@@ -199,7 +199,7 @@ impl TierValidator {
     }
     
     /// 验证节点层级
-    pub fn validate_node_tier(&self, node_id: &str, reputation: f64, current_tier: &str) -> Option<String> {
+    pub fn validate_node_tier(&self, _node_id: &str, reputation: f64, current_tier: &str) -> Option<String> {
         for config in &self.tier_config {
             if reputation >= config.min_reputation && reputation <= config.max_reputation {
                 if config.name != current_tier {

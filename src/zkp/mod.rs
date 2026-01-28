@@ -33,24 +33,31 @@ pub type Result<T> = std::result::Result<T, ZkpError>;
 /// Error types for ZKP operations
 #[derive(Debug, thiserror::Error)]
 pub enum ZkpError {
+    /// Circuit compilation failed
     #[error("Circuit compilation failed: {0}")]
     CircuitCompilationFailed(String),
 
+    /// Proof generation failed
     #[error("Proof generation failed: {0}")]
     ProofGenerationFailed(String),
 
+    /// Proof verification failed
     #[error("Proof verification failed: {0}")]
     ProofVerificationFailed(String),
 
+    /// Invalid circuit inputs
     #[error("Invalid circuit inputs: {0}")]
     InvalidInputs(String),
 
+    /// I/O error
     #[error("I/O error: {0}")]
     IoError(#[from] std::io::Error),
 
+    /// Serialization error
     #[error("Serialization error: {0}")]
     SerializationError(String),
 
+    /// Key loading failed
     #[error("Key loading failed: {0}")]
     KeyLoadingError(String),
 }
@@ -117,6 +124,7 @@ impl ZkpGenerator {
     /// * `response_history` - Historical response matrix
     /// * `intervention_vector` - Random intervention vector
     /// * `delta_response` - Agent's causal response
+    /// * `causal_graph` - Optional causal graph for causal verification
     ///
     /// # Returns
     ///
@@ -127,6 +135,7 @@ impl ZkpGenerator {
         response_history: &[Vec<f64>],
         intervention_vector: &[f64],
         delta_response: &[f64],
+        causal_graph: Option<&crate::causal_graph::CausalGraph>,
     ) -> Result<ZkProof> {
         // Validate inputs
         if spectral_features.eigenvalues.len() < self.config.num_eigenvalues {
@@ -143,6 +152,7 @@ impl ZkpGenerator {
             response_history,
             intervention_vector,
             delta_response,
+            causal_graph,
         )?;
 
         // Generate proof using Nori adapter
@@ -169,6 +179,7 @@ impl ZkpGenerator {
         response_history: &[Vec<f64>],
         intervention_vector: &[f64],
         delta_response: &[f64],
+        causal_graph: Option<&crate::causal_graph::CausalGraph>,
     ) -> Result<CircuitInputs> {
         // Flatten response history (10 agents × 5 dimensions = 50 values)
         let mut flat_history = Vec::with_capacity(50);
@@ -182,6 +193,31 @@ impl ZkpGenerator {
             flat_history.push(0.0);
         }
 
+        // Compute causal verification data if causal graph is provided
+        let (causal_graph_hash, causal_effect, intervention_sensitivity) = if let Some(graph) = causal_graph {
+            let graph_hash = graph.compute_hash();
+            let effect = crate::causal_graph::utils::compute_causal_effect(
+                graph,
+                &crate::causal_graph::types::Intervention {
+                    target_node: "X".to_string(),
+                    value: intervention_vector.get(0).copied().unwrap_or(0.0),
+                    intervention_type: crate::causal_graph::types::InterventionType::Hard,
+                },
+                "Y",
+            ).unwrap_or(crate::causal_graph::types::CausalEffect {
+                ate: 0.0,
+                cate: None,
+                confidence_interval: None,
+                method: crate::causal_graph::types::EffectMethod::Direct,
+            }).ate;
+
+            let sensitivity = intervention_vector.iter().map(|&v| v.abs()).sum::<f64>() / intervention_vector.len() as f64;
+
+            (graph_hash, effect, sensitivity)
+        } else {
+            ([0u8; 32], 0.0, 0.0)
+        };
+
         // Build public inputs
         let public_inputs = PublicInputs {
             intervention_vector: intervention_vector.to_vec(),
@@ -190,6 +226,9 @@ impl ZkpGenerator {
             spectral_radius: spectral_features.spectral_radius,
             spectral_entropy: spectral_features.entropy,
             cosine_similarity: 0.9, // TODO: Calculate from global fingerprint
+            causal_graph_hash,
+            causal_effect,
+            intervention_sensitivity,
         };
 
         // Build private inputs (simplified - in real implementation, compute covariance)
@@ -253,6 +292,7 @@ mod tests {
                 &response_history,
                 &intervention_vector,
                 &delta_response,
+                None,
             )
             .unwrap();
 
@@ -260,5 +300,9 @@ mod tests {
         assert_eq!(inputs.public_inputs.delta_response.len(), 5);
         assert_eq!(inputs.public_inputs.expected_eigenvalues.len(), 3);
         assert_eq!(inputs.private_inputs.response_history.len(), 50);
+        // Check new causal graph fields
+        assert_eq!(inputs.public_inputs.causal_graph_hash, [0u8; 32]);
+        assert_eq!(inputs.public_inputs.causal_effect, 0.0);
+        assert_eq!(inputs.public_inputs.intervention_sensitivity, 0.0);
     }
 }

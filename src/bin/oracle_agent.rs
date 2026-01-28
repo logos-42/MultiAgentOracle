@@ -199,9 +199,9 @@ async fn start_node(
     // 创建预言机智能体
     let mut agent = OracleAgent::new(config)?;
     
-    // 设置DIAP身份（简化版本）
-    agent.set_diap_identity(
-        format!("did:diap:{}", node_name),
+    // 设置身份（简化版本）
+    agent.set_identity(
+        format!("did:{}", node_name),
         vec![1, 2, 3, 4, 5], // 简化私钥
     );
     
@@ -365,9 +365,9 @@ async fn handle_reputation_command(
             
             // 注册一些测试智能体
             let test_agents = vec![
-                "did:diap:agent_1".to_string(),
-                "did:diap:agent_2".to_string(),
-                "did:diap:agent_3".to_string(),
+                "did:agent_1".to_string(),
+                "did:agent_2".to_string(),
+                "did:agent_3".to_string(),
             ];
             
             for did in &test_agents {

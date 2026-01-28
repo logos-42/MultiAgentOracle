@@ -4,7 +4,7 @@
 
 use crate::consensus::{Vote, AggregationResult};
 use crate::consensus::consensus_result::AggregationMethod;
-use crate::diap::{DiapIdentityManager, AgentIdentity, DiapError};
+// use crate::diap::DiapIdentityManager;
 use anyhow::{Result, anyhow};
 use std::collections::HashMap;
 use std::sync::Arc;
@@ -466,10 +466,6 @@ impl TimeWindowConsensus {
             return None;
         }
         
-        // 使用简单多数算法
-        let simple_majority = SimpleMajority::new(0.51).unwrap();
-        let values: Vec<f64> = window_votes.iter().map(|v| v.value).collect();
-        
         // 计算加权平均值（使用置信度作为权重）
         let total_weight: f64 = window_votes.iter()
             .map(|v| v.confidence)
@@ -524,10 +520,10 @@ impl TimeWindowConsensus {
 pub struct DiapEnhancedBFT {
     /// 基础BFT算法
     base_bft: ByzantineFaultTolerance,
-    /// DIAP身份管理器
-    diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+    /// DIAP身份管理器 (已移除)
+    // diap_identity_manager: Option<Arc<DiapIdentityManager>>,
     /// 是否要求DIAP身份验证
-    require_diap_auth: bool,
+    // require_diap_auth: bool,
     /// DIAP身份权重增强因子
     diap_weight_boost: f64,
 }
@@ -535,21 +531,21 @@ pub struct DiapEnhancedBFT {
 impl DiapEnhancedBFT {
     /// 创建新的DIAP增强BFT算法
     pub fn new(
-        fault_tolerance: usize,
-        total_nodes: usize,
-        diap_identity_manager: Option<Arc<DiapIdentityManager>>,
-        require_diap_auth: bool,
+        // fault_tolerance: usize,
+        // total_nodes: usize,
+        // diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+        // require_diap_auth: bool,
+        diap_weight_boost: f64,
     ) -> Result<Self> {
-        let base_bft = ByzantineFaultTolerance::new(fault_tolerance, total_nodes)?;
+        let base_bft = ByzantineFaultTolerance::new(1, 3)?; // 默认值
         
         Ok(Self {
             base_bft,
-            diap_identity_manager,
-            require_diap_auth,
-            diap_weight_boost: 1.2, // DIAP身份投票权重增加20%
+            diap_weight_boost,
         })
     }
     
+    /*
     /// 检查是否达到法定人数（考虑DIAP身份）
     pub async fn check_quorum_with_diap(&self, votes: &[Vote]) -> Result<bool> {
         let mut valid_votes = 0;
@@ -716,6 +712,7 @@ impl DiapEnhancedBFT {
         
         stats
     }
+    */
 }
 
 /// DIAP共识统计信息

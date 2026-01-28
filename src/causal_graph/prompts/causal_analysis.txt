@@ -1,0 +1,168 @@
+# Causal Graph Analysis Task
+
+You are an expert in causal reasoning and causal inference. Your task is to analyze the given scenario and generate a structured causal graph that represents the causal relationships between variables.
+
+## Scenario Description
+
+{{SCENARIO}}
+
+## Context Information
+
+{{CONTEXT}}
+
+## Requirements
+
+1. **Node Constraints**:
+   - Generate between {{MIN_NODES}} and {{MAX_NODES}} core variables (nodes)
+   - Each node must have a unique ID and descriptive name
+   - Assign appropriate types: Treatment (干预), Outcome (结果), Confounder (混淆因子), Mediator (中介因子), or Control (控制变量)
+   - Assign importance scores (0.0-1.0) based on causal relevance
+   - Mark at least one Treatment node as intervention_target = true
+   - Ensure at least one Outcome node exists
+
+2. **Edge Constraints**:
+   - Define causal relationships between nodes as directed edges
+   - Each edge must have a causal weight between -1.0 and 1.0 (magnitude indicates strength, sign indicates direction)
+   - Classify edges as: Direct (直接), Indirect (间接), or Confounding (混淆)
+
+3. **Path Constraints**:
+   - Identify between {{MIN_PATHS}} and {{MAX_PATHS}} main causal paths
+   - Each path should represent a complete causal chain from a Treatment node to an Outcome node
+   - Path strength is the product of edge weights along the path
+   - Classify paths as: FrontDoor (前门路径), BackDoor (后门路径), or Confounded (混淆路径)
+
+4. **Output Format**:
+   - Return your response as valid JSON only (no markdown code blocks)
+   - Include reasoning explanation in the "reasoning" field
+   - Provide a confidence score (0.0-1.0) in the "confidence" field
+
+## Output Schema
+
+```json
+{
+  "nodes": [
+    {
+      "id": "X",
+      "name": "Variable name",
+      "node_type": "Treatment|Outcome|Confounder|Mediator|Control",
+      "importance": 0.8,
+      "intervention_target": true
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "X",
+      "target": "Y",
+      "weight": 0.7,
+      "edge_type": "Direct|Indirect|Confounding"
+    }
+  ],
+  "paths": [
+    {
+      "id": "p1",
+      "nodes": ["X", "M", "Y"],
+      "strength": 0.56,
+      "path_type": "FrontDoor|BackDoor|Confounded"
+    }
+  ],
+  "reasoning": "Explain your causal reasoning...",
+  "confidence": 0.85
+}
+```
+
+## Example Analysis
+
+**Scenario**: A pharmaceutical company wants to understand the causal effect of a new drug (treatment) on patient recovery (outcome), considering potential confounders like age and pre-existing conditions.
+
+**Example Output**:
+```json
+{
+  "nodes": [
+    {
+      "id": "X",
+      "name": "Drug dosage",
+      "node_type": "Treatment",
+      "importance": 0.9,
+      "intervention_target": true
+    },
+    {
+      "id": "Y",
+      "name": "Patient recovery",
+      "node_type": "Outcome",
+      "importance": 0.95,
+      "intervention_target": false
+    },
+    {
+      "id": "Z1",
+      "name": "Patient age",
+      "node_type": "Confounder",
+      "importance": 0.7,
+      "intervention_target": false
+    },
+    {
+      "id": "M",
+      "name": "Drug concentration",
+      "node_type": "Mediator",
+      "importance": 0.75,
+      "intervention_target": false
+    }
+  ],
+  "edges": [
+    {
+      "id": "e1",
+      "source": "X",
+      "target": "M",
+      "weight": 0.8,
+      "edge_type": "Direct"
+    },
+    {
+      "id": "e2",
+      "source": "M",
+      "target": "Y",
+      "weight": 0.7,
+      "edge_type": "Direct"
+    },
+    {
+      "id": "e3",
+      "source": "Z1",
+      "target": "X",
+      "weight": 0.3,
+      "edge_type": "Confounding"
+    },
+    {
+      "id": "e4",
+      "source": "Z1",
+      "target": "Y",
+      "weight": -0.4,
+      "edge_type": "Confounding"
+    }
+  ],
+  "paths": [
+    {
+      "id": "p1",
+      "nodes": ["X", "M", "Y"],
+      "strength": 0.56,
+      "path_type": "FrontDoor"
+    },
+    {
+      "id": "p2",
+      "nodes": ["Z1", "Y"],
+      "strength": 0.4,
+      "path_type": "BackDoor"
+    }
+  ],
+  "reasoning": "The drug dosage (X) affects patient recovery (Y) primarily through drug concentration in blood (M), representing a front-door causal path. Patient age (Z1) confounds the relationship as it affects both drug dosage and recovery, creating a back-door path that needs to be controlled for in causal estimation.",
+  "confidence": 0.88
+}
+```
+
+## Guidelines
+
+1. **Causal Direction**: Ensure edges represent plausible causal mechanisms, not just correlations
+2. **DAG Structure**: Avoid creating cycles in the graph (unless representing feedback loops explicitly)
+3. **Realistic Weights**: Assign causal strengths that reflect realistic effect sizes
+4. **Domain Knowledge**: Use domain-specific knowledge when analyzing the scenario
+5. **Simplicity**: Prefer simpler graphs with clearer causal chains over overly complex structures
+
+Now, analyze the provided scenario and generate a causal graph following these guidelines.

@@ -407,7 +407,7 @@ impl RoutingManager {
     }
     
     /// 获取下一跳节点（用于分层路由）
-    pub async fn get_next_hop_for_tier(&self, destination_tier: &str) -> Option<NodeId> {
+    pub async fn get_next_hop_for_tier(&self, _destination_tier: &str) -> Option<NodeId> {
         let routing_table = self.routing_table.read().await;
         
         // 在实际实现中，这里会根据层级选择下一跳

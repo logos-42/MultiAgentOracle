@@ -6,17 +6,25 @@ use std::collections::HashMap;
 
 /// 信誉等级配置
 pub struct ReputationLevel {
-    pub name: String,           // 层级名称：core, validator, data
-    pub min_score: f64,         // 最低信誉分
-    pub max_score: f64,         // 最高信誉分
-    pub voting_weight: f64,     // 投票权重乘数
-    pub required_stake: f64,    // 要求质押金额
-    pub max_connections: usize, // 最大连接数
+    /// 层级名称：core, validator, data
+    pub name: String,
+    /// 最低信誉分
+    pub min_score: f64,
+    /// 最高信誉分
+    pub max_score: f64,
+    /// 投票权重乘数
+    pub voting_weight: f64,
+    /// 要求质押金额
+    pub required_stake: f64,
+    /// 最大连接数
+    pub max_connections: usize,
 }
 
 /// 预配置的信誉等级系统
 pub struct PreconfiguredReputation {
+    /// 信誉等级列表
     pub levels: Vec<ReputationLevel>,
+    /// 节点信誉映射
     pub node_reputation: HashMap<String, f64>,
 }
 
@@ -184,7 +192,7 @@ impl PreconfiguredReputation {
         println!("📈 节点信誉状态");
         println!("====================");
         
-        let mut nodes_by_tier = self.get_tier_distribution();
+        let nodes_by_tier = self.get_tier_distribution();
         
         for tier in ["core", "validator", "data"] {
             if let Some(nodes) = nodes_by_tier.get(tier) {

@@ -1,9 +1,9 @@
-//! Causal Fingerprint Module
+//! 因果指纹模块
 //!
-//! Implements the core causal fingerprint verification algorithms:
-//! - Delta response calculation: Δy = f(x+δ) - f(x)
-//! - Cosine similarity clustering for consensus
-//! - Outlier detection based on logical consistency
+//! 实现核心的因果指纹验证算法：
+//! - 增量响应计算：Δy = f(x+δ) - f(x)
+//! - 用于共识的余弦相似度聚类
+//! - 基于逻辑一致性的异常值检测
 
 #![allow(dead_code, missing_docs)]
 
@@ -11,19 +11,19 @@ use serde::{Deserialize, Serialize};
 use rand::Rng;
 use std::collections::HashSet;
 
-/// Causal fingerprint data for an agent
+/// 智能体的因果指纹数据
 #[derive(Debug, Clone, Serialize, Deserialize)]
 pub struct CausalFingerprint {
     pub agent_id: String,
     pub base_prediction: f64,
     pub delta_response: Vec<f64>,           // Δy = f(x+δ) - f(x)
-    pub spectral_features: Vec<f64>,        // Spectral eigenvalues
+    pub spectral_features: Vec<f64>,        // 谱特征值
     pub perturbation: Vec<f64>,             // δ
     pub confidence: f64,
     pub timestamp: u64,
 }
 
-/// Result of consensus aggregation
+/// 共识聚合结果
 #[derive(Debug, Clone)]
 pub struct ConsensusResult {
     pub consensus_value: f64,
@@ -33,14 +33,14 @@ pub struct ConsensusResult {
     pub cluster_quality: f64,
 }
 
-/// Configuration for causal fingerprint verification
+/// 因果指纹验证配置
 #[derive(Debug, Clone)]
 pub struct CausalFingerprintConfig {
-    pub cosine_threshold: f64,           // Minimum similarity for consensus
-    pub outlier_threshold: f64,          // Maximum distance to be considered inlier
-    pub min_valid_agents: usize,         // Minimum agents needed
-    pub spectral_dimensions: usize,      // Number of spectral features
-    pub perturbation_dimensions: usize,  // Number of perturbation dimensions
+    pub cosine_threshold: f64,           // 共识所需的最小相似度
+    pub outlier_threshold: f64,          // 被视为内点的最大距离
+    pub min_valid_agents: usize,         // 所需的最小智能体数量
+    pub spectral_dimensions: usize,      // 谱特征数量
+    pub perturbation_dimensions: usize,  // 扰动维度数量
 }
 
 impl Default for CausalFingerprintConfig {
@@ -55,7 +55,7 @@ impl Default for CausalFingerprintConfig {
     }
 }
 
-/// Calculate delta response: Δy = f(x+δ) - f(x)
+/// 计算增量响应：Δy = f(x+δ) - f(x)
 pub fn calculate_delta_response(
     base_prediction: f64,
     perturbed_prediction: f64,
@@ -63,13 +63,13 @@ pub fn calculate_delta_response(
     perturbed_prediction - base_prediction
 }
 
-/// Generate random perturbation vector δ
+/// 生成随机扰动向量 δ
 pub fn generate_perturbation(dim: usize, magnitude: f64) -> Vec<f64> {
     let mut rng = rand::thread_rng();
     (0..dim).map(|_| rng.gen_range(-magnitude..magnitude)).collect()
 }
 
-/// Calculate cosine similarity between two vectors
+/// 计算两个向量之间的余弦相似度
 pub fn cosine_similarity(a: &[f64], b: &[f64]) -> f64 {
     if a.len() != b.len() || a.is_empty() {
         return 0.0;
@@ -86,7 +86,7 @@ pub fn cosine_similarity(a: &[f64], b: &[f64]) -> f64 {
     }
 }
 
-/// Calculate Euclidean distance between two vectors
+/// 计算两个向量之间的欧几里得距离
 pub fn euclidean_distance(a: &[f64], b: &[f64]) -> f64 {
     a.iter().zip(b.iter())
         .map(|(x, y)| (x - y).powi(2))
@@ -94,7 +94,7 @@ pub fn euclidean_distance(a: &[f64], b: &[f64]) -> f64 {
         .sqrt()
 }
 
-/// Compute consensus centroid from fingerprints
+/// 从指纹中计算共识质心
 pub fn compute_consensus_centroid(fingerprints: &[&CausalFingerprint]) -> Vec<f64> {
     if fingerprints.is_empty() {
         return Vec::new();
@@ -116,7 +116,7 @@ pub fn compute_consensus_centroid(fingerprints: &[&CausalFingerprint]) -> Vec<f6
     centroid
 }
 
-/// Identify outliers based on similarity to centroid
+/// 基于与质心的相似度识别异常值
 pub fn identify_outliers(
     fingerprints: &[CausalFingerprint],
     centroid: &[f64],
@@ -134,7 +134,7 @@ pub fn identify_outliers(
     outliers
 }
 
-/// Cosine similarity clustering for consensus
+/// 用于共识的余弦相似度聚类
 pub fn cluster_by_consensus(
     fingerprints: &[CausalFingerprint],
     config: &CausalFingerprintConfig,
@@ -149,7 +149,7 @@ pub fn cluster_by_consensus(
         };
     }
     
-    // Calculate pairwise similarities
+    // 计算成对相似度
     let mut similarities: Vec<(usize, usize, f64)> = Vec::new();
     for i in 0..fingerprints.len() {
         for j in (i + 1)..fingerprints.len() {
@@ -158,7 +158,7 @@ pub fn cluster_by_consensus(
         }
     }
     
-    // Find largest cluster with high internal similarity
+    // 寻找具有高内部相似度的最大聚类
     let threshold = config.cosine_threshold;
     let mut agent_clusters: Vec<Vec<usize>> = Vec::new();
     let mut used: HashSet<usize> = HashSet::new();
@@ -167,7 +167,7 @@ pub fn cluster_by_consensus(
         if *sim >= threshold {
             if used.contains(i) {
                 if !used.contains(j) {
-                    // Find i's cluster and add j
+                    // 找到 i 的聚类并添加 j
                     for cluster in &mut agent_clusters {
                         if cluster.contains(i) {
                             cluster.push(*j);
@@ -177,7 +177,7 @@ pub fn cluster_by_consensus(
                     }
                 }
             } else if !used.contains(j) {
-                // Create new cluster
+                // 创建新聚类
                 let new_cluster = vec![*i, *j];
                 agent_clusters.push(new_cluster);
                 used.insert(*i);
@@ -186,7 +186,7 @@ pub fn cluster_by_consensus(
         }
     }
     
-    // Find largest cluster
+    // 寻找最大聚类
     let mut largest_cluster = Vec::new();
     for cluster in &agent_clusters {
         if cluster.len() > largest_cluster.len() {
@@ -194,7 +194,7 @@ pub fn cluster_by_consensus(
         }
     }
     
-    // Calculate consensus from largest cluster
+    // 从最大聚类中计算共识
     let mut consensus_value = 0.0;
     let mut valid_agents = Vec::new();
     let mut cluster_quality = 0.0;
@@ -206,7 +206,7 @@ pub fn cluster_by_consensus(
         
         let centroid = compute_consensus_centroid(&cluster_fps);
         
-        // Consensus value is average of base predictions weighted by similarity
+        // 共识值是按相似度加权的基础预测平均值
         let mut weighted_sum = 0.0;
         let mut weight_sum = 0.0;
         
@@ -219,14 +219,14 @@ pub fn cluster_by_consensus(
         
         consensus_value = if weight_sum > 0.0 { weighted_sum / weight_sum } else { 0.0 };
         
-        // Calculate cluster quality (average internal similarity)
+        // 计算聚类质量（平均内部相似度）
         cluster_quality = similarities.iter()
             .filter(|(i, j, _)| largest_cluster.contains(i) && largest_cluster.contains(j))
             .map(|(_, _, s)| s)
             .sum::<f64>() / largest_cluster.len().max(1) as f64;
     }
     
-    // Identify outliers
+    // 识别异常值
     let mut outliers = Vec::new();
     for (i, fp) in fingerprints.iter().enumerate() {
         if !largest_cluster.contains(&i) {
@@ -258,7 +258,7 @@ pub fn cluster_by_consensus(
     }
 }
 
-/// Generate spectral features from response matrix (simplified)
+/// 从响应矩阵生成谱特征（简化版）
 pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
     if responses.is_empty() || responses[0].is_empty() {
         return vec![0.0; 8];
@@ -267,7 +267,7 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
     let n = responses.len();
     let m = responses[0].len();
     
-    // Calculate covariance matrix (simplified)
+    // 计算协方差矩阵（简化版）
     let mut means = vec![0.0; m];
     for response in responses {
         for (j, val) in response.iter().enumerate() {
@@ -280,7 +280,7 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
     
     let mut features = Vec::with_capacity(8);
     
-    // Feature 1-4: Simple statistics on principal components
+    // 特征 1-4：主成分的简单统计
     let mut variances: Vec<f64> = Vec::with_capacity(m);
     for j in 0..m {
         let var: f64 = responses.iter()
@@ -289,15 +289,15 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
         variances.push(var);
     }
     
-    // Sort variances (principal components)
+    // 对方差进行排序（主成分）
     variances.sort_by(|a, b| b.partial_cmp(a).unwrap());
     
-    // Add top 4 variances as features
+    // 添加前 4 个方差作为特征
     for i in 0..4.min(variances.len()) {
         features.push(variances[i]);
     }
     
-    // Fill remaining features with statistics
+    // 用统计值填充剩余特征
     while features.len() < 8 {
         let sum: f64 = features.iter().sum();
         let count = features.len() as f64;
@@ -307,7 +307,7 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
     features
 }
 
-/// Detect if multiple agents are using the same underlying model
+/// 检测多个智能体是否使用相同的基础模型
 pub fn detect_model_homogeneity(fingerprints: &[CausalFingerprint], threshold: f64) -> bool {
     if fingerprints.len() < 2 {
         return false;
@@ -328,7 +328,7 @@ pub fn detect_model_homogeneity(fingerprints: &[CausalFingerprint], threshold: f
     false
 }
 
-/// Calculate logical consistency score for an agent
+/// 计算智能体的逻辑一致性分数
 pub fn logical_consistency_score(
     agent_fp: &CausalFingerprint,
     global_fingerprint: &[f64],
@@ -404,7 +404,7 @@ mod tests {
         
         let result = cluster_by_consensus(&fingerprints, &config);
         
-        // agent1 and agent2 should be in consensus
+        // agent1 和 agent2 应该达成共识
         assert_eq!(result.valid_agents.len(), 2);
         assert!(result.valid_agents.contains(&"agent1".to_string()));
         assert!(result.valid_agents.contains(&"agent2".to_string()));

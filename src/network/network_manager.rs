@@ -1,10 +1,10 @@
 use crate::network::{PeerDiscovery, MessageHandler, Protocol, DiscoveryConfig};
-use crate::diap::{DiapNetworkAdapter, DiapConfig, DiapIdentityManager, AgentIdentity};
+// use crate::diap::{DiapNetworkAdapter, DiapConfig, DiapIdentityManager};
 use anyhow::{Result, anyhow};
-use std::collections::{HashMap, HashSet};
+use std::collections::HashMap;
 use std::sync::Arc;
 use tokio::sync::RwLock;
-use log::{info, warn, error};
+use log::{info, warn};
 use serde::{Deserialize, Serialize};
 
 /// 网络管理器
@@ -23,12 +23,12 @@ pub struct NetworkManager {
     connections: Arc<RwLock<HashMap<String, ConnectionStatus>>>,
     /// 网络状态
     status: Arc<RwLock<NetworkStatus>>,
-    /// DIAP网络适配器
-    diap_network_adapter: Option<Arc<DiapNetworkAdapter>>,
-    /// DIAP身份管理器
-    diap_identity_manager: Option<Arc<DiapIdentityManager>>,
-    /// 是否启用DIAP身份验证
-    enable_diap_auth: bool,
+    // DIAP网络适配器 (已移除)
+    // diap_network_adapter: Option<Arc<DiapNetworkAdapter>>,
+    // 身份管理器 (已移除)
+    // diap_identity_manager: Option<Arc<DiapIdentityManager>>,
+    // 是否启用DIAP身份验证
+    // enable_diap_auth: bool,
 }
 
 /// 网络配置
@@ -163,67 +163,22 @@ impl NetworkManager {
                 network_bandwidth_kbps: 0.0,
                 last_error: None,
             })),
-            diap_network_adapter: None,
-            diap_identity_manager: None,
-            enable_diap_auth: false,
         })
     }
     
-    /// 初始化DIAP网络适配器
-    pub async fn init_diap_network(
-        &mut self, 
-        diap_config: Option<DiapConfig>,
-        identity_manager: Option<Arc<DiapIdentityManager>>
-    ) -> Result<()> {
-        info!("🔄 初始化DIAP网络适配器");
-        
-        let config = diap_config.unwrap_or_else(|| {
-            let mut default_config = DiapConfig::default();
-            default_config.network.listen_address = format!("/ip4/0.0.0.0/tcp/{}", self.config.listen_port);
-            default_config.network.bootstrap_nodes = self.config.bootstrap_nodes.clone();
-            default_config.network.max_connections = self.config.max_connections as u32;
-            default_config.network.enable_relay = self.config.enable_relay;
-            default_config
-        });
-        
-        // 创建DIAP网络适配器
-        match DiapNetworkAdapter::new(config, identity_manager.clone().unwrap_or_else(|| {
-            Arc::new(DiapIdentityManager::default())
-        })).await {
-            Ok(adapter) => {
-                self.diap_network_adapter = Some(Arc::new(adapter));
-                self.diap_identity_manager = identity_manager;
-                self.enable_diap_auth = true;
-                info!("✅ DIAP网络适配器初始化完成");
-                Ok(())
-            }
-            Err(e) => {
-                warn!("⚠️ DIAP网络适配器初始化失败: {}, 将使用传统网络模式", e);
-                self.enable_diap_auth = false;
-                Ok(())
-            }
-        }
-    }
-    
-    /// 启动DIAP网络
+    /*    
+    /// 启动网络
     pub async fn start_diap_network(&self) -> Result<()> {
-        if let Some(adapter) = &self.diap_network_adapter {
-            info!("🚀 启动DIAP网络");
-            adapter.start().await.map_err(|e| anyhow!("启动DIAP网络失败: {}", e))
-        } else {
-            Err(anyhow!("DIAP网络适配器未初始化"))
-        }
+        info!("🚀 启动网络");
+        Ok(())
     }
     
-    /// 停止DIAP网络
+    /// 停止网络
     pub async fn stop_diap_network(&self) -> Result<()> {
-        if let Some(adapter) = &self.diap_network_adapter {
-            info!("🛑 停止DIAP网络");
-            adapter.stop().await.map_err(|e| anyhow!("停止DIAP网络失败: {}", e))
-        } else {
-            Ok(())
-        }
+        info!("🛑 停止网络");
+        Ok(())
     }
+    */
     
     /// 启动网络
     pub async fn start(&mut self) -> Result<()> {
@@ -349,7 +304,7 @@ impl NetworkManager {
     pub async fn disconnect_from_peer(&self, peer_address: &str) -> Result<()> {
         let mut connections = self.connections.write().await;
         
-        if let Some(connection) = connections.remove(peer_address) {
+        if let Some(_connection) = connections.remove(peer_address) {
             // 更新网络状态
             let mut status = self.status.write().await;
             status.active_connections -= 1;
@@ -475,111 +430,33 @@ impl NetworkManager {
         self.status.read().await.clone()
     }
     
-    /// 获取DIAP网络状态
-    pub async fn get_diap_network_status(&self) -> Result<String> {
-        if let Some(adapter) = &self.diap_network_adapter {
-            let status = adapter.check_network_status().await;
-            Ok(format!(
-                "DIAP网络状态: 运行中={}, 总节点={}, 已连接={}, 活跃连接={}",
-                status.is_running, status.total_nodes, status.connected_nodes, status.active_connections
-            ))
-        } else {
-            Ok("DIAP网络未启用".to_string())
-        }
+    /*
+    /// 获取网络状态
+    pub async fn get_network_status(&self) -> Result<String> {
+        Ok("网络已启用".to_string())
     }
     
-    /// 使用DIAP身份发送消息
-    pub async fn send_message_with_diap_identity(
+    /// 使用身份发送消息
+    pub async fn send_message_with_identity(
         &self,
         message: &str,
         receiver_identity_id: Option<&str>,
         require_auth: bool,
     ) -> Result<()> {
-        if !self.enable_diap_auth {
-            return Err(anyhow!("DIAP身份验证未启用"));
-        }
-        
-        let adapter = self.diap_network_adapter.as_ref()
-            .ok_or_else(|| anyhow!("DIAP网络适配器未初始化"))?;
-        
-        // 获取当前身份
-        let current_identity = if let Some(manager) = &self.diap_identity_manager {
-            manager.get_current_identity().await
-        } else {
-            None
-        };
-        
-        let sender_id = current_identity.as_ref()
-            .map(|id| id.id.clone())
-            .unwrap_or_else(|| "anonymous".to_string());
-        
-        // 创建网络消息
-        use crate::diap::network_adapter::{NetworkMessage, MessageType};
-        
-        let network_message = NetworkMessage {
-            message_id: uuid::Uuid::new_v4().to_string(),
-            sender_id,
-            receiver_id: receiver_identity_id.map(|s| s.to_string()),
-            message_type: if require_auth {
-                MessageType::AuthRequest
-            } else {
-                MessageType::Custom
-            },
-            payload: serde_json::json!({
-                "content": message,
-                "timestamp": chrono::Utc::now().timestamp(),
-                "require_auth": require_auth,
-            }),
-            timestamp: chrono::Utc::now().timestamp(),
-            signature: None,
-        };
-        
-        // 发送消息
-        adapter.send_message(network_message.clone()).await
-            .map_err(|e| anyhow!("发送DIAP消息失败: {}", e))?;
-        
-        info!("📤 通过DIAP发送消息: {} -> {:?}", 
-            network_message.sender_id, network_message.receiver_id);
-        
+        info!("📤 发送消息: {}", message);
         Ok(())
     }
     
-    /// 接收DIAP消息
-    pub async fn receive_diap_messages(&self, limit: usize) -> Result<Vec<String>> {
-        if let Some(adapter) = &self.diap_network_adapter {
-            let messages = adapter.receive_messages(limit).await;
-            let contents: Vec<String> = messages.into_iter()
-                .map(|msg| {
-                    format!("[{}] {}: {}", 
-                        msg.sender_id,
-                        format!("{:?}", msg.message_type),
-                        msg.payload.get("content").and_then(|v| v.as_str()).unwrap_or("")
-                    )
-                })
-                .collect();
-            
-            Ok(contents)
-        } else {
-            Ok(Vec::new())
-        }
+    /// 接收消息
+    pub async fn receive_messages(&self, limit: usize) -> Result<Vec<String>> {
+        Ok(Vec::new())
     }
     
-    /// 验证DIAP身份连接
-    pub async fn verify_diap_connection(&self, identity_id: &str) -> Result<bool> {
-        if let Some(manager) = &self.diap_identity_manager {
-            use crate::diap::DiapError;
-            match manager.verify_identity(identity_id, None).await {
-                Ok(auth_result) => Ok(auth_result.authenticated),
-                Err(DiapError::AuthenticationFailed(msg)) => {
-                    warn!("DIAP身份验证失败: {}", msg);
-                    Ok(false)
-                }
-                Err(e) => Err(anyhow!("DIAP身份验证错误: {}", e)),
-            }
-        } else {
-            Err(anyhow!("DIAP身份管理器未初始化"))
-        }
+    /// 验证身份连接
+    pub async fn verify_connection(&self, identity_id: &str) -> Result<bool> {
+        Ok(true)
     }
+    */
     
     /// 获取连接列表
     pub async fn get_connections(&self) -> Vec<ConnectionStatus> {
