@@ -21,6 +21,34 @@ web-server = ["axum", "tower-http"]  # Web服务器支持
 bs58 = ["dep:bs58"]
 hex = ["dep:hex"]
 
+[[example]]
+name = "blockchain_consensus_demo"
+path = "examples/blockchain_consensus_demo.rs"
+
+[[example]]
+name = "real_blockchain_consensus_demo"
+path = "examples/real_blockchain_consensus_demo.rs"
+
+[[example]]
+name = "simple_real_blockchain_demo"
+path = "examples/simple_real_blockchain_demo.rs"
+
+[[example]]
+name = "true_blockchain_status"
+path = "examples/true_blockchain_status.rs"
+
+[[example]]
+name = "complete_true_blockchain"
+path = "examples/complete_true_blockchain.rs"
+
+[[example]]
+name = "simulated_validator_blockchain"
+path = "examples/simulated_validator_blockchain.rs"
+
+[[example]]
+name = "real_devnet_blockchain"
+path = "examples/real_devnet_blockchain.rs"
+
 [dependencies]
 # 核心依赖
 tokio = { version = "1.0", features = ["full"] }
@@ -38,7 +66,10 @@ libp2p = { version = "0.53", features = ["tcp", "dns", "noise", "yamux"], option
 iroh = { version = "0.93.2", optional = true }
 reqwest = { version = "0.11", features = ["json"] }
 
-# 区块链交互 - 轻量级Solana支持 (通过HTTP RPC)
+# 区块链交互 - 真实Solana支持 (使用HTTP RPC)
+# solana-client = "1.14"
+# solana-sdk = "1.14"
+# solana-program = "1.14"
 bs58 = { version = "0.5", optional = true }
 hex = { version = "0.4", optional = true }
 
