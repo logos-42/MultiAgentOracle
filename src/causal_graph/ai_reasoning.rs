@@ -248,25 +248,59 @@ impl AIReasoningEngine {
     
     /// Parse AI response into structured format
     fn parse_ai_response(&self, response: &str) -> Result<AICausalResponse> {
-        // Try to parse as JSON directly
-        if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(response) {
+        let mut json_str = response.trim();
+        
+        // 尝试1: 直接解析JSON
+        if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
             return Ok(parsed);
         }
         
-        // Try to extract JSON from markdown code blocks
-        let json_start = response.find("```json");
-        if let Some(start) = json_start {
-            let after_start = &response[start + 7..];
-            let json_end = after_start.find("```");
-            if let Some(end) = json_end {
-                let json_str = after_start[..end].trim();
+        // 尝试2: 从markdown代码块提取JSON (```json)
+        if let Some(start) = json_str.find("```json") {
+            let after_start = &json_str[start + 7..];
+            if let Some(end) = after_start.find("```") {
+                json_str = after_start[..end].trim();
                 if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
                     return Ok(parsed);
                 }
             }
         }
         
-        Err(anyhow!("无法解析AI响应为JSON格式"))
+        // 尝试3: 从markdown代码块提取JSON (```)
+        if let Some(start) = json_str.find("```") {
+            let after_start = &json_str[start + 3..];
+            if let Some(end) = after_start.find("```") {
+                json_str = after_start[..end].trim();
+                if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
+                    return Ok(parsed);
+                }
+            }
+        }
+        
+        // 尝试4: 查找第一个{到最后一个}
+        if let Some(start) = json_str.find('{') {
+            if let Some(end) = json_str.rfind('}') {
+                json_str = &json_str[start..=end + 1];
+                if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
+                    return Ok(parsed);
+                }
+            }
+        }
+        
+        // 尝试5: 移除所有非JSON字符
+        let cleaned: String = json_str.chars()
+            .filter(|c| c.is_ascii_whitespace() || *c == '{' || *c == '}' || *c == '"' || *c == ':' || *c == ',' || c.is_ascii_digit() || c.is_alphabetic())
+            .collect();
+        
+        if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(&cleaned) {
+            return Ok(parsed);
+        }
+        
+        // 所有尝试都失败，返回详细错误
+        eprintln!("📝 原始响应: {}", response);
+        eprintln!("📝 尝试解析: {}", json_str);
+        Err(anyhow!("无法解析AI响应为JSON格式\n原始响应长度: {}\n尝试解析长度: {}", 
+                   response.len(), json_str.len()))
     }
     
     /// Validate AI-generated response

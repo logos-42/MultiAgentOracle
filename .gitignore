@@ -52,3 +52,6 @@ temp/
 _site/
 .sass-cache/
 .jekyll-cache/
+
+# Large experiment files (>100MB)
+experiments/output/**/full_report.json

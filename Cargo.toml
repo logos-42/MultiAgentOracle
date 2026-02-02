@@ -13,8 +13,7 @@ readme = "README.md"
 categories = ["cryptography", "blockchain", "network-programming"]
 
 [features]
-default = ["p2p", "bs58", "hex", "web-server"]
-p2p = ["libp2p", "iroh"]
+default = ["bs58", "hex", "web-server"]
 solana = ["bs58", "hex"]  # 轻量级Solana支持
 ethereum = ["ethers"]
 web-server = ["axum", "tower-http"]  # Web服务器支持
@@ -49,6 +48,10 @@ path = "examples/simulated_validator_blockchain.rs"
 name = "real_devnet_blockchain"
 path = "examples/real_devnet_blockchain.rs"
 
+[[example]]
+name = "mock_local_validator_test"
+path = "examples/mock_local_validator_test.rs"
+
 [dependencies]
 # 核心依赖
 tokio = { version = "1.0", features = ["full"] }
@@ -61,9 +64,7 @@ env_logger = "0.10"
 toml = "0.8"
 dotenv = "0.15"
 
-# 网络和P2P
-libp2p = { version = "0.53", features = ["tcp", "dns", "noise", "yamux"], optional = true }
-iroh = { version = "0.93.2", optional = true }
+# 网络通信
 reqwest = { version = "0.11", features = ["json"] }
 
 # 区块链交互 - 真实Solana支持 (使用HTTP RPC)
