@@ -1,0 +1,23 @@
+[
+  {
+    "round_id": 0,
+    "agent_count": 3,
+    "byzantine_count": 0,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 97.50000000000001,
+    "ground_truth": 66.0,
+    "accuracy": 0.5227272727272725,
+    "convergence_time_ms": 81524,
+    "valid_agents": [
+      "agent_001",
+      "agent_002"
+    ],
+    "outliers": [
+      "agent_000"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 9,
+    "timestamp": 1770092907
+  }
+]

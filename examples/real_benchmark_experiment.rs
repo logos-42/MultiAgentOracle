@@ -591,36 +591,59 @@ impl RealBenchmarkRunner {
     }
 
     fn generate_agent_details_csv(&self) -> String {
-        let mut csv = String::from("round_id,agent_id,is_byzantine,base_prediction,");
-        csv.push_str("perturbed_prediction,delta_response_str,spectral_features_str,");
-        csv.push_str("confidence,causal_graph_summary,reasoning_preview\n");
+        // CSV header - 使用更易读的列名
+        let mut csv = String::from("round_id,agent_id,is_byzantine,base_prediction,perturbed_prediction,");
+        csv.push_str("delta_r1,delta_r2,delta_r3,delta_r4,delta_r5,");  // 展开delta_response
+        csv.push_str("spectral_1,spectral_2,spectral_3,spectral_4,spectral_5,spectral_6,spectral_7,spectral_8,");  // 展开谱特征
+        csv.push_str("confidence,causal_nodes,causal_edges,reasoning\n");
 
         for agent in &self.detailed_agent_data {
-            let delta_str = format!("{:?}", agent.delta_response)
-                .replace(",", ";")
-                .replace("[", "\"")
-                .replace("]", "\"");
-            let spectral_str = format!("{:?}", agent.spectral_features)
-                .replace(",", ";")
-                .replace("[", "\"")
-                .replace("]", "\"");
-            let reasoning_preview = if agent.reasoning.len() > 50 {
-                format!("{}...", &agent.reasoning[..50])
+            // 解析因果图摘要
+            let (nodes, edges) = if let Some(ref summary) = agent.causal_graph_summary {
+                // 格式: "节点数: X, 边数: Y"
+                let parts: Vec<&str> = summary.split(", ").collect();
+                let n = parts.get(0).and_then(|s| s.split(": ").nth(1)).unwrap_or("0");
+                let e = parts.get(1).and_then(|s| s.split(": ").nth(1)).unwrap_or("0");
+                (n.to_string(), e.to_string())
             } else {
-                agent.reasoning.clone()
+                ("0".to_string(), "0".to_string())
             };
 
-            csv.push_str(&format!("{},{},{},{},{},{},{},{},{},{}\n",
+            // 获取delta_response的5个值（不足补0）
+            let delta_values: Vec<f64> = agent.delta_response.iter().cloned().chain(std::iter::repeat(0.0)).take(5).collect();
+
+            // 获取spectral_features的8个值（不足补0）
+            let spectral_values: Vec<f64> = agent.spectral_features.iter().cloned().chain(std::iter::repeat(0.0)).take(8).collect();
+
+            // 处理reasoning中的换行和逗号
+            let reasoning_clean = agent.reasoning.replace("\n", " ").replace(",", ";").replace("\"", "'");
+
+            // 将布尔值转换为0/1，便于Excel处理
+            let is_byzantine_int = if agent.is_byzantine { 1 } else { 0 };
+
+            csv.push_str(&format!("{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},{},\"{}\"\n",
                 agent.round_id,
                 agent.agent_id,
-                agent.is_byzantine,
+                is_byzantine_int,  // 使用0/1代替true/false
                 agent.base_prediction,
                 agent.perturbed_prediction,
-                delta_str,
-                spectral_str,
+                delta_values.get(0).unwrap_or(&0.0),
+                delta_values.get(1).unwrap_or(&0.0),
+                delta_values.get(2).unwrap_or(&0.0),
+                delta_values.get(3).unwrap_or(&0.0),
+                delta_values.get(4).unwrap_or(&0.0),
+                spectral_values.get(0).unwrap_or(&0.0),
+                spectral_values.get(1).unwrap_or(&0.0),
+                spectral_values.get(2).unwrap_or(&0.0),
+                spectral_values.get(3).unwrap_or(&0.0),
+                spectral_values.get(4).unwrap_or(&0.0),
+                spectral_values.get(5).unwrap_or(&0.0),
+                spectral_values.get(6).unwrap_or(&0.0),
+                spectral_values.get(7).unwrap_or(&0.0),
                 agent.confidence,
-                agent.causal_graph_summary.as_ref().unwrap_or(&"N/A".to_string()),
-                reasoning_preview.replace("\"", "'")
+                nodes,
+                edges,
+                reasoning_clean
             ));
         }
         csv
