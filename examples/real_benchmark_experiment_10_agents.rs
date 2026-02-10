@@ -38,13 +38,13 @@ pub struct ExperimentConfig {
 impl Default for ExperimentConfig {
     fn default() -> Self {
         Self {
-            name: "real_multi_agent_oracle".to_string(),
-            agent_counts: vec![3, 5, 7],
-            byzantine_ratios: vec![0.0, 0.2, 0.4],
-            consensus_thresholds: vec![0.8, 0.85, 0.9],
-            repetitions: 3,
+            name: "real_multi_agent_oracle_10_agents_minimax".to_string(),
+            agent_counts: vec![10],  // 固定为10个智能体
+            byzantine_ratios: vec![],  // 空数组表示使用随机拜占庭节点数(0-40%)
+            consensus_thresholds: vec![0.8],  // 固定共识阈值
+            repetitions: 25,  // 设置为25次重复，这样总共运行25轮相同配置
             output_dir: "experiments/output".to_string(),
-            llm_model: "deepseek-chat".to_string(),
+            llm_model: "abab5.5-chat".to_string(),  // 使用 Minimax 模型
             temperature: 0.7,
             max_tokens: 2500,  // 增加到2500以确保JSON不被截断
         }
@@ -114,24 +114,25 @@ pub struct RealBenchmarkRunner {
     pub results: Vec<ExperimentRound>,
     pub detailed_agent_data: Vec<AgentDetailedInfo>,  // 详细智能体数据（谱分析和因果图）
     pub api_call_count: usize,
+    pub output_dir: String,  // 输出目录路径（用于增量保存）
 }
 
 impl RealBenchmarkRunner {
     pub async fn new(config: ExperimentConfig) -> Result<Self> {
-        let llm_config = LlmClientConfig::deepseek(&config.llm_model)
+        let llm_config = LlmClientConfig::minimax(&config.llm_model)
             .with_temperature(config.temperature)
             .with_max_tokens(config.max_tokens);
-        
+
         let llm_client = LlmClient::new(llm_config)?;
         let scenarios = Self::initialize_scenarios();
 
         println!("✅ 真实实验运行器初始化完成");
-        println!("   使用模型: DeepSeek ({})", config.llm_model);
+        println!("   使用模型: Minimax ({})", config.llm_model);
 
         // 初始化AI推理引擎（用于生成因果图）
         let ai_reasoning = {
             let ai_config = AIReasoningConfig {
-                llm_provider: multi_agent_oracle::oracle_agent::LlmProvider::DeepSeek,
+                llm_provider: multi_agent_oracle::oracle_agent::LlmProvider::Minimax,
                 model: config.llm_model.clone(),
                 temperature: config.temperature,
                 max_tokens: config.max_tokens,
@@ -153,6 +154,15 @@ impl RealBenchmarkRunner {
             }
         };
 
+        // 创建输出目录（基于时间戳）
+        let output_dir = format!("{}/real_experiment_{}",
+            config.output_dir,
+            SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs()
+        );
+        fs::create_dir_all(&output_dir)?;
+
+        println!("📁 输出目录: {}", output_dir);
+
         Ok(Self {
             config,
             llm_client,
@@ -161,6 +171,7 @@ impl RealBenchmarkRunner {
             results: Vec::new(),
             detailed_agent_data: Vec::new(),
             api_call_count: 0,
+            output_dir,
         })
     }
 
@@ -348,55 +359,104 @@ impl RealBenchmarkRunner {
         println!("║     使用 DeepSeek API 生成真实数据                     ║");
         println!("╚══════════════════════════════════════════════════════════╝\n");
         
+        // 判断是否使用随机拜占庭节点数
+        let use_random_byzantine = self.config.byzantine_ratios.is_empty();
+        
         println!("📋 实验配置:");
         println!("   测试轮数: {}", num_rounds);
         println!("   智能体数量: {:?}", self.config.agent_counts);
-        println!("   拜占庭比例: {:?}", self.config.byzantine_ratios);
+        if use_random_byzantine {
+            println!("   拜占庭节点: 随机生成 (0-40%)");
+        } else {
+            println!("   拜占庭比例: {:?}", self.config.byzantine_ratios);
+        }
         println!("   共识阈值: {:?}", self.config.consensus_thresholds);
         println!("   每配置重复: {} 次\n", self.config.repetitions);
 
         let start_time = Instant::now();
         let mut total_rounds = 0;
+        let mut rng = rand::thread_rng();
 
         let agent_counts = self.config.agent_counts.clone();
         let byzantine_ratios = self.config.byzantine_ratios.clone();
         let consensus_thresholds = self.config.consensus_thresholds.clone();
 
         for agent_count in agent_counts {
-            for byzantine_ratio in byzantine_ratios.clone() {
-                for threshold in consensus_thresholds.clone() {
-                    let byzantine_count = (agent_count as f64 * byzantine_ratio).round() as usize;
-                    
-                    println!("🔬 配置: {}智能体/{}拜占庭/阈值{:.2}", 
-                        agent_count, byzantine_count, threshold);
+            // 如果没有指定拜占庭比例，则使用随机模式
+            let byzantine_configs: Vec<usize> = if use_random_byzantine {
+                vec![] // 空数组表示随机生成
+            } else {
+                byzantine_ratios.iter()
+                    .map(|&r| (agent_count as f64 * r).round() as usize)
+                    .collect()
+            };
+            
+            let byzantine_iter: Box<dyn Iterator<Item = usize>> = if use_random_byzantine {
+                Box::new(std::iter::repeat(0)) // 占位，实际每轮随机生成
+            } else {
+                Box::new(byzantine_configs.clone().into_iter())
+            };
 
-                    for _rep in 0..self.config.repetitions.min(num_rounds) {
-                        if total_rounds >= num_rounds {
-                            break;
-                        }
+            for (byzantine_count_fixed, threshold) in byzantine_iter
+                .zip(std::iter::repeat(consensus_thresholds.clone()).flatten()) 
+            {
+                // 如果使用随机模式，每轮生成随机的拜占庭节点数 (0 到 agent_count * 0.4)
+                let byzantine_count = if use_random_byzantine {
+                    let max_byzantine = (agent_count as f64 * 0.4).floor() as usize;
+                    rng.gen_range(0..=max_byzantine)
+                } else {
+                    byzantine_count_fixed
+                };
+                
+                let byzantine_ratio = if use_random_byzantine {
+                    byzantine_count as f64 / agent_count as f64
+                } else {
+                    byzantine_configs.iter().find(|&&c| c == byzantine_count).map(|&c| c as f64 / agent_count as f64).unwrap_or(0.0)
+                };
+                
+                println!("🔬 配置: {}智能体/{}拜占庭(≈{:.0}%)/阈值{:.2}", 
+                    agent_count, byzantine_count, byzantine_ratio * 100.0, threshold);
 
-                        match self.run_single_round(
-                            total_rounds,
-                            agent_count,
-                            byzantine_count,
-                            threshold,
-                        ).await {
-                            Ok(round) => {
-                                self.results.push(round);
-                                total_rounds += 1;
-                                print!(".");
+                for _rep in 0..self.config.repetitions.min(num_rounds) {
+                    if total_rounds >= num_rounds {
+                        break;
+                    }
+
+                    // 每轮如果使用随机模式，重新生成拜占庭节点数
+                    let round_byzantine_count = if use_random_byzantine {
+                        let max_byzantine = (agent_count as f64 * 0.4).floor() as usize;
+                        rng.gen_range(0..=max_byzantine)
+                    } else {
+                        byzantine_count
+                    };
+
+                    match self.run_single_round(
+                        total_rounds,
+                        agent_count,
+                        round_byzantine_count,
+                        threshold,
+                    ).await {
+                        Ok(round) => {
+                            self.results.push(round);
+                            total_rounds += 1;
+                            print!(".");
+
+                            // 每轮完成后立即保存结果
+                            if let Err(e) = self.save_incremental_results(total_rounds) {
+                                println!("\n   ⚠️ 保存第{}轮结果失败: {}", total_rounds, e);
                             }
-                            Err(e) => {
-                                println!("\n   ⚠️ 轮次 {} 失败: {}", total_rounds, e);
-                            }
                         }
-
-                        if total_rounds >= num_rounds {
-                            break;
+                        Err(e) => {
+                            println!("\n   ⚠️ 轮次 {} 失败: {}", total_rounds, e);
                         }
                     }
-                    println!(" ✅");
+
+                    if total_rounds >= num_rounds {
+                        break;
+                    }
                 }
+                println!(" ✅");
+                
                 if total_rounds >= num_rounds {
                     break;
                 }
@@ -413,7 +473,8 @@ impl RealBenchmarkRunner {
         println!("   API调用次数: {}", self.api_call_count);
         println!("   估算成本: ¥{:.2}", self.api_call_count as f64 * 0.001);
 
-        self.save_results().await?;
+        // 最终保存完整结果
+        self.save_results()?;
 
         Ok(())
     }
@@ -463,6 +524,7 @@ impl RealBenchmarkRunner {
         }
 
         // 计算因果指纹
+        println!("   [共识计算] 开始计算因果指纹和共识...");
         let config = CausalFingerprintConfig {
             cosine_threshold: threshold,
             min_valid_agents: 3,
@@ -474,14 +536,18 @@ impl RealBenchmarkRunner {
             .map(|a| a.delta_response.clone())
             .collect();
         let global_spectral_features = extract_spectral_features(&all_responses);
+        println!("   [共识计算] 提取全局谱特征完成，维度: {}", global_spectral_features.len());
         
-        let fingerprints: Vec<CausalFingerprint> = agents.iter().enumerate().map(|(_idx, a)| {
+        let fingerprints: Vec<CausalFingerprint> = agents.iter().enumerate().map(|(idx, a)| {
             // 每个智能体使用自己的谱特征或全局谱特征
             let agent_spectral = if a.spectral_features.is_empty() {
                 global_spectral_features.clone()
             } else {
                 a.spectral_features.clone()
             };
+            
+            println!("   [共识计算] 智能体 {}: base_prediction={}, is_byzantine={}, spectral_features={}", 
+                     a.id, a.base_prediction, a.is_byzantine, agent_spectral.len());
             
             CausalFingerprint {
                 agent_id: a.id.clone(),
@@ -497,7 +563,12 @@ impl RealBenchmarkRunner {
             }
         }).collect();
 
+        println!("   [共识计算] 开始执行 cluster_by_consensus，指纹数量: {}", fingerprints.len());
         let consensus_result = cluster_by_consensus(&fingerprints, &config);
+        println!("   [共识计算] 共识计算完成，共识值: {:.4}, 有效智能体: {}, 异常值: {}",
+                 consensus_result.consensus_value, 
+                 consensus_result.valid_agents.len(), 
+                 consensus_result.outliers.len());
 
         // 计算真实值（正常智能体的平均值）
         let ground_truth = agents.iter()
@@ -535,42 +606,72 @@ impl RealBenchmarkRunner {
         })
     }
 
-    async fn save_results(&self) -> Result<()> {
-        let output_dir = format!("{}/real_experiment_{}",
-            self.config.output_dir,
-            SystemTime::now().duration_since(UNIX_EPOCH)?.as_secs()
-        );
-        fs::create_dir_all(&output_dir)?;
-
-        // 保存原始数据
+    /// 增量保存结果（每轮完成后调用）
+    fn save_incremental_results(&self, current_round: usize) -> Result<()> {
+        // 保存原始数据（追加模式）
         let csv_data = self.generate_csv();
-        let csv_path = format!("{}/raw_data.csv", output_dir);
+        let csv_path = format!("{}/raw_data.csv", self.output_dir);
         File::create(&csv_path)?.write_all(csv_data.as_bytes())?;
 
         // 保存JSON汇总结果
         let json_data = serde_json::to_string_pretty(&self.results)?;
-        let json_path = format!("{}/results.json", output_dir);
+        let json_path = format!("{}/results.json", self.output_dir);
         File::create(&json_path)?.write_all(json_data.as_bytes())?;
 
-        // 🌟 保存详细智能体数据（谱分析和因果图）
+        // 保存详细智能体数据（谱分析和因果图）
         let agent_details_json = serde_json::to_string_pretty(&self.detailed_agent_data)?;
-        let agent_details_path = format!("{}/agent_details.json", output_dir);
+        let agent_details_path = format!("{}/agent_details.json", self.output_dir);
         File::create(&agent_details_path)?.write_all(agent_details_json.as_bytes())?;
 
         // 保存详细智能体数据的CSV格式
         let agent_details_csv = self.generate_agent_details_csv();
-        let agent_details_csv_path = format!("{}/agent_details.csv", output_dir);
+        let agent_details_csv_path = format!("{}/agent_details.csv", self.output_dir);
+        File::create(&agent_details_csv_path)?.write_all(agent_details_csv.as_bytes())?;
+
+        // 更新总结
+        let summary = self.generate_summary();
+        let summary_path = format!("{}/summary.md", self.output_dir);
+        File::create(&summary_path)?.write_all(summary.as_bytes())?;
+
+        // 显示进度信息
+        if current_round % 5 == 0 {
+            println!("\n   📊 已完成 {} 轮，结果已保存", current_round);
+        }
+
+        Ok(())
+    }
+
+    fn save_results(&self) -> Result<()> {
+        // 保存最终完整结果（与增量保存相同，因为目录已创建）
+        let csv_data = self.generate_csv();
+        let csv_path = format!("{}/raw_data.csv", self.output_dir);
+        File::create(&csv_path)?.write_all(csv_data.as_bytes())?;
+
+        // 保存JSON汇总结果
+        let json_data = serde_json::to_string_pretty(&self.results)?;
+        let json_path = format!("{}/results.json", self.output_dir);
+        File::create(&json_path)?.write_all(json_data.as_bytes())?;
+
+        // 🌟 保存详细智能体数据（谱分析和因果图）
+        let agent_details_json = serde_json::to_string_pretty(&self.detailed_agent_data)?;
+        let agent_details_path = format!("{}/agent_details.json", self.output_dir);
+        File::create(&agent_details_path)?.write_all(agent_details_json.as_bytes())?;
+
+        // 保存详细智能体数据的CSV格式
+        let agent_details_csv = self.generate_agent_details_csv();
+        let agent_details_csv_path = format!("{}/agent_details.csv", self.output_dir);
         File::create(&agent_details_csv_path)?.write_all(agent_details_csv.as_bytes())?;
 
         // 生成总结
         let summary = self.generate_summary();
-        let summary_path = format!("{}/summary.md", output_dir);
+        let summary_path = format!("{}/summary.md", self.output_dir);
         File::create(&summary_path)?.write_all(summary.as_bytes())?;
 
-        println!("\n📊 结果已保存到: {}", output_dir);
+        println!("\n📊 最终结果已保存到: {}", self.output_dir);
         println!("   📈 results.json - 实验汇总结果");
         println!("   🧬 agent_details.json - 智能体详细信息（谱分析和因果图）");
         println!("   📊 agent_details.csv - 智能体详细数据CSV格式");
+        println!("   📄 summary.md - 实验总结");
         Ok(())
     }
 
@@ -681,20 +782,16 @@ async fn main() -> Result<()> {
     // 加载环境变量
     dotenv::dotenv().ok();
 
-    // 解析命令行参数
+    // 从命令行参数读取轮数，默认为25轮
     let args: Vec<String> = std::env::args().collect();
-    let num_rounds = if args.len() > 1 {
-        args[1].parse().unwrap_or(10)
-    } else {
-        10
-    };
+    let num_rounds = args.get(2).and_then(|s| s.parse::<usize>().ok()).unwrap_or(25);
 
     println!("🚀 启动真实基准测试实验");
     println!("   测试轮数: {}\n", num_rounds);
 
     // 创建配置
     let config = ExperimentConfig {
-        repetitions: 1, // 每个配置只运行1次
+        repetitions: num_rounds, // 使用命令行指定的轮数
         ..Default::default()
     };
 

@@ -31,12 +31,11 @@ You are an expert in causal reasoning and causal inference. Your task is to anal
    - Path strength is the product of edge weights along the path
    - Classify paths as: FrontDoor (前门路径), BackDoor (后门路径), or Confounded (混淆路径)
 
-4. **Output Format**:
-   - Return your response as valid JSON only (no markdown code blocks)
-   - Include reasoning explanation in the "reasoning" field
-   - Provide a confidence score (0.0-1.0) in the "confidence" field
+## Output Format (CRITICAL)
 
-## Output Schema
+**You MUST return ONLY a valid JSON object. Do NOT include markdown formatting, explanations, or any text outside the JSON.**
+
+The JSON must strictly follow this structure:
 
 ```json
 {
@@ -44,7 +43,7 @@ You are an expert in causal reasoning and causal inference. Your task is to anal
     {
       "id": "X",
       "name": "Variable name",
-      "node_type": "Treatment|Outcome|Confounder|Mediator|Control",
+      "node_type": "Treatment",
       "importance": 0.8,
       "intervention_target": true
     }
@@ -55,7 +54,7 @@ You are an expert in causal reasoning and causal inference. Your task is to anal
       "source": "X",
       "target": "Y",
       "weight": 0.7,
-      "edge_type": "Direct|Indirect|Confounding"
+      "edge_type": "Direct"
     }
   ],
   "paths": [
@@ -63,19 +62,16 @@ You are an expert in causal reasoning and causal inference. Your task is to anal
       "id": "p1",
       "nodes": ["X", "M", "Y"],
       "strength": 0.56,
-      "path_type": "FrontDoor|BackDoor|Confounded"
+      "path_type": "FrontDoor"
     }
   ],
-  "reasoning": "Explain your causal reasoning...",
+  "reasoning": "Explain your causal reasoning in Chinese or English",
   "confidence": 0.85
 }
 ```
 
-## Example Analysis
+## Example Output (Follow this EXACT format)
 
-**Scenario**: A pharmaceutical company wants to understand the causal effect of a new drug (treatment) on patient recovery (outcome), considering potential confounders like age and pre-existing conditions.
-
-**Example Output**:
 ```json
 {
   "nodes": [
@@ -164,5 +160,15 @@ You are an expert in causal reasoning and causal inference. Your task is to anal
 3. **Realistic Weights**: Assign causal strengths that reflect realistic effect sizes
 4. **Domain Knowledge**: Use domain-specific knowledge when analyzing the scenario
 5. **Simplicity**: Prefer simpler graphs with clearer causal chains over overly complex structures
+6. **JSON Only**: Return ONLY the JSON object, no markdown code blocks, no explanations, no additional text
 
-Now, analyze the provided scenario and generate a causal graph following these guidelines.
+## Response Rules
+
+- Output MUST be valid JSON
+- All string values must use double quotes
+- No trailing commas in arrays or objects
+- All node IDs referenced in edges must exist in the nodes array
+- All path node IDs must exist in the nodes array
+- Confidence must be between 0.0 and 1.0
+
+Now, analyze the provided scenario and generate ONLY the JSON causal graph.

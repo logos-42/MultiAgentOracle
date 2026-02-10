@@ -31,6 +31,8 @@ pub enum LlmProvider {
     Anthropic,
     /// DeepSeek (deepseek-chat, deepseek-coder, etc.)
     DeepSeek,
+    /// Minimax (minimax-chat)
+    Minimax,
     /// 本地 LLM (通过 HTTP API)
     Local,
 }
@@ -54,6 +56,8 @@ pub struct LlmClientConfig {
     pub temperature: f32,
     /// 最大 token 数
     pub max_tokens: u32,
+    /// 强制 JSON 输出模式（仅部分提供商支持，如 OpenAI、DeepSeek）
+    pub response_format_json: bool,
 }
 
 impl Default for LlmClientConfig {
@@ -67,6 +71,7 @@ impl Default for LlmClientConfig {
             timeout_secs: 30,
             temperature: 0.7,
             max_tokens: 500,
+            response_format_json: false,
         }
     }
 }
@@ -125,7 +130,22 @@ impl LlmClientConfig {
 
         config
     }
-    
+
+    /// 创建 Minimax 配置
+    pub fn minimax(model: &str) -> Self {
+        let mut config = Self::default();
+        config.provider = LlmProvider::Minimax;
+        config.model = model.to_string();
+        config.api_endpoint = "https://api.minimax.chat/v1/text/chatcompletion_v2".to_string();
+
+        // 从环境变量读取 API 密钥
+        if let Ok(key) = env::var("Minimax_API_KEY") {
+            config.api_key = Some(key);
+        }
+
+        config
+    }
+
     /// 设置 API 密钥
     pub fn with_api_key(mut self, api_key: &str) -> Self {
         self.api_key = Some(api_key.to_string());
@@ -141,6 +161,12 @@ impl LlmClientConfig {
     /// 设置最大 token 数
     pub fn with_max_tokens(mut self, max_tokens: u32) -> Self {
         self.max_tokens = max_tokens;
+        self
+    }
+
+    /// 启用 JSON 输出模式（强制返回 JSON 格式）
+    pub fn with_json_mode(mut self) -> Self {
+        self.response_format_json = true;
         self
     }
 }
@@ -208,6 +234,7 @@ impl LlmClient {
             LlmProvider::OpenAI => self.call_openai(prompt).await?,
             LlmProvider::Anthropic => self.call_anthropic(prompt).await?,
             LlmProvider::DeepSeek => self.call_deepseek(prompt).await?,
+            LlmProvider::Minimax => self.call_minimax(prompt).await?,
             LlmProvider::Local => self.call_local(prompt).await?,
         };
 
@@ -394,7 +421,62 @@ impl LlmClient {
 
         Ok(text.to_string())
     }
-    
+
+    /// 调用 Minimax API
+    async fn call_minimax(&self, prompt: &str) -> Result<String> {
+        let api_key = self.config.api_key.as_ref()
+            .ok_or_else(|| anyhow!("未配置 Minimax API 密钥，请设置环境变量 Minimax_API_KEY"))?;
+
+        // Minimax API 参数说明：
+        // - tokens_to_generate: 最大输出token数
+        // - max_tokens: 也是有效的参数名（某些模型使用）
+        let max_tokens_val = std::cmp::max(self.config.max_tokens, 4000); // 确保至少4000 tokens，避免JSON截断
+
+        let mut request_body = serde_json::json!({
+            "model": self.config.model,
+            "messages": [
+                {
+                    "role": "user",
+                    "content": prompt
+                }
+            ],
+            "temperature": self.config.temperature,
+            "tokens_to_generate": max_tokens_val,
+            "max_tokens": max_tokens_val,  // Minimax 可能使用不同的参数名
+        });
+
+        // 如果启用了 JSON 模式，添加提示（Minimax 不支持 response_format 参数）
+        if self.config.response_format_json {
+            // Minimax 不支持 OpenAI 风格的 response_format 参数
+            // 需要在 prompt 中明确要求 JSON 格式
+        }
+
+        let response = self.http_client
+            .post(&self.config.api_endpoint)
+            .header("Authorization", format!("Bearer {}", api_key))
+            .header("Content-Type", "application/json")
+            .json(&request_body)
+            .send()
+            .await
+            .map_err(|e| anyhow!("发送 Minimax 请求失败: {}", e))?;
+
+        if !response.status().is_success() {
+            let status = response.status();
+            let error_text = response.text().await.unwrap_or_default();
+            return Err(anyhow!("Minimax API 错误: {} - {}", status, error_text));
+        }
+
+        let json: Value = response.json().await
+            .map_err(|e| anyhow!("解析 Minimax 响应失败: {}", e))?;
+
+        // Minimax 响应格式: {"choices": [{"message": {"content": "..."}}], "usage": {...}}
+        let text = json["choices"][0]["message"]["content"]
+            .as_str()
+            .ok_or_else(|| anyhow!("无法从 Minimax 响应中提取文本"))?;
+
+        Ok(text.to_string())
+    }
+
     /// 获取提供商信息
     pub fn get_provider_info(&self) -> String {
         format!("{:?} ({})", self.config.provider, self.config.model)

@@ -1,0 +1,394 @@
+[
+  {
+    "round_id": 0,
+    "agent_count": 10,
+    "byzantine_count": 1,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 96.66666666666669,
+    "ground_truth": 65.44444444444444,
+    "accuracy": 0.5229202037351439,
+    "convergence_time_ms": 240767,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770277309
+  },
+  {
+    "round_id": 1,
+    "agent_count": 10,
+    "byzantine_count": 1,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 112.0,
+    "ground_truth": 64.88888888888889,
+    "accuracy": 0.2739726027397259,
+    "convergence_time_ms": 233439,
+    "valid_agents": [
+      "agent_001",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_002",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770277542
+  },
+  {
+    "round_id": 2,
+    "agent_count": 10,
+    "byzantine_count": 4,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 109.51819516280362,
+    "ground_truth": 64.33333333333333,
+    "accuracy": 0.2976446347750731,
+    "convergence_time_ms": 242463,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770277785
+  },
+  {
+    "round_id": 3,
+    "agent_count": 10,
+    "byzantine_count": 3,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 97.16659915763455,
+    "ground_truth": 57.0,
+    "accuracy": 0.2953228217958851,
+    "convergence_time_ms": 255641,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_005",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770278040
+  },
+  {
+    "round_id": 4,
+    "agent_count": 10,
+    "byzantine_count": 3,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 85.77995079321886,
+    "ground_truth": 56.285714285714285,
+    "accuracy": 0.4759907219478883,
+    "convergence_time_ms": 272826,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770278313
+  },
+  {
+    "round_id": 5,
+    "agent_count": 10,
+    "byzantine_count": 3,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 91.04031594742656,
+    "ground_truth": 55.57142857142857,
+    "accuracy": 0.36174238655016455,
+    "convergence_time_ms": 255643,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770278569
+  },
+  {
+    "round_id": 6,
+    "agent_count": 10,
+    "byzantine_count": 1,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 109.0,
+    "ground_truth": 63.22222222222222,
+    "accuracy": 0.2759226713532513,
+    "convergence_time_ms": 244737,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_008",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770278814
+  },
+  {
+    "round_id": 7,
+    "agent_count": 10,
+    "byzantine_count": 3,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 82.37384964614353,
+    "ground_truth": 56.285714285714285,
+    "accuracy": 0.5365052093324754,
+    "convergence_time_ms": 246154,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770279060
+  },
+  {
+    "round_id": 8,
+    "agent_count": 10,
+    "byzantine_count": 4,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 101.08679357546033,
+    "ground_truth": 64.33333333333333,
+    "accuracy": 0.4287026905368859,
+    "convergence_time_ms": 239819,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770279300
+  },
+  {
+    "round_id": 9,
+    "agent_count": 10,
+    "byzantine_count": 0,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 95.00000000000001,
+    "ground_truth": 58.2,
+    "accuracy": 0.367697594501718,
+    "convergence_time_ms": 241216,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770279541
+  },
+  {
+    "round_id": 10,
+    "agent_count": 10,
+    "byzantine_count": 1,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 113.00000000000003,
+    "ground_truth": 65.44444444444444,
+    "accuracy": 0.27334465195246127,
+    "convergence_time_ms": 270477,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_005",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770279811
+  },
+  {
+    "round_id": 11,
+    "agent_count": 10,
+    "byzantine_count": 2,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 109.7976602862082,
+    "ground_truth": 51.125,
+    "accuracy": 0.0,
+    "convergence_time_ms": 264903,
+    "valid_agents": [
+      "agent_001",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_002",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770280076
+  },
+  {
+    "round_id": 12,
+    "agent_count": 10,
+    "byzantine_count": 2,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 100.83004120571114,
+    "ground_truth": 49.875,
+    "accuracy": 0.0,
+    "convergence_time_ms": 273525,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770280350
+  },
+  {
+    "round_id": 13,
+    "agent_count": 10,
+    "byzantine_count": 3,
+    "threshold": 0.8,
+    "consensus_reached": true,
+    "consensus_value": 107.70737577182861,
+    "ground_truth": 55.57142857142857,
+    "accuracy": 0.061821001535217746,
+    "convergence_time_ms": 279259,
+    "valid_agents": [
+      "agent_001",
+      "agent_002",
+      "agent_004",
+      "agent_005",
+      "agent_007",
+      "agent_008"
+    ],
+    "outliers": [
+      "agent_000",
+      "agent_003",
+      "agent_006",
+      "agent_009"
+    ],
+    "consensus_similarity": 0.0,
+    "api_calls_count": 30,
+    "timestamp": 1770280629
+  }
+]

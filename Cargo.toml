@@ -52,6 +52,14 @@ path = "examples/real_devnet_blockchain.rs"
 name = "mock_local_validator_test"
 path = "examples/mock_local_validator_test.rs"
 
+[[example]]
+name = "real_benchmark_experiment_10_agents"
+path = "examples/real_benchmark_experiment_10_agents.rs"
+
+[[example]]
+name = "test_minimax_api"
+path = "examples/test_minimax_api.rs"
+
 [dependencies]
 # 核心依赖
 tokio = { version = "1.0", features = ["full"] }

@@ -64,43 +64,44 @@ impl Default for AIReasoningConfig {
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct AINode {
     /// Node ID
-    id: String,
+    pub id: String,
     /// Node name
-    name: String,
+    pub name: String,
     /// Node type
-    node_type: String,
+    pub node_type: String,
     /// Importance score (0.0-1.0)
-    importance: f64,
+    pub importance: f64,
     /// Whether this can be intervened upon
-    intervention_target: bool,
+    #[serde(default)]
+    pub intervention_target: bool,
 }
 
 /// AI-generated causal edge response
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct AIEdge {
     /// Edge ID
-    id: String,
+    pub id: String,
     /// Source node ID
-    source: String,
+    pub source: String,
     /// Target node ID
-    target: String,
+    pub target: String,
     /// Causal strength (0.0-1.0)
-    weight: f64,
+    pub weight: f64,
     /// Edge type
-    edge_type: String,
+    pub edge_type: String,
 }
 
 /// AI-generated causal path response
 #[derive(Debug, Clone, Serialize, Deserialize)]
 struct AIPath {
     /// Path ID
-    id: String,
+    pub id: String,
     /// Sequence of node IDs
-    nodes: Vec<String>,
+    pub nodes: Vec<String>,
     /// Path strength
-    strength: f64,
+    pub strength: f64,
     /// Path type
-    path_type: String,
+    pub path_type: String,
 }
 
 /// AI-generated complete causal graph response
@@ -113,8 +114,10 @@ struct AICausalResponse {
     /// List of main causal paths
     pub paths: Vec<AIPath>,
     /// Explanation/reasoning from AI
+    #[serde(default)]
     pub reasoning: String,
     /// Confidence score (0.0-1.0)
+    #[serde(default)]
     pub confidence: f64,
 }
 
@@ -154,7 +157,7 @@ pub struct AIReasoningEngine {
 impl AIReasoningEngine {
     /// Create a new AI reasoning engine
     pub fn new(config: AIReasoningConfig) -> Result<Self> {
-        let llm_config = match config.llm_provider {
+        let mut llm_config = match config.llm_provider {
             LlmProvider::OpenAI => {
                 crate::oracle_agent::LlmClientConfig::openai(&config.model)
                     .with_temperature(config.temperature)
@@ -170,6 +173,11 @@ impl AIReasoningEngine {
                     .with_temperature(config.temperature)
                     .with_max_tokens(config.max_tokens)
             },
+            LlmProvider::Minimax => {
+                crate::oracle_agent::LlmClientConfig::minimax(&config.model)
+                    .with_temperature(config.temperature)
+                    .with_max_tokens(config.max_tokens)
+            },
             LlmProvider::Local => {
                 crate::oracle_agent::LlmClientConfig::local(
                     "http://localhost:11434/api/generate",
@@ -179,6 +187,11 @@ impl AIReasoningEngine {
                 .with_max_tokens(config.max_tokens)
             },
         };
+        
+        // 如果启用 JSON 模式，配置客户端强制返回 JSON
+        if config.enable_json_mode {
+            llm_config = llm_config.with_json_mode();
+        }
         
         let llm_client = LlmClient::new(llm_config)?;
         
@@ -248,59 +261,182 @@ impl AIReasoningEngine {
     
     /// Parse AI response into structured format
     fn parse_ai_response(&self, response: &str) -> Result<AICausalResponse> {
-        let mut json_str = response.trim();
+        let response_trimmed = response.trim();
         
         // 尝试1: 直接解析JSON
-        if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
-            return Ok(parsed);
+        match serde_json::from_str::<AICausalResponse>(response_trimmed) {
+            Ok(parsed) => {
+                eprintln!("✅ 直接解析JSON成功");
+                return Ok(parsed);
+            }
+            Err(_) => {
+                // 直接解析失败是正常的，因为响应可能是markdown格式，不需要输出警告
+                // eprintln!("⚠️ 直接解析失败: {}", e);
+            }
         }
         
-        // 尝试2: 从markdown代码块提取JSON (```json)
-        if let Some(start) = json_str.find("```json") {
-            let after_start = &json_str[start + 7..];
-            if let Some(end) = after_start.find("```") {
-                json_str = after_start[..end].trim();
-                if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
+        // 尝试2: 从markdown中提取JSON
+        if let Some(json_data) = Self::extract_json_from_markdown(response_trimmed) {
+            eprintln!("📝 从markdown提取到JSON数据，长度: {}", json_data.len());
+            
+            match serde_json::from_str::<AICausalResponse>(&json_data) {
+                Ok(parsed) => {
+                    eprintln!("✅ Markdown提取的JSON解析成功");
                     return Ok(parsed);
+                }
+                Err(e) => {
+                    eprintln!("⚠️ Markdown提取的JSON解析失败: {}", e);
+                    
+                    // 尝试修复
+                    if let Some(fixed) = Self::fix_truncated_json(&json_data) {
+                        match serde_json::from_str::<AICausalResponse>(&fixed) {
+                            Ok(parsed) => {
+                                eprintln!("✅ 修复后的JSON解析成功");
+                                return Ok(parsed);
+                            }
+                            Err(e) => {
+                                eprintln!("⚠️ 修复后的JSON解析失败: {}", e);
+                            }
+                        }
+                    }
+                }
+            }
+        } else {
+            eprintln!("⚠️ 无法从markdown提取JSON数据");
+        }
+        
+        // 尝试3: 查找第一个{到最后一个}
+        if let Some(start) = response_trimmed.find('{') {
+            if let Some(end) = response_trimmed.rfind('}') {
+                if end > start {
+                    let json_str = &response_trimmed[start..=end];
+                    eprintln!("📝 尝试解析从 {{ 到 }} 的内容，长度: {}", json_str.len());
+                    
+                    match serde_json::from_str::<AICausalResponse>(json_str) {
+                        Ok(parsed) => {
+                            eprintln!("✅ 从{{}}提取的JSON解析成功");
+                            return Ok(parsed);
+                        }
+                        Err(e) => {
+                            eprintln!("⚠️ 从{{}}提取的JSON解析失败: {}", e);
+                            
+                            // 尝试修复
+                            if let Some(fixed) = Self::fix_truncated_json(json_str) {
+                                match serde_json::from_str::<AICausalResponse>(&fixed) {
+                                    Ok(parsed) => {
+                                        eprintln!("✅ 修复后的{{}} JSON解析成功");
+                                        return Ok(parsed);
+                                    }
+                                    Err(e) => {
+                                        eprintln!("⚠️ 修复后的{{}} JSON解析失败: {}", e);
+                                    }
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
         
-        // 尝试3: 从markdown代码块提取JSON (```)
-        if let Some(start) = json_str.find("```") {
-            let after_start = &json_str[start + 3..];
-            if let Some(end) = after_start.find("```") {
-                json_str = after_start[..end].trim();
-                if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
-                    return Ok(parsed);
+        // 所有尝试都失败
+        Err(anyhow!("无法解析AI响应为JSON格式"))
+    }
+    
+    /// 修复截断或不完整的JSON
+    fn fix_truncated_json(json_str: &str) -> Option<String> {
+        let mut fixed = json_str.to_string();
+        
+        // 计算括号平衡
+        let open_braces = fixed.matches('{').count();
+        let close_braces = fixed.matches('}').count();
+        let open_brackets = fixed.matches('[').count();
+        let close_brackets = fixed.matches(']').count();
+        
+        // 补全缺失的闭合括号
+        for _ in 0..(open_braces - close_braces) {
+            fixed.push('}');
+        }
+        for _ in 0..(open_brackets - close_brackets) {
+            fixed.push(']');
+        }
+        
+        // 修复尾随逗号
+        fixed = fixed.replace(",}", "}").replace(",]", "]");
+        
+        // 如果JSON看起来完整，尝试解析
+        if fixed.parse::<serde_json::Value>().is_ok() {
+            return Some(fixed);
+        }
+        
+        None
+    }
+    
+    /// 从markdown格式中提取JSON数据
+    fn extract_json_from_markdown(response: &str) -> Option<String> {
+        // 策略1: 查找 "### 详细数据" 或 "JSON" 标记后的代码块
+        let markers = ["### 详细数据", "### JSON", "详细数据", "JSON数据"];
+        
+        for marker in &markers {
+            if let Some(pos) = response.find(marker) {
+                let after_marker = &response[pos + marker.len()..];
+                // 查找接下来的 ```json 或 ``` 代码块
+                if let Some(code_start) = after_marker.find("```json") {
+                    let after_code = &after_marker[code_start + 7..];
+                    if let Some(code_end) = after_code.find("```") {
+                        return Some(after_code[..code_end].trim().to_string());
+                    }
+                } else if let Some(code_start) = after_marker.find("```") {
+                    let after_code = &after_marker[code_start + 3..];
+                    if let Some(code_end) = after_code.find("```") {
+                        return Some(after_code[..code_end].trim().to_string());
+                    }
                 }
             }
         }
         
-        // 尝试4: 查找第一个{到最后一个}
-        if let Some(start) = json_str.find('{') {
-            if let Some(end) = json_str.rfind('}') {
-                json_str = &json_str[start..=end + 1];
-                if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(json_str) {
-                    return Ok(parsed);
+        // 策略2: 查找所有 ```json 代码块（返回最大的一个，通常是完整数据）
+        let mut best_json: Option<String> = None;
+        let mut search_start = 0;
+        
+        while let Some(code_start) = response[search_start..].find("```json") {
+            let actual_start = search_start + code_start + 7;
+            if let Some(code_end) = response[actual_start..].find("```") {
+                let json_content = response[actual_start..actual_start + code_end].trim();
+                // 选择最长的有效JSON
+                if json_content.starts_with('{') && json_content.len() > best_json.as_ref().map_or(0, |s| s.len()) {
+                    best_json = Some(json_content.to_string());
+                }
+                search_start = actual_start + code_end + 3;
+            } else {
+                // 找到了开始但没有结束，可能是截断的JSON
+                let partial_json = response[actual_start..].trim();
+                if partial_json.starts_with('{') && partial_json.len() > best_json.as_ref().map_or(0, |s| s.len()) {
+                    best_json = Some(partial_json.to_string());
+                }
+                break;
+            }
+        }
+        
+        if best_json.is_some() {
+            return best_json;
+        }
+        
+        // 策略3: 查找 ``` 代码块（可能是纯JSON）
+        if let Some(start) = response.find("```") {
+            let after_start = &response[start + 3..];
+            // 跳过可能的语言标识符（如 json）
+            let content_start = if after_start.starts_with("json") { 4 } else { 0 };
+            let after_lang = &after_start[content_start..];
+            
+            if let Some(end) = after_lang.find("```") {
+                let json_content = after_lang[..end].trim();
+                if json_content.starts_with('{') {
+                    return Some(json_content.to_string());
                 }
             }
         }
         
-        // 尝试5: 移除所有非JSON字符
-        let cleaned: String = json_str.chars()
-            .filter(|c| c.is_ascii_whitespace() || *c == '{' || *c == '}' || *c == '"' || *c == ':' || *c == ',' || c.is_ascii_digit() || c.is_alphabetic())
-            .collect();
-        
-        if let Ok(parsed) = serde_json::from_str::<AICausalResponse>(&cleaned) {
-            return Ok(parsed);
-        }
-        
-        // 所有尝试都失败，返回详细错误
-        eprintln!("📝 原始响应: {}", response);
-        eprintln!("📝 尝试解析: {}", json_str);
-        Err(anyhow!("无法解析AI响应为JSON格式\n原始响应长度: {}\n尝试解析长度: {}", 
-                   response.len(), json_str.len()))
+        None
     }
     
     /// Validate AI-generated response
