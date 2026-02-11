@@ -35,26 +35,31 @@ def plot_bft_comparison():
     x = np.arange(len(methods))
     width = 0.35
     
-    # Create bar chart
+    # Set grid first (behind bars)
+    ax.grid(True, alpha=0.3, axis='y', zorder=0)
+    ax.set_axisbelow(True)  # Ensure grid is behind all artists
+    
+    # Create bar chart (zorder=3 to be above grid)
     bars1 = ax.bar(x - width/2, byzantine_tolerance, width, 
-                   label='Byzantine Tolerance (%)', color='#2E86AB', alpha=0.8)
+                   label='Byzantine Tolerance (%)', color='#2E86AB', alpha=0.8, zorder=3)
     
     ax2 = ax.twinx()
+    ax2.grid(False)  # Disable grid on second axis
     bars2 = ax2.bar(x + width/2, consensus_delay, width, 
-                    label='Consensus Delay (s)*', color='#A23B72', alpha=0.8)
+                    label='Consensus Delay (s)*', color='#A23B72', alpha=0.8, zorder=3)
     
-    # Add value labels
+    # Add value labels (zorder=4 to be on top)
     for bar in bars1:
         height = bar.get_height()
         ax.text(bar.get_x() + bar.get_width()/2., height,
                 f'{height:.1f}%',
-                ha='center', va='bottom', fontsize=10, fontweight='bold')
+                ha='center', va='bottom', fontsize=10, fontweight='bold', zorder=4)
     
     for bar in bars2:
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height,
                 f'{height:.1f}s',
-                ha='center', va='bottom', fontsize=10, fontweight='bold')
+                ha='center', va='bottom', fontsize=10, fontweight='bold', zorder=4)
     
     ax.set_ylabel('Byzantine Tolerance (%)', fontsize=12, fontweight='bold')
     ax2.set_ylabel('Consensus Delay (s)', fontsize=12, fontweight='bold')
@@ -79,9 +84,6 @@ def plot_bft_comparison():
     fig.text(0.5, 0.02, 
              '*CFO: ~3.5s for consensus algorithm (excluding 60-90s for 30 sequential LLM API calls)',
              ha='center', fontsize=9, style='italic', color='#666')
-    
-    # Add grid
-    ax.grid(True, alpha=0.3, axis='y')
     
     plt.tight_layout(rect=[0, 0.03, 1, 1])
     plt.savefig('comparison_bft.png', dpi=300, bbox_inches='tight')
@@ -151,25 +153,30 @@ def plot_multi_agent_comparison():
     x = np.arange(len(methods))
     width = 0.35
     
+    # Set grid first (behind bars)
+    ax.grid(True, alpha=0.3, axis='y', zorder=0)
+    ax.set_axisbelow(True)  # Ensure grid is behind all artists
+    
     bars1 = ax.bar(x - width/2, byzantine_tolerance, width,
-                   label='Byzantine Tolerance (%)', color='#2E86AB', alpha=0.8)
+                   label='Byzantine Tolerance (%)', color='#2E86AB', alpha=0.8, zorder=3)
     
     ax2 = ax.twinx()
+    ax2.grid(False)  # Disable grid on second axis
     bars2 = ax2.bar(x + width/2, accuracy, width,
-                    label='Average Accuracy (%)', color='#F18F01', alpha=0.8)
+                    label='Average Accuracy (%)', color='#F18F01', alpha=0.8, zorder=3)
     
     # Add value labels
     for bar in bars1:
         height = bar.get_height()
         ax.text(bar.get_x() + bar.get_width()/2., height + 1,
                 f'{height:.0f}%',
-                ha='center', va='bottom', fontsize=10, fontweight='bold')
+                ha='center', va='bottom', fontsize=10, fontweight='bold', zorder=4)
     
     for bar in bars2:
         height = bar.get_height()
         ax2.text(bar.get_x() + bar.get_width()/2., height + 1,
                 f'{height:.1f}%',
-                ha='center', va='bottom', fontsize=10, fontweight='bold')
+                ha='center', va='bottom', fontsize=10, fontweight='bold', zorder=4)
     
     ax.set_ylabel('Byzantine Tolerance (%)', fontsize=12, fontweight='bold')
     ax2.set_ylabel('Average Accuracy (%)', fontsize=12, fontweight='bold')
@@ -184,8 +191,6 @@ def plot_multi_agent_comparison():
     lines1, labels1 = ax.get_legend_handles_labels()
     lines2, labels2 = ax2.get_legend_handles_labels()
     ax.legend(lines1 + lines2, labels1 + labels2, loc='upper right', fontsize=10)
-    
-    ax.grid(True, alpha=0.3, axis='y')
     
     plt.tight_layout()
     plt.savefig('comparison_multi_agent.png', dpi=300, bbox_inches='tight')

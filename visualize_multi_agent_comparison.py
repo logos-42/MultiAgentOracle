@@ -21,10 +21,10 @@ def plot_multi_agent_comparison():
     accuracy = [94.08, 0, 87.5, 90, 82.5]  # % (0 for DAgger as it depends on annotation)
     agent_count = [10, 100, 20, 15, 100]  # Unrestricted shown as 100
     
-    # Time per agent (seconds) - consensus algorithm processing time per agent
-    # CFO: ~3.5s total / 10 agents = 0.35s per agent
+    # Consensus convergence time (seconds) - total time for consensus algorithm
+    # CFO: ~3.5s for 10 agents (excluding 60-90s API calls)
     # Others estimated based on their reported speed
-    time_per_agent = [0.35, 0.05, 0.02, 0.15, 0.03]  # seconds per agent
+    consensus_time = [3.5, 0.5, 0.2, 1.5, 0.3]  # seconds total
     
     # Create figure with 4 subplots in 2x2 layout
     fig, axes = plt.subplots(2, 2, figsize=(14, 10))
@@ -71,17 +71,17 @@ def plot_multi_agent_comparison():
     
     ax2.grid(True, alpha=0.3, axis='y')
     
-    # Subplot 3: Time Per Agent
+    # Subplot 3: Consensus Convergence Time
     ax3 = axes[1, 0]
-    bars3 = ax3.bar(methods, time_per_agent, color=colors, alpha=0.8, edgecolor='black', linewidth=1.2)
-    ax3.set_ylabel('Consensus Time Per Agent (seconds)', fontsize=11, fontweight='bold')
-    ax3.set_title('(c) Consensus Algorithm Time Per Agent', fontsize=12, fontweight='bold')
-    ax3.set_ylim(0, 0.5)
+    bars3 = ax3.bar(methods, consensus_time, color=colors, alpha=0.8, edgecolor='black', linewidth=1.2)
+    ax3.set_ylabel('Consensus Convergence Time (seconds)', fontsize=11, fontweight='bold')
+    ax3.set_title('(c) Consensus Algorithm Convergence Time', fontsize=12, fontweight='bold')
+    ax3.set_ylim(0, 5)
     
     for bar in bars3:
         height = bar.get_height()
         ax3.text(bar.get_x() + bar.get_width()/2., height,
-                f'{height:.2f}s',
+                f'{height:.1f}s',
                 ha='center', va='bottom', fontsize=10, fontweight='bold')
     
     ax3.grid(True, alpha=0.3, axis='y')
@@ -120,12 +120,12 @@ def plot_multi_agent_comparison():
     ax.axis('off')
     
     table_data = [
-        ['Method', 'Agents', 'Byzantine\nTolerance', 'Accuracy', 'Time Per\nAgent', 'Main Limitation'],
-        ['CFO', '10', '40%', '94.08%', '0.35s', 'Requires LLM calls'],
-        ['DAgger [Ross et al., 2011]', 'Unlimited', 'N/A', 'Annotation\nDependent', '~0.05s', 'Requires expert demonstrations'],
-        ['Aggregation [Chen et al., 2020]', '20', '30%', '85-90%', '~0.02s', 'Simple averaging'],
-        ['Trust-aware [Li et al., 2021]', '15', '35%', '88-92%', '~0.15s', 'Requires reputation accumulation'],
-        ['Weighted Voting', 'Unlimited', '20%', '80-85%', '~0.03s', 'Weight design difficulty'],
+        ['Method', 'Agents', 'Byzantine\nTolerance', 'Accuracy', 'Convergence\nTime', 'Main Limitation'],
+        ['CFO', '10', '40%', '94.08%', '~3.5s*', 'Requires LLM calls'],
+        ['DAgger [Ross et al., 2011]', 'Unlimited', 'N/A', 'Annotation\nDependent', '~0.5s', 'Requires expert demonstrations'],
+        ['Aggregation [Chen et al., 2020]', '20', '30%', '85-90%', '~0.2s', 'Simple averaging'],
+        ['Trust-aware [Li et al., 2021]', '15', '35%', '88-92%', '~1.5s', 'Requires reputation accumulation'],
+        ['Weighted Voting', 'Unlimited', '20%', '80-85%', '~0.3s', 'Weight design difficulty'],
     ]
     
     table = ax.table(cellText=table_data, cellLoc='center', loc='center',
@@ -157,7 +157,12 @@ def plot_multi_agent_comparison():
     ax.set_title('Detailed Comparison of Multi-Agent Consensus Methods\n', 
                 fontsize=14, fontweight='bold', pad=20)
     
-    plt.tight_layout()
+    # Add note about CFO timing
+    fig.text(0.5, 0.02, 
+             '*CFO: ~3.5s for consensus algorithm (excluding 60-90s for 30 sequential LLM API calls)',
+             ha='center', fontsize=9, style='italic', color='#666')
+    
+    plt.tight_layout(rect=[0, 0.05, 1, 1])
     plt.savefig('multi_agent_comparison_table.png', dpi=300, bbox_inches='tight')
     print("Saved: multi_agent_comparison_table.png")
     plt.close()
