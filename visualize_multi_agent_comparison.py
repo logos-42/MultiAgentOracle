@@ -122,9 +122,9 @@ def plot_multi_agent_comparison():
     table_data = [
         ['Method', 'Agents', 'Byzantine\nTolerance', 'Accuracy', 'Convergence\nTime', 'Main Limitation'],
         ['CFO', '10', '40%', '94.08%', '~3.5s*', 'Requires LLM calls'],
-        ['DAgger [Ross et al., 2011]', 'Unlimited', 'N/A', 'Annotation\nDependent', '~0.5s', 'Requires expert demonstrations'],
-        ['Aggregation [Chen et al., 2020]', '20', '30%', '85-90%', '~0.2s', 'Simple averaging'],
-        ['Trust-aware [Li et al., 2021]', '15', '35%', '88-92%', '~1.5s', 'Requires reputation accumulation'],
+        ['DAgger', 'Unlimited', 'N/A', 'Annotation\nDependent', '~0.5s', 'Requires expert demonstrations'],
+        ['Aggregation', '20', '30%', '85-90%', '~0.2s', 'Simple averaging'],
+        ['Trust-aware', '15', '35%', '88-92%', '~1.5s', 'Requires reputation accumulation'],
         ['Weighted Voting', 'Unlimited', '20%', '80-85%', '~0.3s', 'Weight design difficulty'],
     ]
     

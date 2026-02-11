@@ -23,9 +23,7 @@ def plot_bft_comparison():
     """Figure 1: Comparison with Traditional BFT Consensus Algorithms"""
     fig, ax = plt.subplots(figsize=(14, 7))
     
-    methods = ['CFO', 'PBFT\n[Castro & Liskov, 2002]', 
-               'HotStuff\n[Yin et al., 2019]', 'Tendermint\n[Buchman et al., 2016]', 
-               'BFT-SMaRt\n[Bessani et al., 2014]']
+    methods = ['CFO', 'PBFT', 'HotStuff', 'Tendermint', 'BFT-SMaRt']
     
     byzantine_tolerance = [40, 33.3, 33.3, 33.3, 33.3]
     # Note: CFO consensus algorithm itself takes ~3-5 seconds
@@ -283,54 +281,104 @@ def plot_technical_innovation_radar():
     plt.close()
 
 def create_summary_table():
-    """Generate summary table figure"""
-    fig, ax = plt.subplots(figsize=(14, 10))
-    ax.axis('tight')
-    ax.axis('off')
+    """Generate summary table figure with two separate tables"""
+    fig, (ax1, ax2) = plt.subplots(2, 1, figsize=(14, 12))
     
-    table_data = [
+    # Table 1: BFT Consensus Methods
+    ax1.axis('tight')
+    ax1.axis('off')
+    
+    table1_data = [
         ['Method', 'Byzantine Tolerance', 'Avg Accuracy', 'Consensus Delay', 'Communication', 'Application'],
-        ['CFO', '40%', '94.08%', '~4 min', 'O(n²)', 'Multi-Agent Prediction'],
-        ['PBFT [Castro & Liskov, 2002]', '33.3%', '-', '2-5 s', 'O(n²)', 'Blockchain/Database'],
-        ['HotStuff [Yin et al., 2019]', '33.3%', '-', '1-3 s', 'O(n)', 'Blockchain'],
-        ['Tendermint [Buchman et al., 2016]', '33.3%', '-', '1-10 s', 'O(n²)', 'Blockchain'],
-        ['BFT-SMaRt [Bessani et al., 2014]', '33.3%', '-', '5-20 ms', 'O(n³)', 'Distributed Systems'],
-        ['', '', '', '', '', ''],
-        ['Krum [Blanchard et al., 2017]', '50%', '85%', '-', 'Low', 'Federated Learning'],
-        ['Trimmed Mean [Yin et al., 2018]', '50%', '80%', '-', 'Low', 'Federated Learning'],
-        ['Median', '50%', '80%', '-', 'Low', 'Federated Learning'],
-        ['Multi-Krum', '50%', '90%', '-', 'Medium', 'Federated Learning'],
-        ['Bulyan [Guerraoui et al., 2018]', '50%', '88%', '-', 'High', 'Federated Learning'],
+        ['CFO', '40%', '94.08%', '~3.5 s*', 'O(n²)', 'Multi-Agent Prediction'],
+        ['PBFT', '33.3%', '-', '2-5 s', 'O(n²)', 'Blockchain/Database'],
+        ['HotStuff', '33.3%', '-', '1-3 s', 'O(n)', 'Blockchain'],
+        ['Tendermint', '33.3%', '-', '1-10 s', 'O(n²)', 'Blockchain'],
+        ['BFT-SMaRt', '33.3%', '-', '5-20 ms', 'O(n³)', 'Distributed Systems'],
     ]
     
-    table = ax.table(cellText=table_data, cellLoc='center', loc='center',
-                    colWidths=[0.2, 0.12, 0.12, 0.12, 0.12, 0.22])
+    table1 = ax1.table(cellText=table1_data, cellLoc='center', loc='center',
+                       colWidths=[0.2, 0.12, 0.12, 0.12, 0.12, 0.22])
     
-    table.auto_set_font_size(False)
-    table.set_fontsize(10)
-    table.scale(1, 2.5)
+    table1.auto_set_font_size(False)
+    table1.set_fontsize(10)
+    table1.scale(1, 2.5)
     
-    # Header style
+    # Header style for table 1
     for i in range(6):
-        cell = table[(0, i)]
+        cell = table1[(0, i)]
         cell.set_facecolor('#2E86AB')
         cell.set_text_props(weight='bold', color='white')
     
     # Highlight CFO
     for i in range(6):
-        cell = table[(1, i)]
+        cell = table1[(1, i)]
         cell.set_facecolor('#E8F4F8')
         cell.set_text_props(weight='bold')
     
-    # Alternate row colors
-    for i in range(2, 12):
+    # Alternate row colors for table 1
+    for i in range(2, 6):
         for j in range(6):
-            if i != 6:  # Skip empty row
-                cell = table[(i, j)]
-                if i % 2 == 0:
-                    cell.set_facecolor('#F5F5F5')
+            cell = table1[(i, j)]
+            if i % 2 == 0:
+                cell.set_facecolor('#F5F5F5')
     
-    plt.title('Detailed Comparison with Existing Methods\n', fontsize=14, fontweight='bold', pad=20)
+    ax1.set_title('(a) Traditional BFT Consensus Methods\n', 
+                  fontsize=13, fontweight='bold', pad=10)
+    
+    # Table 2: Federated Learning Byzantine Defense Methods
+    ax2.axis('tight')
+    ax2.axis('off')
+    
+    table2_data = [
+        ['Method', 'Byzantine Tolerance', 'Avg Accuracy', 'Consensus Delay', 'Communication', 'Application'],
+        ['CFO', '40%', '94.08%', '~3.5 s*', 'O(n²)', 'Multi-Agent Prediction'],
+        ['Krum', '50%', '85%', '-', 'Low', 'Federated Learning'],
+        ['Trimmed Mean', '50%', '80%', '-', 'Low', 'Federated Learning'],
+        ['Median', '50%', '80%', '-', 'Low', 'Federated Learning'],
+        ['Multi-Krum', '50%', '90%', '-', 'Medium', 'Federated Learning'],
+        ['Bulyan', '50%', '88%', '-', 'High', 'Federated Learning'],
+    ]
+    
+    table2 = ax2.table(cellText=table2_data, cellLoc='center', loc='center',
+                       colWidths=[0.2, 0.12, 0.12, 0.12, 0.12, 0.22])
+    
+    table2.auto_set_font_size(False)
+    table2.set_fontsize(10)
+    table2.scale(1, 2.5)
+    
+    # Header style for table 2
+    for i in range(6):
+        cell = table2[(0, i)]
+        cell.set_facecolor('#2E86AB')
+        cell.set_text_props(weight='bold', color='white')
+    
+    # Highlight CFO
+    for i in range(6):
+        cell = table2[(1, i)]
+        cell.set_facecolor('#E8F4F8')
+        cell.set_text_props(weight='bold')
+    
+    # Alternate row colors for table 2
+    for i in range(2, 7):
+        for j in range(6):
+            cell = table2[(i, j)]
+            if i % 2 == 0:
+                cell.set_facecolor('#F5F5F5')
+    
+    ax2.set_title('(b) Federated Learning Byzantine Defense Methods\n', 
+                  fontsize=13, fontweight='bold', pad=10)
+    
+    # Overall title
+    fig.suptitle('Detailed Comparison with Existing Methods\n', 
+                 fontsize=14, fontweight='bold', y=0.98)
+    
+    # Add note about CFO timing
+    fig.text(0.5, 0.02,
+             '*CFO: ~3.5s for consensus algorithm (excluding 60-90s for 30 sequential LLM API calls)',
+             ha='center', fontsize=9, style='italic', color='#666')
+    
+    plt.tight_layout(rect=[0, 0.05, 1, 0.95])
     plt.savefig('comparison_table.png', dpi=300, bbox_inches='tight')
     print("✅ Summary table saved: comparison_table.png")
     plt.close()
