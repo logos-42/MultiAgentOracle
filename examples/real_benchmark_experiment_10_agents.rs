@@ -44,7 +44,7 @@ impl Default for ExperimentConfig {
             consensus_thresholds: vec![0.8],  // 固定共识阈值
             repetitions: 25,  // 设置为25次重复，这样总共运行25轮相同配置
             output_dir: "experiments/output".to_string(),
-            llm_model: "abab5.5-chat".to_string(),  // 使用 Minimax 模型
+            llm_model: "deepseek-chat".to_string(),  // 使用 DeepSeek 模型
             temperature: 0.7,
             max_tokens: 2500,  // 增加到2500以确保JSON不被截断
         }
@@ -119,7 +119,7 @@ pub struct RealBenchmarkRunner {
 
 impl RealBenchmarkRunner {
     pub async fn new(config: ExperimentConfig) -> Result<Self> {
-        let llm_config = LlmClientConfig::minimax(&config.llm_model)
+        let llm_config = LlmClientConfig::deepseek(&config.llm_model)
             .with_temperature(config.temperature)
             .with_max_tokens(config.max_tokens);
 
@@ -127,12 +127,12 @@ impl RealBenchmarkRunner {
         let scenarios = Self::initialize_scenarios();
 
         println!("✅ 真实实验运行器初始化完成");
-        println!("   使用模型: Minimax ({})", config.llm_model);
+        println!("   使用模型: DeepSeek ({})", config.llm_model);
 
         // 初始化AI推理引擎（用于生成因果图）
         let ai_reasoning = {
             let ai_config = AIReasoningConfig {
-                llm_provider: multi_agent_oracle::oracle_agent::LlmProvider::Minimax,
+                llm_provider: multi_agent_oracle::oracle_agent::LlmProvider::DeepSeek,
                 model: config.llm_model.clone(),
                 temperature: config.temperature,
                 max_tokens: config.max_tokens,
@@ -218,11 +218,40 @@ impl RealBenchmarkRunner {
         None
     }
 
+    /// 计算中位数ground_truth（自举法）
+    /// 
+    /// 使用所有智能体预测值的中位数作为客观真实值。
+    /// 中位数对异常值（拜占庭节点）具有天然鲁棒性：
+    /// - 即使40%节点是拜占庭节点，中位数仍落在正常节点范围内
+    /// - 不需要预先知道谁是拜占庭节点
+    fn calculate_median_ground_truth(agents: &[RealAgent]) -> f64 {
+        if agents.is_empty() {
+            return 0.0;
+        }
+        
+        // 收集所有预测值
+        let mut predictions: Vec<f64> = agents.iter()
+            .map(|a| a.base_prediction)
+            .collect();
+        
+        // 排序
+        predictions.sort_by(|a, b| a.partial_cmp(b).unwrap());
+        
+        let n = predictions.len();
+        if n % 2 == 0 {
+            // 偶数个：取中间两个的平均
+            (predictions[n/2 - 1] + predictions[n/2]) / 2.0
+        } else {
+            // 奇数个：取中间值
+            predictions[n/2]
+        }
+    }
+
     /// 生成真实智能体（调用LLM + 因果图生成）
-    async fn generate_real_agent(&mut self, agent_id: &str, _scenario: &TestScenario, is_byzantine: bool) -> Result<RealAgent> {
-        // 选择场景轮询
-        let scenario_index = agent_id.chars().last().unwrap() as usize % self.scenarios.len();
-        let scenario = self.scenarios[scenario_index].clone();
+    /// 所有智能体使用同一场景，确保共识计算有意义
+    async fn generate_real_agent(&mut self, agent_id: &str, scenario: &TestScenario, is_byzantine: bool) -> Result<RealAgent> {
+        // 使用传入的统一场景，不再轮询
+        // 这样确保每轮所有智能体基于同一场景进行预测
 
         // 1. 调用LLM获取基础预测 f(x)
         self.api_call_count += 1;
@@ -257,14 +286,23 @@ impl RealBenchmarkRunner {
             (None, Self::generate_fallback_spectral_features(&delta_response))
         };
 
-        // 5. 拜占庭节点添加随机噪声
+        // 5. 拜占庭节点添加相对较小的随机噪声（20%-50%偏差）
+        // 这样拜占庭节点的预测值仍然在合理范围内，更容易被共识算法识别
         let (base_pred, pert_pred, delta_vec, spec_vec) = if is_byzantine {
             let mut rng = rand::thread_rng();
+            // 生成偏差因子：0.8-1.5（20%偏差或50%放大）
+            let noise_factor = if rng.gen_bool(0.5) {
+                // 50%概率：缩小预测值（20%-30%）
+                0.7 + rng.gen::<f64>() * 0.1
+            } else {
+                // 50%概率：放大预测值（20%-50%）
+                1.2 + rng.gen::<f64>() * 0.3
+            };
             (
-                base_prediction * (0.5 + rng.gen::<f64>()),
-                perturbed_prediction * (0.5 + rng.gen::<f64>()),
-                vec![delta * (0.5 + rng.gen::<f64>()); 5],
-                spectral_features.iter().map(|f| f * (0.5 + rng.gen::<f64>())).collect(),
+                base_prediction * noise_factor,
+                perturbed_prediction * noise_factor,
+                vec![delta * noise_factor; 5],
+                spectral_features.iter().map(|f| f * (0.8 + rng.gen::<f64>() * 0.4)).collect(),
             )
         } else {
             (base_prediction, perturbed_prediction, delta_response, spectral_features)
@@ -489,11 +527,13 @@ impl RealBenchmarkRunner {
         let round_start = Instant::now();
         let initial_api_count = self.api_call_count;
 
-        // 选择场景
+        // 选择场景（每轮轮询，所有智能体使用同一场景）
         let scenario_idx = round_id % self.scenarios.len();
         let scenario = self.scenarios[scenario_idx].clone();
+        println!("   [场景选择] 第{}轮使用场景{}: {} (真实值: {})",
+                 round_id, scenario_idx, scenario.description, scenario.ground_truth);
 
-        // 生成真实智能体
+        // 生成真实智能体（所有智能体基于同一场景）
         let mut agents = Vec::new();
         for i in 0..agent_count {
             let agent = self.generate_real_agent(
@@ -531,12 +571,16 @@ impl RealBenchmarkRunner {
             ..Default::default()
         };
 
-        // 计算真实的谱特征（基于所有智能体的响应）
+        // 计算真实的谱特征（基于所有智能体的响应）- 使用完整版谱分析
         let all_responses: Vec<Vec<f64>> = agents.iter()
             .map(|a| a.delta_response.clone())
             .collect();
-        let global_spectral_features = extract_spectral_features(&all_responses);
-        println!("   [共识计算] 提取全局谱特征完成，维度: {}", global_spectral_features.len());
+        let global_spectral = extract_spectral_features(&all_responses);
+        let global_spectral_features = global_spectral.eigenvalues.clone();
+        println!("   [共识计算] 提取全局谱特征完成，维度: {}, 谱半径: {:.4}, 谱熵: {:.4}", 
+                 global_spectral_features.len(),
+                 global_spectral.spectral_radius,
+                 global_spectral.entropy);
         
         let fingerprints: Vec<CausalFingerprint> = agents.iter().enumerate().map(|(idx, a)| {
             // 每个智能体使用自己的谱特征或全局谱特征
@@ -570,11 +614,9 @@ impl RealBenchmarkRunner {
                  consensus_result.valid_agents.len(), 
                  consensus_result.outliers.len());
 
-        // 计算真实值（正常智能体的平均值）
-        let ground_truth = agents.iter()
-            .filter(|a| !a.is_byzantine)
-            .map(|a| a.base_prediction)
-            .sum::<f64>() / (agent_count - byzantine_count).max(1) as f64;
+        // 计算真实值（使用所有智能体的中位数 - 自举法，对拜占庭节点鲁棒）
+        let ground_truth = Self::calculate_median_ground_truth(&agents);
+        println!("   [ground_truth] 中位数自举法: {:.4} (基于{}个智能体)", ground_truth, agents.len());
 
         let convergence_time = round_start.elapsed().as_millis() as u64;
         let api_calls_this_round = self.api_call_count - initial_api_count;

@@ -70,9 +70,17 @@ pub fn generate_perturbation(dim: usize, magnitude: f64) -> Vec<f64> {
 }
 
 /// 计算两个向量之间的余弦相似度
+/// 改进：对零向量特殊处理，认为它们完全相似（相似度=1.0）
 pub fn cosine_similarity(a: &[f64], b: &[f64]) -> f64 {
     if a.len() != b.len() || a.is_empty() {
         return 0.0;
+    }
+    
+    // 特殊处理：如果两个向量都是零向量，认为它们完全相似
+    let is_zero_a = a.iter().all(|&x| x == 0.0);
+    let is_zero_b = b.iter().all(|&x| x == 0.0);
+    if is_zero_a && is_zero_b {
+        return 1.0;  // 两个零向量完全相同
     }
     
     let dot_product: f64 = a.iter().zip(b.iter()).map(|(x, y)| x * y).sum();
@@ -258,8 +266,10 @@ pub fn cluster_by_consensus(
     }
 }
 
-/// 从响应矩阵生成谱特征（简化版）
-pub fn extract_spectral_features(responses: &[Vec<f64>]) -> Vec<f64> {
+/// 从响应矩阵生成谱特征（简化版 - 仅用于快速计算）
+/// 
+/// 注意：完整版请使用 spectral_analysis::extract_spectral_features
+pub fn extract_spectral_features_simple(responses: &[Vec<f64>]) -> Vec<f64> {
     if responses.is_empty() || responses[0].is_empty() {
         return vec![0.0; 8];
     }

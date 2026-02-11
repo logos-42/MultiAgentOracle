@@ -473,7 +473,8 @@ impl RealBenchmarkRunner {
         let all_responses: Vec<Vec<f64>> = agents.iter()
             .map(|a| a.delta_response.clone())
             .collect();
-        let global_spectral_features = extract_spectral_features(&all_responses);
+        let global_spectral = extract_spectral_features(&all_responses);
+        let global_spectral_features = global_spectral.eigenvalues.clone();
         
         let fingerprints: Vec<CausalFingerprint> = agents.iter().enumerate().map(|(_idx, a)| {
             // 每个智能体使用自己的谱特征或全局谱特征

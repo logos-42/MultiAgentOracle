@@ -43,11 +43,13 @@ impl Default for SpectralConfig {
     }
 }
 
-/// 从响应矩阵中提取谱特征
+/// 从响应矩阵中提取谱特征（完整版）
 /// 
-/// 在实际实现中，这会使用 nalgebra 或类似的库进行 SVD。
-/// 现在我们使用简化的方法来捕捉其核心思想。
-#[allow(dead_code)]
+/// 使用幂迭代法计算协方差矩阵的特征值，包含：
+/// - 特征值分解（8个主特征值）
+/// - 谱半径计算
+/// - 谱熵计算
+/// - 有效秩估计
 pub fn extract_spectral_features(responses: &[Vec<f64>]) -> SpectralFeatures {
     let num_eigenvalues = 8;
     
@@ -129,7 +131,6 @@ pub fn extract_spectral_features(responses: &[Vec<f64>]) -> SpectralFeatures {
 }
 
 /// 使用幂迭代和压缩方法近似计算特征值
-#[allow(dead_code)]
 fn approximate_eigenvalues(matrix: &[Vec<f64>], num: usize) -> Vec<f64> {
     let n = matrix.len();
     if n == 0 {
@@ -247,8 +248,7 @@ pub fn spectral_similarity(a: &[f64], b: &[f64]) -> f64 {
     }
 }
 
-/// 检测智能体是否使用相同的底层模型
-#[allow(dead_code)]
+/// 检测智能体是否使用相同的底层模型（基于谱特征）
 pub fn detect_model_homogeneity(features: &[SpectralFeatures], threshold: f64) -> Vec<(usize, usize)> {
     let mut homogeneous_pairs = Vec::new();
     
@@ -283,7 +283,6 @@ pub fn fingerprint_consistency_score(
 }
 
 /// 检查谱特征是否表示有效模型（非幻觉）
-#[allow(dead_code)]
 pub fn is_valid_spectral(features: &SpectralFeatures, min_entropy: f64) -> bool {
     // 有效模型应具有非平凡的谱结构
     features.spectral_radius > 0.0 && 

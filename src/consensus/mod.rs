@@ -26,16 +26,19 @@ pub use causal_fingerprint::{
     CausalFingerprintConfig,
     cosine_similarity,
     cluster_by_consensus,
-    detect_model_homogeneity,
+    detect_model_homogeneity as detect_fp_homogeneity,
     logical_consistency_score,
-    extract_spectral_features,
+    extract_spectral_features_simple,  // 简化版：仅方差排序
 };
 pub use spectral_analysis::{
     SpectralFeatures,
     SpectralConfig,
+    extract_spectral_features,  // 完整版：包含特征值分解、谱半径、谱熵
     spectral_distance,
     spectral_similarity,
     is_homogeneous,
+    detect_model_homogeneity,   // 基于谱特征的同质性检测
+    is_valid_spectral,          // 验证谱特征有效性
     fingerprint_consistency_score,
     features_to_i64,
     i64_to_features,

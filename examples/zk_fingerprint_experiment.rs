@@ -388,6 +388,7 @@ async fn run_single_experiment(config: &ExperimentConfig, args: &CliArgs) -> Res
                 LlmProvider::OpenAI => LlmClientConfig::openai(&config.llm_model),
                 LlmProvider::Anthropic => LlmClientConfig::anthropic(&config.llm_model),
                 LlmProvider::DeepSeek => LlmClientConfig::deepseek(&config.llm_model),
+                LlmProvider::Minimax => LlmClientConfig::minimax(&config.llm_model),
                 LlmProvider::Local => unreachable!("Local provider handled above"),
             };
 
@@ -665,12 +666,9 @@ async fn run_experiment_with_config(
         // Add to response history
         response_history.push(delta_response.clone());
 
-        // Extract spectral features (returns eigenvalues vector)
-        let eigenvalues = extract_spectral_features(&response_history);
-
-        // Calculate spectral radius and entropy
-        let spectral_radius = calculate_spectral_radius(&eigenvalues);
-        let spectral_entropy = calculate_spectral_entropy(&eigenvalues);
+        // Extract spectral features (完整版)
+        let spectral = extract_spectral_features(&response_history);
+        let eigenvalues = spectral.eigenvalues.clone();
 
         println!(
             "   ✓ Eigenvalues: {:?}",
@@ -678,16 +676,16 @@ async fn run_experiment_with_config(
         );
         println!(
             "   ✓ Spectral radius: {:.4}, Entropy: {:.4}",
-            spectral_radius, spectral_entropy
+            spectral.spectral_radius, spectral.entropy
         );
 
         // Create SpectralFeatures struct for ZK proof generation
         let spectral_features = multi_agent_oracle::consensus::SpectralFeatures {
             eigenvalues: eigenvalues.clone(),
-            spectral_radius,
-            trace: eigenvalues.iter().sum(),
+            spectral_radius: spectral.spectral_radius,
+            trace: spectral.trace,
             rank: eigenvalues.len(),
-            entropy: spectral_entropy,
+            entropy: spectral.entropy,
             timestamp: std::time::SystemTime::now()
                 .duration_since(std::time::UNIX_EPOCH)
                 .unwrap()
@@ -798,8 +796,8 @@ async fn run_experiment_with_config(
             prompt_type: identity.prompt_type.clone(),
             delta_response,
             eigenvalues: eigenvalues.clone(),
-            spectral_radius,
-            spectral_entropy,
+            spectral_radius: spectral.spectral_radius,
+            spectral_entropy: spectral.entropy,
             cosine_similarity,
             causal_effect,
             proof_valid,
