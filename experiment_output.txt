@@ -1,0 +1,2533 @@
+   Compiling multi-agent-oracle v0.1.0 (D:\AI\预言机多智能体\MultiAgentOracle)
+warning: unused import: `crate::oracle_agent::config::DataSource`
+ --> src\oracle_agent\agent.rs:4:5
+  |
+4 | use crate::oracle_agent::config::DataSource;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `serde_json::Value`
+ --> src\oracle_agent\agent.rs:9:5
+  |
+9 | use serde_json::Value;
+  |     ^^^^^^^^^^^^^^^^^
+
+warning: unused import: `std::sync::Arc`
+  --> src\oracle_agent\agent.rs:11:5
+   |
+11 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: unused import: `warn`
+  --> src\oracle_agent\agent.rs:13:17
+   |
+13 | use log::{info, warn, error};
+   |                 ^^^^
+
+warning: unused import: `std::sync::Arc`
+  --> src\consensus\algorithms.rs:10:5
+   |
+10 | use std::sync::Arc;
+   |     ^^^^^^^^^^^^^^
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `create_consensus_result` in the value namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `create_consensus_result` in the value namespace is also re-exported here
+   |
+   = note: `#[warn(ambiguous_glob_reexports)]` on by default
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `build_agent_graph_data` in the value namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `build_agent_graph_data` in the value namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `AgentConsensusResult` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `AgentConsensusResult` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `AgentGraphData` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `AgentGraphData` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `SolanaTransactionResult` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `SolanaTransactionResult` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `TransactionStatus` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `TransactionStatus` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `SimpleAgent` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `SimpleAgent` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `CausalGraph` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `CausalGraph` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `CausalNode` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `CausalNode` in the type namespace is also re-exported here
+
+warning: ambiguous glob re-exports
+  --> src\solana\mod.rs:23:9
+   |
+23 | pub use consensus_deployer::*;
+   |         ^^^^^^^^^^^^^^^^^^^^^ the name `CausalEdge` in the type namespace is first re-exported here
+...
+26 | pub use true_solana_deployer::*;
+   |         ----------------------- but the name `CausalEdge` in the type namespace is also re-exported here
+
+warning: variable does not need to be mutable
+   --> src\oracle_agent\llm_client.rs:435:13
+    |
+435 |         let mut request_body = serde_json::json!({
+    |             ----^^^^^^^^^^^^
+    |             |
+    |             help: remove this `mut`
+    |
+    = note: `#[warn(unused_mut)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `identity_id`
+   --> src\oracle_agent\agent.rs:322:41
+    |
+322 |     pub async fn verify_identity(&self, identity_id: &str, proof: Option<&str>) -> Result<bool> {
+    |                                         ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_identity_id`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused variable: `proof`
+   --> src\oracle_agent\agent.rs:322:60
+    |
+322 |     pub async fn verify_identity(&self, identity_id: &str, proof: Option<&str>) -> Result<bool> {
+    |                                                            ^^^^^ help: if this is intentional, prefix it with an underscore: `_proof`
+
+warning: unused variable: `identity_id`
+  --> src\consensus\voting.rs:55:9
+   |
+55 |         identity_id: String,
+   |         ^^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_identity_id`
+
+warning: unused variable: `proof_hash`
+  --> src\consensus\voting.rs:56:9
+   |
+56 |         proof_hash: Option<String>,
+   |         ^^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_proof_hash`
+
+warning: unused variable: `data`
+   --> src\solana\real_devnet_deployer.rs:249:74
+    |
+249 |     async fn submit_transaction_to_devnet(&self, transaction_hash: &str, data: &str) -> Result<RealDevnetTransactionResult> {
+    |                                                                          ^^^^ help: if this is intentional, prefix it with an underscore: `_data`
+
+warning: unused variable: `positions`
+   --> src\causal_graph\visualization.rs:106:46
+    |
+106 | fn print_nodes_by_layer(graph: &CausalGraph, positions: &HashMap<String, (usize, usize)>) {
+    |                                              ^^^^^^^^^ help: if this is intentional, prefix it with an underscore: `_positions`
+
+warning: variable does not need to be mutable
+  --> src\causal_graph\judgment.rs:68:13
+   |
+68 |         let mut criteria = JudgmentCriteria {
+   |             ----^^^^^^^^
+   |             |
+   |             help: remove this `mut`
+
+warning: value assigned to `confidence` is never read
+  --> src\causal_graph\judgment.rs:78:30
+   |
+78 |         let mut confidence = 0.0;
+   |                              ^^^
+   |
+   = help: maybe it is overwritten before being read?
+   = note: `#[warn(unused_assignments)]` (part of `#[warn(unused)]`) on by default
+
+warning: methods `fetch_text` and `health_check` are never used
+   --> src\oracle_agent\http_client.rs:83:18
+    |
+ 13 | impl HttpClient {
+    | --------------- methods in this implementation
+...
+ 83 |     pub async fn fetch_text(&self, url: &str, timeout_secs: Option<u64>) -> Result<String> {
+    |                  ^^^^^^^^^^
+...
+105 |     pub async fn health_check(&self, url: &str) -> bool {
+    |                  ^^^^^^^^^^^^
+    |
+    = note: `#[warn(dead_code)]` (part of `#[warn(unused)]`) on by default
+
+warning: associated items `new` and `add_rule` are never used
+  --> src\oracle_agent\validation.rs:44:12
+   |
+42 | impl DataValidator {
+   | ------------------ associated items in this implementation
+43 |     /// 创建新的数据验证器
+44 |     pub fn new() -> Self {
+   |            ^^^
+...
+53 |     pub fn add_rule(&mut self, key: String, rule: ValidationRule) {
+   |            ^^^^^^^^
+
+warning: methods `has_warnings` and `has_errors` are never used
+   --> src\oracle_agent\validation.rs:268:12
+    |
+260 | impl ValidationResult {
+    | --------------------- methods in this implementation
+...
+268 |     pub fn has_warnings(&self) -> bool {
+    |            ^^^^^^^^^^^^
+...
+273 |     pub fn has_errors(&self) -> bool {
+    |            ^^^^^^^^^^
+
+warning: function `btc_price_rule` is never used
+   --> src\oracle_agent\validation.rs:303:12
+    |
+303 |     pub fn btc_price_rule() -> ValidationRule {
+    |            ^^^^^^^^^^^^^^
+
+warning: function `eth_price_rule` is never used
+   --> src\oracle_agent\validation.rs:314:12
+    |
+314 |     pub fn eth_price_rule() -> ValidationRule {
+    |            ^^^^^^^^^^^^^^
+
+warning: function `stock_price_rule` is never used
+   --> src\oracle_agent\validation.rs:325:12
+    |
+325 |     pub fn stock_price_rule(symbol: &str) -> ValidationRule {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: function `temperature_rule` is never used
+   --> src\oracle_agent\validation.rs:343:12
+    |
+343 |     pub fn temperature_rule() -> ValidationRule {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: struct `PerformanceMetrics` is never constructed
+   --> src\reputation\reputation_metrics.rs:134:12
+    |
+134 | pub struct PerformanceMetrics {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\reputation\reputation_metrics.rs:145:12
+    |
+143 | impl PerformanceMetrics {
+    | ----------------------- associated items in this implementation
+144 |     /// 创建新的性能指标收集器
+145 |     pub fn new(window_size_secs: u64) -> Self {
+    |            ^^^
+...
+154 |     pub fn start_new_window(&mut self, agent_did: String) {
+    |            ^^^^^^^^^^^^^^^^
+...
+211 |     pub fn record_accuracy(&mut self, expected: f64, actual: f64, tolerance: f64) {
+    |            ^^^^^^^^^^^^^^^
+...
+258 |     pub fn record_response_time(&mut self, response_time_ms: u64, timeout_ms: u64) {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+280 |     pub fn record_availability(&mut self, is_available: bool, uptime_seconds: u64) {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+303 |     pub fn calculate_composite_score(&mut self, weights: (f64, f64, f64)) {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+319 |     pub fn get_current_metrics(&self) -> Option<&ReputationMetrics> {
+    |            ^^^^^^^^^^^^^^^^^^^
+...
+324 |     pub fn get_historical_metrics(&self, limit: usize) -> Vec<&ReputationMetrics> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+332 |     pub fn analyze_trends(&mut self) {
+    |            ^^^^^^^^^^^^^^
+...
+407 |     fn classify_trend(change_percent: f64) -> TrendDirection {
+    |        ^^^^^^^^^^^^^^
+...
+418 |     pub fn generate_report(&self) -> Option<PerformanceReport> {
+    |            ^^^^^^^^^^^^^^^
+...
+435 |     fn generate_recommendations(&self, metrics: &ReputationMetrics) -> Vec<String> {
+    |        ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `PerformanceReport` is never constructed
+   --> src\reputation\reputation_metrics.rs:464:12
+    |
+464 | pub struct PerformanceReport {
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: struct `ReputationAlgorithms` is never constructed
+ --> src\reputation\algorithms.rs:9:12
+  |
+9 | pub struct ReputationAlgorithms {
+  |            ^^^^^^^^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\reputation\algorithms.rs:15:12
+    |
+ 13 | impl ReputationAlgorithms {
+    | ------------------------- associated items in this implementation
+ 14 |     /// 创建新的信誉算法
+ 15 |     pub fn new(config: ReputationConfig) -> Self {
+    |            ^^^
+...
+ 20 |     pub fn calculate_logical_consistency_delta(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 39 |     pub fn calculate_spectral_consistency_delta(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 55 |     pub fn calculate_comprehensive_score(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 74 |     pub fn calculate_decay(
+    |            ^^^^^^^^^^^^^^^
+...
+ 91 |     pub fn calculate_voting_weight(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+...
+100 |     pub fn calculate_tier_thresholds(&self) -> Vec<(String, f64, f64)> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+114 |     pub fn calculate_penalty_amount(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+...
+133 |     pub fn calculate_reward_amount(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+...
+148 |     pub fn calculate_recovery_rate(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+...
+166 |     pub fn calculate_stability_score(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+186 |     pub fn calculate_spectral_distance(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+199 |     pub fn is_homogeneous(&self, distance: f64) -> bool {
+    |            ^^^^^^^^^^^^^^
+
+warning: struct `ConsensusStats` is never constructed
+   --> src\consensus\consensus_result.rs:208:12
+    |
+208 | pub struct ConsensusStats {
+    |            ^^^^^^^^^^^^^^
+
+warning: struct `DataTypeStats` is never constructed
+   --> src\consensus\consensus_result.rs:229:12
+    |
+229 | pub struct DataTypeStats {
+    |            ^^^^^^^^^^^^^
+
+warning: struct `ConsensusMetrics` is never constructed
+   --> src\consensus\consensus_result.rs:242:12
+    |
+242 | pub struct ConsensusMetrics {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: struct `NetworkLatencyStats` is never constructed
+   --> src\consensus\consensus_result.rs:263:12
+    |
+263 | pub struct NetworkLatencyStats {
+    |            ^^^^^^^^^^^^^^^^^^^
+
+warning: struct `ResourceUsageStats` is never constructed
+   --> src\consensus\consensus_result.rs:278:12
+    |
+278 | pub struct ResourceUsageStats {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: struct `ConfigValidationResult` is never constructed
+   --> src\consensus\consensus_result.rs:293:12
+    |
+293 | pub struct ConfigValidationResult {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `valid`, `invalid`, `add_warning`, `add_error`, `add_suggestion`, and `merge` are never used
+   --> src\consensus\consensus_result.rs:306:12
+    |
+304 | impl ConfigValidationResult {
+    | --------------------------- associated items in this implementation
+305 |     /// 创建有效的验证结果
+306 |     pub fn valid() -> Self {
+    |            ^^^^^
+...
+316 |     pub fn invalid(errors: Vec<String>) -> Self {
+    |            ^^^^^^^
+...
+326 |     pub fn add_warning(&mut self, warning: String) {
+    |            ^^^^^^^^^^^
+...
+331 |     pub fn add_error(&mut self, error: String) {
+    |            ^^^^^^^^^
+...
+337 |     pub fn add_suggestion(&mut self, suggestion: String) {
+    |            ^^^^^^^^^^^^^^
+...
+342 |     pub fn merge(&mut self, other: ConfigValidationResult) {
+    |            ^^^^^
+
+warning: struct `VoteCollector` is never constructed
+   --> src\consensus\voting.rs:301:12
+    |
+301 | pub struct VoteCollector {
+    |            ^^^^^^^^^^^^^
+
+warning: associated items `new`, `add_vote`, `get_statistics`, `detect_anomalies`, `get_result`, and `cleanup_expired` are never used
+   --> src\consensus\voting.rs:316:12
+    |
+314 | impl VoteCollector {
+    | ------------------ associated items in this implementation
+315 |     /// 创建新的投票收集器
+316 |     pub fn new(max_votes: usize) -> Self {
+    |            ^^^
+...
+332 |     pub fn add_vote(&mut self, vote: Vote, weight: VotingWeight) -> bool {
+    |            ^^^^^^^^
+...
+363 |     pub fn get_statistics(&self) -> VotingStatistics {
+    |            ^^^^^^^^^^^^^^
+...
+448 |     pub fn detect_anomalies(&self) -> Vec<VoteAnomaly> {
+    |            ^^^^^^^^^^^^^^^^
+...
+510 |     pub fn get_result(&self, consensus_id: String) -> VotingResult {
+    |            ^^^^^^^^^^
+...
+532 |     pub fn cleanup_expired(&mut self) -> usize {
+    |            ^^^^^^^^^^^^^^^
+
+warning: field `protocol_start_time` is never read
+   --> src\consensus\commitment_reveal.rs:109:5
+    |
+ 95 | pub struct CommitmentRevealProtocol {
+    |            ------------------------ field in this struct
+...
+109 |     protocol_start_time: u64,
+    |     ^^^^^^^^^^^^^^^^^^^
+
+warning: field `baseline_response_time` is never read
+   --> src\consensus\commitment_reveal.rs:133:5
+    |
+129 | pub struct AnomalyDetector {
+    |            --------------- field in this struct
+...
+133 |     baseline_response_time: u64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `model_fingerprints` is never read
+  --> src\consensus\malicious_defense.rs:82:5
+   |
+72 | pub struct MaliciousDefenseManager {
+   |            ----------------------- field in this struct
+...
+82 |     model_fingerprints: HashMap<NodeId, Vec<f64>>,
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: field `spectral_entropy_history` is never read
+  --> src\consensus\malicious_defense.rs:95:5
+   |
+89 | struct BehaviorHistory {
+   |        --------------- field in this struct
+...
+95 |     spectral_entropy_history: Vec<f64>,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+   = note: `BehaviorHistory` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: fields `timestamp` and `was_verified` are never read
+   --> src\consensus\malicious_defense.rs:103:9
+    |
+102 | struct CommitmentRecord {
+    |        ---------------- fields in this struct
+103 |     pub timestamp: u64,
+    |         ^^^^^^^^^
+104 |     pub was_verified: bool,
+    |         ^^^^^^^^^^^^
+    |
+    = note: `CommitmentRecord` has derived impls for the traits `Clone` and `Debug`, but these are intentionally ignored during dead code analysis
+
+warning: struct `ByzantineFaultTolerance` is never constructed
+  --> src\consensus\algorithms.rs:13:12
+   |
+13 | pub struct ByzantineFaultTolerance {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `check_quorum`, `check_consensus`, `min_quorum`, and `max_faults` are never used
+  --> src\consensus\algorithms.rs:22:12
+   |
+20 | impl ByzantineFaultTolerance {
+   | ---------------------------- associated items in this implementation
+21 |     /// 创建新的BFT算法
+22 |     pub fn new(fault_tolerance: usize, total_nodes: usize) -> Result<Self> {
+   |            ^^^
+...
+34 |     pub fn check_quorum(&self, received_votes: usize) -> bool {
+   |            ^^^^^^^^^^^^
+...
+39 |     pub fn check_consensus(&self, votes: &[Vote]) -> Option<f64> {
+   |            ^^^^^^^^^^^^^^^
+...
+66 |     pub fn min_quorum(&self) -> usize {
+   |            ^^^^^^^^^^
+...
+71 |     pub fn max_faults(&self) -> usize {
+   |            ^^^^^^^^^^
+
+warning: struct `PracticalByzantineFaultTolerance` is never constructed
+  --> src\consensus\algorithms.rs:77:12
+   |
+77 | pub struct PracticalByzantineFaultTolerance {
+   |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `prepare_phase`, `commit_phase`, `reply_phase`, and `view_change` are never used
+   --> src\consensus\algorithms.rs:90:12
+    |
+ 88 | impl PracticalByzantineFaultTolerance {
+    | ------------------------------------- associated items in this implementation
+ 89 |     /// 创建新的PBFT算法
+ 90 |     pub fn new(
+    |            ^^^
+...
+105 |     pub fn prepare_phase(&self, proposal: &Proposal) -> PrepareMessage {
+    |            ^^^^^^^^^^^^^
+...
+119 |     pub fn commit_phase(&self, prepare_messages: &[PrepareMessage]) -> Option<CommitMessage> {
+    |            ^^^^^^^^^^^^
+...
+146 |     pub fn reply_phase(&self, commit_messages: &[CommitMessage]) -> Option<ReplyMessage> {
+    |            ^^^^^^^^^^^
+...
+173 |     pub fn view_change(&mut self, new_view_number: u64, new_primary: String) {
+    |            ^^^^^^^^^^^
+
+warning: struct `Proposal` is never constructed
+   --> src\consensus\algorithms.rs:181:12
+    |
+181 | pub struct Proposal {
+    |            ^^^^^^^^
+
+warning: struct `PrepareMessage` is never constructed
+   --> src\consensus\algorithms.rs:194:12
+    |
+194 | pub struct PrepareMessage {
+    |            ^^^^^^^^^^^^^^
+
+warning: struct `CommitMessage` is never constructed
+   --> src\consensus\algorithms.rs:209:12
+    |
+209 | pub struct CommitMessage {
+    |            ^^^^^^^^^^^^^
+
+warning: struct `ReplyMessage` is never constructed
+   --> src\consensus\algorithms.rs:224:12
+    |
+224 | pub struct ReplyMessage {
+    |            ^^^^^^^^^^^^
+
+warning: struct `ReputationWeightedBFT` is never constructed
+   --> src\consensus\algorithms.rs:238:12
+    |
+238 | pub struct ReputationWeightedBFT {
+    |            ^^^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `check_weighted_quorum`, and `check_weighted_consensus` are never used
+   --> src\consensus\algorithms.rs:249:12
+    |
+247 | impl ReputationWeightedBFT {
+    | -------------------------- associated items in this implementation
+248 |     /// 创建新的信誉加权BFT算法
+249 |     pub fn new(
+    |            ^^^
+...
+265 |     pub fn check_weighted_quorum(
+    |            ^^^^^^^^^^^^^^^^^^^^^
+...
+298 |     pub fn check_weighted_consensus(
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `SimpleMajority` is never constructed
+   --> src\consensus\algorithms.rs:363:12
+    |
+363 | pub struct SimpleMajority {
+    |            ^^^^^^^^^^^^^^
+
+warning: associated items `new`, `check_consensus`, and `required_quorum` are never used
+   --> src\consensus\algorithms.rs:370:12
+    |
+368 | impl SimpleMajority {
+    | ------------------- associated items in this implementation
+369 |     /// 创建新的简单多数算法
+370 |     pub fn new(quorum_ratio: f64) -> Result<Self> {
+    |            ^^^
+...
+379 |     pub fn check_consensus(&self, votes: &[Vote]) -> Option<f64> {
+    |            ^^^^^^^^^^^^^^^
+...
+406 |     pub fn required_quorum(&self, total_votes: usize) -> usize {
+    |            ^^^^^^^^^^^^^^^
+
+warning: struct `TimeWindowConsensus` is never constructed
+   --> src\consensus\algorithms.rs:412:12
+    |
+412 | pub struct TimeWindowConsensus {
+    |            ^^^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `check_consensus_in_window`, and `get_valid_window` are never used
+   --> src\consensus\algorithms.rs:423:12
+    |
+421 | impl TimeWindowConsensus {
+    | ------------------------ associated items in this implementation
+422 |     /// 创建新的时间窗口共识算法
+423 |     pub fn new(window_size_secs: u64, min_votes: usize, max_time_deviation_secs: u64) -> Self {
+    |            ^^^
+...
+432 |     pub fn check_consensus_in_window(&self, votes: &[Vote]) -> Option<AggregationResult> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+506 |     pub fn get_valid_window(&self) -> (u64, u64) {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: struct `DiapEnhancedBFT` is never constructed
+   --> src\consensus\algorithms.rs:520:12
+    |
+520 | pub struct DiapEnhancedBFT {
+    |            ^^^^^^^^^^^^^^^
+
+warning: associated function `new` is never used
+   --> src\consensus\algorithms.rs:533:12
+    |
+531 | impl DiapEnhancedBFT {
+    | -------------------- associated function in this implementation
+532 |     /// 创建新的DIAP增强BFT算法
+533 |     pub fn new(
+    |            ^^^
+
+warning: struct `DiapConsensusStats` is never constructed
+   --> src\consensus\algorithms.rs:720:12
+    |
+720 | pub struct DiapConsensusStats {
+    |            ^^^^^^^^^^^^^^^^^^
+
+warning: methods `diap_vote_ratio`, `diap_auth_success_rate`, and `summary` are never used
+   --> src\consensus\algorithms.rs:735:12
+    |
+733 | impl DiapConsensusStats {
+    | ----------------------- methods in this implementation
+734 |     /// 计算DIAP投票比例
+735 |     pub fn diap_vote_ratio(&self) -> f64 {
+    |            ^^^^^^^^^^^^^^^
+...
+743 |     pub fn diap_auth_success_rate(&self) -> f64 {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+751 |     pub fn summary(&self) -> String {
+    |            ^^^^^^^
+
+warning: struct `DataValidator` is never constructed
+ --> src\consensus\validation.rs:8:12
+  |
+8 | pub struct DataValidator {
+  |            ^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\consensus\validation.rs:19:12
+    |
+ 17 | impl DataValidator {
+    | ------------------ associated items in this implementation
+ 18 |     /// 创建新的数据验证器
+ 19 |     pub fn new(validator_id: NodeId, validation_threshold: f64) -> Self {
+    |            ^^^
+...
+ 28 |     pub fn validate_data(&mut self, data_hash: DataHash, data: &[u8]) -> ValidationResult {
+    |            ^^^^^^^^^^^^^
+...
+ 60 |     pub fn validate_batch(&mut self, data_entries: Vec<(DataHash, Vec<u8>)>) -> Vec<ValidationResult> {
+    |            ^^^^^^^^^^^^^^
+...
+ 68 |     pub fn get_validation_success_rate(&self) -> f64 {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+ 82 |     pub fn get_recent_validations(&self, limit: usize) -> &[ValidationResult] {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+ 93 |     pub fn check_validation_threshold(&self, validations: &[ValidationResult]) -> bool {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+105 |     pub fn verify_signature(&self, _data_hash: &DataHash, signature: &str, timestamp: Timestamp) -> bool {
+    |            ^^^^^^^^^^^^^^^^
+
+warning: struct `ProposalValidator` is never constructed
+   --> src\consensus\validation.rs:113:12
+    |
+113 | pub struct ProposalValidator {
+    |            ^^^^^^^^^^^^^^^^^
+
+warning: associated items `new`, `validate_proposal`, and `validate_voting_weights` are never used
+   --> src\consensus\validation.rs:122:12
+    |
+120 | impl ProposalValidator {
+    | ---------------------- associated items in this implementation
+121 |     /// 创建新的提案验证器
+122 |     pub fn new(min_voters: u32, consensus_threshold: f64) -> Self {
+    |            ^^^
+...
+130 |     pub fn validate_proposal(
+    |            ^^^^^^^^^^^^^^^^^
+...
+163 |     pub fn validate_voting_weights(&self, weights: &[f64], voters: &[NodeId]) -> bool {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: struct `TierValidator` is never constructed
+   --> src\consensus\validation.rs:175:12
+    |
+175 | pub struct TierValidator {
+    |            ^^^^^^^^^^^^^
+
+warning: struct `TierConfig` is never constructed
+   --> src\consensus\validation.rs:182:12
+    |
+182 | pub struct TierConfig {
+    |            ^^^^^^^^^^
+
+warning: associated items `new`, `validate_node_tier`, `get_tier_voting_weight`, and `check_tier_requirements` are never used
+   --> src\consensus\validation.rs:197:12
+    |
+195 | impl TierValidator {
+    | ------------------ associated items in this implementation
+196 |     /// 创建新的层级验证器
+197 |     pub fn new(tier_config: Vec<TierConfig>) -> Self {
+    |            ^^^
+...
+202 |     pub fn validate_node_tier(&self, _node_id: &str, reputation: f64, current_tier: &str) -> Option<String> {
+    |            ^^^^^^^^^^^^^^^^^^
+...
+216 |     pub fn get_tier_voting_weight(&self, tier: &str) -> Option<f64> {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+...
+224 |     pub fn check_tier_requirements(&self, tier: &str, reputation: f64) -> bool {
+    |            ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `message_handler` is never read
+  --> src\network\network_manager.rs:19:5
+   |
+11 | pub struct NetworkManager {
+   |            -------------- field in this struct
+...
+19 |     message_handler: Arc<MessageHandler>,
+   |     ^^^^^^^^^^^^^^^
+
+warning: field `local_node_id` is never read
+  --> src\network\message_handler.rs:30:5
+   |
+28 | pub struct MessageHandler {
+   |            -------------- field in this struct
+29 |     /// 本地节点ID
+30 |     local_node_id: NodeId,
+   |     ^^^^^^^^^^^^^
+
+warning: struct `SecurityConfig` is never constructed
+  --> src\network\security.rs:12:12
+   |
+12 | pub struct SecurityConfig {
+   |            ^^^^^^^^^^^^^^
+
+warning: enum `EncryptionAlgorithm` is never used
+  --> src\network\security.rs:31:10
+   |
+31 | pub enum EncryptionAlgorithm {
+   |          ^^^^^^^^^^^^^^^^^^^
+
+warning: enum `AuthAlgorithm` is never used
+  --> src\network\security.rs:44:10
+   |
+44 | pub enum AuthAlgorithm {
+   |          ^^^^^^^^^^^^^
+
+warning: struct `SecuritySession` is never constructed
+  --> src\network\security.rs:57:12
+   |
+57 | pub struct SecuritySession {
+   |            ^^^^^^^^^^^^^^^
+
+warning: struct `SecurityManager` is never constructed
+  --> src\network\security.rs:77:12
+   |
+77 | pub struct SecurityManager {
+   |            ^^^^^^^^^^^^^^^
+
+warning: struct `SecurityStats` is never constructed
+  --> src\network\security.rs:92:12
+   |
+92 | pub struct SecurityStats {
+   |            ^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\network\security.rs:109:12
+    |
+107 | impl SecurityManager {
+    | -------------------- associated items in this implementation
+108 |     /// 创建新的安全管理器
+109 |     pub fn new(config: SecurityConfig, local_node_id: NodeId) -> Self {
+    |            ^^^
+...
+120 |     pub async fn establish_session(&self, remote_node_id: &NodeId) -> Result<String, String> {
+    |                  ^^^^^^^^^^^^^^^^^
+...
+170 |     pub async fn encrypt_message(&self, remote_node_id: &NodeId, plaintext: &[u8]) -> Result<Vec<u8>, String> {
+    |                  ^^^^^^^^^^^^^^^
+...
+203 |     pub async fn decrypt_message(&self, remote_node_id: &NodeId, ciphertext: &[u8]) -> Result<Vec<u8>, String> {
+    |                  ^^^^^^^^^^^^^^^
+...
+229 |     pub async fn authenticate_message(&self, remote_node_id: &NodeId, _message: &[u8], auth_tag: &[u8]) -> Result<bool, String> {
+    |                  ^^^^^^^^^^^^^^^^^^^^
+...
+279 |     pub async fn generate_auth_tag(&self, remote_node_id: &NodeId, _message: &[u8]) -> Result<Vec<u8>, String> {
+    |                  ^^^^^^^^^^^^^^^^^
+...
+300 |     pub async fn add_trusted_node(&self, node_id: NodeId) {
+    |                  ^^^^^^^^^^^^^^^^
+...
+309 |     pub async fn remove_trusted_node(&self, node_id: &NodeId) {
+    |                  ^^^^^^^^^^^^^^^^^^^
+...
+318 |     pub async fn get_session_info(&self, remote_node_id: &NodeId) -> Option<SecuritySession> {
+    |                  ^^^^^^^^^^^^^^^^
+...
+324 |     pub async fn get_all_sessions(&self) -> Vec<SecuritySession> {
+    |                  ^^^^^^^^^^^^^^^^
+...
+330 |     pub async fn get_stats(&self) -> SecurityStats {
+    |                  ^^^^^^^^^
+...
+335 |     pub async fn cleanup_expired_sessions(&self) -> usize {
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^
+...
+361 |     pub async fn is_node_trusted(&self, node_id: &NodeId) -> bool {
+    |                  ^^^^^^^^^^^^^^^
+...
+367 |     pub fn encryption_algorithm(&self) -> EncryptionAlgorithm {
+    |            ^^^^^^^^^^^^^^^^^^^^
+...
+372 |     pub fn auth_algorithm(&self) -> AuthAlgorithm {
+    |            ^^^^^^^^^^^^^^
+
+warning: struct `RoutingConfig` is never constructed
+  --> src\network\routing.rs:12:12
+   |
+12 | pub struct RoutingConfig {
+   |            ^^^^^^^^^^^^^
+
+warning: enum `RoutingAlgorithm` is never used
+  --> src\network\routing.rs:27:10
+   |
+27 | pub enum RoutingAlgorithm {
+   |          ^^^^^^^^^^^^^^^^
+
+warning: struct `RoutingEntry` is never constructed
+  --> src\network\routing.rs:40:12
+   |
+40 | pub struct RoutingEntry {
+   |            ^^^^^^^^^^^^
+
+warning: struct `RoutingTable` is never constructed
+  --> src\network\routing.rs:57:12
+   |
+57 | pub struct RoutingTable {
+   |            ^^^^^^^^^^^^
+
+warning: struct `RoutingManager` is never constructed
+  --> src\network\routing.rs:67:12
+   |
+67 | pub struct RoutingManager {
+   |            ^^^^^^^^^^^^^^
+
+warning: struct `QueuedMessage` is never constructed
+  --> src\network\routing.rs:82:12
+   |
+82 | pub struct QueuedMessage {
+   |            ^^^^^^^^^^^^^
+
+warning: struct `RoutingStats` is never constructed
+  --> src\network\routing.rs:97:12
+   |
+97 | pub struct RoutingStats {
+   |            ^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\network\routing.rs:114:12
+    |
+112 | impl RoutingTable {
+    | ----------------- associated items in this implementation
+113 |     /// 创建新的路由表
+114 |     pub fn new(local_node_id: NodeId) -> Self {
+    |            ^^^
+...
+123 |     pub fn add_entry(&mut self, destination: NodeId, next_hop: NodeId, hops: u32, cost: f64) {
+    |            ^^^^^^^^^
+...
+137 |     pub fn update_entry(&mut self, destination: &NodeId, next_hop: NodeId, hops: u32, cost: f64) -> bool {
+    |            ^^^^^^^^^^^^
+...
+151 |     pub fn get_route(&self, destination: &NodeId) -> Option<&RoutingEntry> {
+    |            ^^^^^^^^^
+...
+156 |     pub fn add_neighbor(&mut self, node_id: NodeId) {
+    |            ^^^^^^^^^^^^
+...
+165 |     pub fn remove_neighbor(&mut self, node_id: &NodeId) {
+    |            ^^^^^^^^^^^^^^^
+...
+176 |     pub fn get_all_entries(&self) -> Vec<&RoutingEntry> {
+    |            ^^^^^^^^^^^^^^^
+...
+181 |     pub fn get_neighbors(&self) -> &HashSet<NodeId> {
+    |            ^^^^^^^^^^^^^
+...
+186 |     pub fn cleanup_expired_routes(&mut self, max_age_seconds: u64) -> usize {
+    |            ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: multiple associated items are never used
+   --> src\network\routing.rs:204:12
+    |
+202 | impl RoutingManager {
+    | ------------------- associated items in this implementation
+203 |     /// 创建新的路由管理器
+204 |     pub fn new(config: RoutingConfig, local_node_id: NodeId) -> Self {
+    |            ^^^
+...
+215 |     pub async fn add_neighbor(&self, node_id: NodeId) {
+    |                  ^^^^^^^^^^^^
+...
+227 |     pub async fn route_message(&self, message: NetworkMessage, destination: NodeId, source: NodeId) -> Result<NodeId, String> {
+    |                  ^^^^^^^^^^^^^
+...
+294 |     async fn queue_message_for_flooding(&self, message: NetworkMessage, destination: NodeId, source: NodeId) {
+    |              ^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+310 |     pub async fn process_queued_messages(&self) -> usize {
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^
+...
+363 |     pub async fn update_routing_table_distance_vector(&self, updates: Vec<(NodeId, NodeId, u32, f64)>) {
+    |                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+...
+385 |     pub async fn get_routing_table(&self) -> RoutingTable {
+    |                  ^^^^^^^^^^^^^^^^^
+...
+390 |     pub async fn get_stats(&self) -> RoutingStats {
+    |                  ^^^^^^^^^
+...
+395 |     pub async fn cleanup_expired_routes(&self, max_age_seconds: u64) -> usize {
+    |                  ^^^^^^^^^^^^^^^^^^^^^^
+...
+410 |     pub async fn get_next_hop_for_tier(&self, _destination_tier: &str) -> Option<NodeId> {
+    |                  ^^^^^^^^^^^^^^^^^^^^^
+
+warning: field `proving_key` is never read
+  --> src\zkp\nori_adapter.rs:12:5
+   |
+10 | pub struct NoriAdapter {
+   |            ----------- field in this struct
+11 |     config: ZkpConfig,
+12 |     proving_key: ProvingKey,
+   |     ^^^^^^^^^^^
+
+warning: missing documentation for a constant
+  --> src\lib.rs:38:1
+   |
+38 | pub const DESCRIPTION: &str = "多智能体预言机系统";
+   | ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+   |
+note: the lint level is defined here
+  --> src\lib.rs:5:9
+   |
+ 5 | #![warn(missing_docs)]
+   |         ^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:71:9
+   |
+71 |         required: f64,
+   |         ^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:72:9
+   |
+72 |         actual: f64,
+   |         ^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:73:9
+   |
+73 |         participants: usize,
+   |         ^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:74:9
+   |
+74 |         votes: usize,
+   |         ^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:78:9
+   |
+78 |         timeout_secs: u64,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:79:9
+   |
+79 |         elapsed_secs: u64,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:83:9
+   |
+83 |         dispute_count: usize,
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:84:9
+   |
+84 |         unresolved: Vec<String>,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:88:9
+   |
+88 |         count: usize,
+   |         ^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:89:9
+   |
+89 |         reasons: Vec<String>,
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:93:9
+   |
+93 |         required: usize,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:94:9
+   |
+94 |         actual: usize,
+   |         ^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:98:9
+   |
+98 |         message: String,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\consensus_result.rs:99:9
+   |
+99 |         details: Option<String>,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:67:5
+   |
+67 |     CommitmentAlreadyExists(NodeId),
+   |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:70:5
+   |
+70 |     CommitmentNotFound(NodeId),
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:73:5
+   |
+73 |     CommitmentExpired(NodeId),
+   |     ^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:76:5
+   |
+76 |     RevealMismatch(NodeId),
+   |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:79:5
+   |
+79 |     InvalidPhase {
+   |     ^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\commitment_reveal.rs:80:9
+   |
+80 |         expected: ProtocolPhase,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\consensus\commitment_reveal.rs:81:9
+   |
+81 |         actual: ProtocolPhase,
+   |         ^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:85:5
+   |
+85 |     Timeout(String),
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:88:5
+   |
+88 |     MaliciousBehaviorDetected(String),
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\consensus\commitment_reveal.rs:91:5
+   |
+91 |     SerializationError(String),
+   |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:53:9
+   |
+53 |         node_id: NodeId,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:54:9
+   |
+54 |         timestamp: Timestamp,
+   |         ^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:58:9
+   |
+58 |         node_id: NodeId,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:59:9
+   |
+59 |         data_type: String,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:60:9
+   |
+60 |         data: serde_json::Value,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:61:9
+   |
+61 |         signature: String,
+   |         ^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:65:9
+   |
+65 |         node_id: NodeId,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:66:9
+   |
+66 |         proposal_id: String,
+   |         ^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:67:9
+   |
+67 |         vote: bool,
+   |         ^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:68:9
+   |
+68 |         weight: f64,
+   |         ^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:72:9
+   |
+72 |         node_id: NodeId,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:73:9
+   |
+73 |         old_tier: String,
+   |         ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:74:9
+   |
+74 |         new_tier: String,
+   |         ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:75:9
+   |
+75 |         reason: String,
+   |         ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:79:9
+   |
+79 |         code: u32,
+   |         ^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:80:9
+   |
+80 |         message: String,
+   |         ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\types.rs:81:9
+   |
+81 |         details: Option<serde_json::Value>,
+   |         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\consensus_deployer.rs:73:5
+   |
+73 |     Success,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\consensus_deployer.rs:74:5
+   |
+74 |     Pending,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\consensus_deployer.rs:75:5
+   |
+75 |     Failed,
+   |     ^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:286:5
+    |
+286 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:287:5
+    |
+287 |     pub model_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:288:5
+    |
+288 |     pub causal_graph: CausalGraph,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:289:5
+    |
+289 |     pub base_prediction: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:290:5
+    |
+290 |     pub delta_response: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:296:5
+    |
+296 |     pub nodes: Vec<CausalNode>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:297:5
+    |
+297 |     pub edges: Vec<CausalEdge>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:298:5
+    |
+298 |     pub metadata: HashMap<String, String>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:304:5
+    |
+304 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:305:5
+    |
+305 |     pub name: String,
+    |     ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:306:5
+    |
+306 |     pub node_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:307:5
+    |
+307 |     pub value: Option<f64>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:313:5
+    |
+313 |     pub source: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:314:5
+    |
+314 |     pub target: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:315:5
+    |
+315 |     pub weight: f64,
+    |     ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\consensus_deployer.rs:316:5
+    |
+316 |     pub relation_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\simple_solana_deployer.rs:75:5
+   |
+75 |     Success,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\simple_solana_deployer.rs:76:5
+   |
+76 |     Pending,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\simple_solana_deployer.rs:77:5
+   |
+77 |     Failed,
+   |     ^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:394:5
+    |
+394 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:395:5
+    |
+395 |     pub model_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:396:5
+    |
+396 |     pub causal_graph: CausalGraph,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:397:5
+    |
+397 |     pub base_prediction: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:398:5
+    |
+398 |     pub delta_response: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:404:5
+    |
+404 |     pub nodes: Vec<CausalNode>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:405:5
+    |
+405 |     pub edges: Vec<CausalEdge>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:406:5
+    |
+406 |     pub metadata: HashMap<String, String>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:412:5
+    |
+412 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:413:5
+    |
+413 |     pub name: String,
+    |     ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:414:5
+    |
+414 |     pub node_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:415:5
+    |
+415 |     pub value: Option<f64>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:421:5
+    |
+421 |     pub source: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:422:5
+    |
+422 |     pub target: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:423:5
+    |
+423 |     pub weight: f64,
+    |     ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\simple_solana_deployer.rs:424:5
+    |
+424 |     pub relation_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\true_solana_deployer.rs:75:5
+   |
+75 |     Success,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\true_solana_deployer.rs:76:5
+   |
+76 |     Pending,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\true_solana_deployer.rs:77:5
+   |
+77 |     Failed,
+   |     ^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:401:5
+    |
+401 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:402:5
+    |
+402 |     pub model_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:403:5
+    |
+403 |     pub causal_graph: CausalGraph,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:404:5
+    |
+404 |     pub base_prediction: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:405:5
+    |
+405 |     pub delta_response: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:411:5
+    |
+411 |     pub nodes: Vec<CausalNode>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:412:5
+    |
+412 |     pub edges: Vec<CausalEdge>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:413:5
+    |
+413 |     pub metadata: HashMap<String, String>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:419:5
+    |
+419 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:420:5
+    |
+420 |     pub name: String,
+    |     ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:421:5
+    |
+421 |     pub node_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:422:5
+    |
+422 |     pub value: Option<f64>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:428:5
+    |
+428 |     pub source: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:429:5
+    |
+429 |     pub target: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:430:5
+    |
+430 |     pub weight: f64,
+    |     ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\true_solana_deployer.rs:431:5
+    |
+431 |     pub relation_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\real_devnet_deployer.rs:77:5
+   |
+77 |     Success,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\real_devnet_deployer.rs:78:5
+   |
+78 |     Pending,
+   |     ^^^^^^^
+
+warning: missing documentation for a variant
+  --> src\solana\real_devnet_deployer.rs:79:5
+   |
+79 |     Failed,
+   |     ^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:422:5
+    |
+422 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:423:5
+    |
+423 |     pub model_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:424:5
+    |
+424 |     pub causal_graph: RealDevnetCausalGraph,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:425:5
+    |
+425 |     pub base_prediction: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:426:5
+    |
+426 |     pub delta_response: f64,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:432:5
+    |
+432 |     pub nodes: Vec<RealDevnetCausalNode>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:433:5
+    |
+433 |     pub edges: Vec<RealDevnetCausalEdge>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:434:5
+    |
+434 |     pub metadata: HashMap<String, String>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:440:5
+    |
+440 |     pub id: String,
+    |     ^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:441:5
+    |
+441 |     pub name: String,
+    |     ^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:442:5
+    |
+442 |     pub node_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:443:5
+    |
+443 |     pub value: Option<f64>,
+    |     ^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:449:5
+    |
+449 |     pub source: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:450:5
+    |
+450 |     pub target: String,
+    |     ^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:451:5
+    |
+451 |     pub weight: f64,
+    |     ^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+   --> src\solana\real_devnet_deployer.rs:452:5
+    |
+452 |     pub relation_type: String,
+    |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\test\mod.rs:23:5
+   |
+23 |     pub network_test: NetworkTestResult,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\test\mod.rs:24:5
+   |
+24 |     pub consensus_test: ConsensusTestResult,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\test\mod.rs:25:5
+   |
+25 |     pub diap_test: DiapTestResult,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\test\mod.rs:26:5
+   |
+26 |     pub gateway_test: GatewayTestResult,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\test\mod.rs:27:5
+   |
+27 |     pub prompt_test: PromptTestResult,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: missing documentation for a struct field
+  --> src\zkp\nori_adapter.rs:13:5
+   |
+13 |     pub verification_key: VerificationKey,
+   |     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: `multi-agent-oracle` (lib) generated 218 warnings (run `cargo fix --lib -p multi-agent-oracle` to apply 13 suggestions)
+warning: unused import: `anyhow`
+ --> examples\real_benchmark_experiment_10_agents.rs:5:22
+  |
+5 | use anyhow::{Result, anyhow};
+  |                      ^^^^^^
+  |
+  = note: `#[warn(unused_imports)]` (part of `#[warn(unused)]`) on by default
+
+warning: unused import: `std::collections::HashMap`
+ --> examples\real_benchmark_experiment_10_agents.rs:6:5
+  |
+6 | use std::collections::HashMap;
+  |     ^^^^^^^^^^^^^^^^^^^^^^^^^
+
+warning: unused import: `Value`
+  --> examples\real_benchmark_experiment_10_agents.rs:12:24
+   |
+12 | use serde_json::{self, Value};
+   |                        ^^^^^
+
+warning: unused variable: `idx`
+   --> examples\real_benchmark_experiment_10_agents.rs:585:84
+    |
+585 |         let fingerprints: Vec<CausalFingerprint> = agents.iter().enumerate().map(|(idx, a)| {
+    |                                                                                    ^^^ help: if this is intentional, prefix it with an underscore: `_idx`
+    |
+    = note: `#[warn(unused_variables)]` (part of `#[warn(unused)]`) on by default
+
+warning: `multi-agent-oracle` (example "real_benchmark_experiment_10_agents") generated 4 warnings (run `cargo fix --example "real_benchmark_experiment_10_agents" -p multi-agent-oracle` to apply 4 suggestions)
+    Finished `dev` profile [unoptimized + debuginfo] target(s) in 8.31s
+     Running `target\debug\examples\real_benchmark_experiment_10_agents.exe 5`
+🚀 启动真实基准测试实验
+   测试轮数: 25
+
+✅ 真实实验运行器初始化完成
+   使用模型: DeepSeek (deepseek-chat)
+   ✅ AI因果图推理引擎初始化成功
+📁 输出目录: experiments/output/real_experiment_1770711323
+
+╔══════════════════════════════════════════════════════════╗
+║     真实多智能体预言机系统 - 基准测试实验              ║
+║     使用 DeepSeek API 生成真实数据                     ║
+╚══════════════════════════════════════════════════════════╝
+
+📋 实验配置:
+   测试轮数: 25
+   智能体数量: [10]
+   拜占庭节点: 随机生成 (0-40%)
+   共识阈值: [0.8]
+   每配置重复: 25 次
+
+🔬 配置: 10智能体/2拜占庭(≈20%)/阈值0.80
+   [场景选择] 第0轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 3.0000, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第1轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2175
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2256
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2334
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2322
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2896
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2404
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2345
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2934
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2355
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2374
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 205.1011, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=143.32027535934057, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 176.3320, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第2轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 83.4804, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=18.373014746964234, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 11.6716, 有效智能体: 8, 异常值: 2
+   [ground_truth] 中位数自举法: 10.0000 (基于10个智能体)
+.   [场景选择] 第3轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=2.2318659039852986, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=2.207270922486403, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=2.193979869465185, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 2.7633, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第4轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2407
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2365
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2458
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2991
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2502
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2503
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2372
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2401
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2875
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2852
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 180.0000, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.
+   📊 已完成 5 轮，结果已保存
+   [场景选择] 第5轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 130.7819, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=13.902455498338739, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=18.759993168167977, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=12.805162099512891, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 12.9239, 有效智能体: 7, 异常值: 3
+   [ground_truth] 中位数自举法: 14.4512 (基于10个智能体)
+.   [场景选择] 第6轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=4.199492667511775, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 3.1199, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第7轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2220
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2898
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 3145
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2351
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2452
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2429
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2370
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2880
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 180.0000, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第8轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 104.1057, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=7.099123789467802, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=14.194059165067204, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 10.1616, 有效智能体: 8, 异常值: 2
+   [ground_truth] 中位数自举法: 10.0000 (基于10个智能体)
+.   [场景选择] 第9轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=4.2907997692683075, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 3.1291, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.
+   📊 已完成 10 轮，结果已保存
+   [场景选择] 第10轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2875
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2402
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2529
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2397
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2946
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2519
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2949
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2220
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 110.2174, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=269.08229445274776, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 188.9082, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第11轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 68.0556, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 11.8750, 有效智能体: 8, 异常值: 2
+   [ground_truth] 中位数自举法: 12.5000 (基于10个智能体)
+.   [场景选择] 第12轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=3.9118348290193143, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=2.255721988628846, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=2.2048025668977855, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 2.9372, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第13轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2762
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2325
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2473
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2978
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2310
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2479
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2339
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2256
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2461
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2934
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 180.0000, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第14轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 42.0675, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=7.7412391684831725, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=21.545570867887285, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=19.868021882874444, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=14.232673567471128, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 13.1542, 有效智能体: 9, 异常值: 1
+   [ground_truth] 中位数自举法: 12.1163 (基于10个智能体)
+.
+   📊 已完成 15 轮，结果已保存
+   [场景选择] 第15轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=4.00309295165015, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=4.000518229013758, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=2.231989934750965, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=2.129846414496387, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 3.0365, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第16轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2555
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2956
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2764
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2868
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2443
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2343
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2425
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 3062
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2857
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 52.9424, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=241.74021874831632, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 186.1740, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第17轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 71.7096, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=11.816503608622451, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=14.4085707260509, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 12.7727, 有效智能体: 7, 异常值: 3
+   [ground_truth] 中位数自举法: 14.7043 (基于10个智能体)
+.   [场景选择] 第18轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=4.351940910117877, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=3.763526754079007, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=4.0186746039462715, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=2.1984830204249453, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 3.2333, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第19轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2802
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2307
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2874
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2954
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2838
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2920
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2956
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 196.1127, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=135.73364456455505, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=242.22538379587542, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=136.3128122795346, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=251.98614247692834, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 184.6258, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.
+   📊 已完成 20 轮，结果已保存
+   [场景选择] 第20轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 55.5168, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=21.3357980499765, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=11.875826507988025, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=7.391482302661274, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 9.6274, 有效智能体: 7, 异常值: 3
+   [ground_truth] 中位数自举法: 10.0000 (基于10个智能体)
+.   [场景选择] 第21轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=2.2435210640617713, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=2.3626409599494185, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=2.1696260124347035, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=4.251982355955463, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 2.9028, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.   [场景选择] 第22轮使用场景1: 原材料成本上涨对产品价格的影响 (真实值: 15)
+📝 从markdown提取到JSON数据，长度: 2950
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2320
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2465
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2956
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 2700
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 3023
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 3160
+✅ Markdown提取的JSON解析成功
+📝 从markdown提取到JSON数据，长度: 3087
+✅ Markdown提取的JSON解析成功
+✅ 直接解析JSON成功
+📝 从markdown提取到JSON数据，长度: 2851
+✅ Markdown提取的JSON解析成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 96.2832, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=217.95631600765182, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=131.1735251286852, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=126.85664156329705, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=180, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 173.5986, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 180.0000 (基于10个智能体)
+.   [场景选择] 第23轮使用场景2: AI投资对企业效率的影响 (真实值: 25)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 51.7581, 谱熵: -0.0000
+   [共识计算] 智能体 agent_000: base_prediction=11.794416401738976, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=10, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=15, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 11.8660, 有效智能体: 9, 异常值: 1
+   [ground_truth] 中位数自举法: 10.8972 (基于10个智能体)
+.   [场景选择] 第24轮使用场景0: 央行提高利率对通胀率的影响 (真实值: 2.5)
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+✅ 直接解析JSON成功
+   [共识计算] 开始计算因果指纹和共识...
+   [共识计算] 提取全局谱特征完成，维度: 8, 谱半径: 0.0000, 谱熵: 0.0000
+   [共识计算] 智能体 agent_000: base_prediction=2.1223841249485123, is_byzantine=true, spectral_features=8
+   [共识计算] 智能体 agent_001: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_002: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_003: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_004: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_005: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_006: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_007: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_008: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 智能体 agent_009: base_prediction=3, is_byzantine=false, spectral_features=8
+   [共识计算] 开始执行 cluster_by_consensus，指纹数量: 10
+   [共识计算] 共识计算完成，共识值: 2.9122, 有效智能体: 10, 异常值: 0
+   [ground_truth] 中位数自举法: 3.0000 (基于10个智能体)
+.
+   📊 已完成 25 轮，结果已保存
+ ✅
+
+
+✅ 实验完成!
+   总轮次: 25
+   耗时: 6396.16 秒
+   API调用次数: 750
+   估算成本: ¥0.75
+
+📊 最终结果已保存到: experiments/output/real_experiment_1770711323
+   📈 results.json - 实验汇总结果
+   🧬 agent_details.json - 智能体详细信息（谱分析和因果图）
+   📊 agent_details.csv - 智能体详细数据CSV格式
+   📄 summary.md - 实验总结
+
+🎉 实验成功完成！

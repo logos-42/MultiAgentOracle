@@ -411,7 +411,7 @@ pub struct CollusionDetection {
 #[cfg(test)]
 mod tests {
     use super::*;
-    use crate::causal_graph::types::CausalNode;
+    use crate::causal_graph::types::{CausalNode, NodeType};
     
     #[test]
     fn test_causal_judgment() {

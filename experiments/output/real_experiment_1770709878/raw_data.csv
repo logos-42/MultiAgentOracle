@@ -1,0 +1,5 @@
+round_id,agent_count,byzantine_count,threshold,consensus_reached,consensus_value,ground_truth,accuracy,convergence_time_ms,consensus_similarity,api_calls_count,timestamp
+0,10,3,0.8,false,0,3,0,270501,0,30,1770710148
+1,10,0,0.8,true,180,180,1,254259,1.0000000000000002,30,1770710403
+2,10,0,0.8,true,12.142857142857142,15,0.8095238095238095,273304,0,30,1770710676
+3,10,4,0.8,false,0,3,0,272842,0,30,1770710949

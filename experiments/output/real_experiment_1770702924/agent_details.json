@@ -1,0 +1,6752 @@
+[
+  {
+    "round_id": 0,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 4.121666189222216,
+    "perturbed_prediction": 3.437430218133775,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.5105906440851036,
+      7.507481616747164,
+      2.1162694194688894,
+      0.31502779780488366,
+      1.0444793282203353,
+      0.29523025839408185,
+      0.21449646989131635,
+      0.4361587608510979
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 264.4439807880224,
+    "perturbed_prediction": 248.92270925147363,
+    "delta_response": [
+      16.428944449371453,
+      16.428944449371453,
+      16.428944449371453,
+      16.428944449371453,
+      16.428944449371453
+    ],
+    "spectral_features": [
+      7.206152553797405,
+      3.3294303863664516,
+      2.339850975172281,
+      0.8211189830358815,
+      0.7093613190489877,
+      0.3142013014434343,
+      0.21647722195835603,
+      0.5607914633162338
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 9.348412476939062,
+    "perturbed_prediction": 18.0387340052036,
+    "delta_response": [
+      3.8002811164380668,
+      3.8002811164380668,
+      3.8002811164380668,
+      3.8002811164380668,
+      3.8002811164380668
+    ],
+    "spectral_features": [
+      7.128690110797553,
+      5.581104053389387,
+      2.927791448855568,
+      0.7041073213656048,
+      0.9261077191706518,
+      0.2550392378838723,
+      0.3168055967970027,
+      0.5903092169754571
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_003",
+    "is_byzantine": true,
+    "base_prediction": 2.348661332897178,
+    "perturbed_prediction": 4.235120744566248,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      6.230632380049133,
+      7.4580219627107525,
+      3.487047096896228,
+      0.30269739191067446,
+      1.0456830179792689,
+      0.12005643154207571,
+      0.393612726082181,
+      1.0948396241518465
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.48333333333333334,
+      0.8,
+      0.4266666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.4653333333333334,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.65,
+      0.8,
+      0.19999999999999998,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 0,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.2548054281560557,
+    "perturbed_prediction": 2.724754521819368,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.505158094699732,
+      7.731590489411229,
+      3.446187118130124,
+      0.5373514903753537,
+      0.869550287695004,
+      0.13218674308886166,
+      0.18277177935713812,
+      1.2687934345107867
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 125.13569283394003,
+    "perturbed_prediction": 306.4314324084942,
+    "delta_response": [
+      25.799604037253662,
+      25.799604037253662,
+      25.799604037253662,
+      25.799604037253662,
+      25.799604037253662
+    ],
+    "spectral_features": [
+      4.048181731716647,
+      5.30558145708113,
+      3.9653244009847057,
+      0.28158244385423015,
+      0.48654828388734556,
+      0.23994279183295456,
+      0.3601662330625617,
+      0.7086164120205444
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.44999999999999996,
+      0.7,
+      0.34,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.445,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 1,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666667,
+      0.8,
+      0.19999999999999998,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.55,
+      0.8,
+      0.43333333333333335,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.8,
+      0.5158333333333334,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      2.0,
+      0.62,
+      0.9,
+      0.25,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.45999999999999996,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 2,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 1.6191465486085306,
+    "perturbed_prediction": 2.4446183911790627,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      2.6701067818084194,
+      2.6530439873411242,
+      3.6302007869043815,
+      0.4324993471058009,
+      0.9799126365973323,
+      0.2290056593306026,
+      0.211123312506557,
+      1.2194564829079728
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 176.04170780542515,
+    "perturbed_prediction": 185.47064768590457,
+    "delta_response": [
+      35.38643013165173,
+      35.38643013165173,
+      35.38643013165173,
+      35.38643013165173,
+      35.38643013165173
+    ],
+    "spectral_features": [
+      2.6053618243498016,
+      6.762303582351123,
+      3.5283467892754894,
+      0.4832914077019923,
+      0.4988810373548573,
+      0.5400445956081564,
+      0.1577254511326873,
+      0.6359313919223923
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5571428571428572,
+      0.8,
+      0.48666666666666664,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.46666666666666656,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.44999999999999996,
+      0.7,
+      0.34,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5428571428571428,
+      0.8,
+      0.45333333333333337,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 3,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 2.4448758210952715,
+    "perturbed_prediction": 1.5274533373983297,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.4105067082227385,
+      3.0854556980069674,
+      2.226863065384164,
+      0.7653911619524982,
+      1.0577649228370318,
+      0.18238229364548264,
+      0.3298090350950651,
+      0.5874167771179957
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 150.80851747711358,
+    "perturbed_prediction": 271.5299721233715,
+    "delta_response": [
+      24.622033639797174,
+      24.622033639797174,
+      24.622033639797174,
+      24.622033639797174,
+      24.622033639797174
+    ],
+    "spectral_features": [
+      4.277805529650572,
+      6.984550270947178,
+      2.7167946457760026,
+      0.6542697570189374,
+      0.61701068906829,
+      0.3583381963234528,
+      0.33778756236863383,
+      1.228079290061045
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 5.149461905095212,
+    "perturbed_prediction": 16.92948743083122,
+    "delta_response": [
+      6.5462024167913295,
+      6.5462024167913295,
+      6.5462024167913295,
+      6.5462024167913295,
+      6.5462024167913295
+    ],
+    "spectral_features": [
+      5.491009651172285,
+      6.9169897020695625,
+      3.081644841939314,
+      0.4570773779531572,
+      1.0149467079778354,
+      0.7244113822826118,
+      0.4277655452272458,
+      0.8554289331868417
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6916666666666668,
+      0.9,
+      0.21666666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5599999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5599999999999999,
+      0.8,
+      0.35733333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.37333333333333335,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 4,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.44999999999999996,
+      0.6,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.4266666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 5,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5333333333333333,
+      0.8,
+      0.42,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5333333333333333,
+      0.8,
+      0.42,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666667,
+      0.8,
+      0.5333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 6,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 1.5685435978819737,
+    "perturbed_prediction": 3.219376421002717,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.149486954937529,
+      4.967760676245632,
+      3.7221362145375005,
+      0.7271909333792062,
+      1.1395580118490451,
+      0.14446528621433177,
+      0.3292127043931678,
+      0.9335858105948889
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4506666666666667,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4200000000000001,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 7,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 2.7474433719448443,
+    "perturbed_prediction": 4.469310893939857,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.3767547804652542,
+      8.477484791329113,
+      2.271096861243512,
+      0.5130769742372198,
+      0.8505444209962999,
+      0.13584007975089163,
+      0.26770506047498716,
+      1.0940446809079243
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 177.05117796094092,
+    "perturbed_prediction": 132.41964139930116,
+    "delta_response": [
+      16.815070112450282,
+      16.815070112450282,
+      16.815070112450282,
+      16.815070112450282,
+      16.815070112450282
+    ],
+    "spectral_features": [
+      5.290612250786486,
+      6.191881594593443,
+      3.056981915839125,
+      0.5349222742403816,
+      0.7494844382261916,
+      0.2686603971246927,
+      0.2342730546463465,
+      1.2584582495519987
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.48666666666666664,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.09999999999999999,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5599999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.48666666666666675,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5916666666666667,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 8,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 2.71159646674505,
+    "perturbed_prediction": 4.35281092481137,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.021464699008021,
+      3.289421787085332,
+      1.8840779551629607,
+      0.4945098380366103,
+      0.46805945905264035,
+      0.2459276074060627,
+      0.1864244593502622,
+      0.9602226680122394
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 143.88009965647572,
+    "perturbed_prediction": 189.62948433029248,
+    "delta_response": [
+      34.02719548958797,
+      34.02719548958797,
+      34.02719548958797,
+      34.02719548958797,
+      34.02719548958797
+    ],
+    "spectral_features": [
+      5.88651322025634,
+      6.638856270235922,
+      3.695799819923642,
+      0.4686600709943926,
+      1.1899633629291613,
+      0.4924854878499517,
+      0.34722337639085,
+      0.9691630909389181
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 12.413540676749577,
+    "perturbed_prediction": 13.99791167829083,
+    "delta_response": [
+      6.2435830933034,
+      6.2435830933034,
+      6.2435830933034,
+      6.2435830933034,
+      6.2435830933034
+    ],
+    "spectral_features": [
+      6.040405579108546,
+      3.8289451189771126,
+      4.305431673580857,
+      0.33991638434748195,
+      1.0238454941019892,
+      0.2679846359893955,
+      0.3736359091102978,
+      0.9445190950497419
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4200000000000001,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.8,
+      0.4891666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 9,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.65,
+      0.9,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.043070209810297,
+    "perturbed_prediction": 2.7176636422076346,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.2068640876787895,
+      3.1418544377138433,
+      3.359362075185505,
+      0.5322270175329057,
+      0.5770780079377448,
+      0.20860858247804664,
+      0.3721488793092076,
+      0.7236015024452507
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 208.2713951201135,
+    "perturbed_prediction": 297.87126774482886,
+    "delta_response": [
+      29.96959607548018,
+      29.96959607548018,
+      29.96959607548018,
+      29.96959607548018,
+      29.96959607548018
+    ],
+    "spectral_features": [
+      6.904827067269938,
+      6.634165846087832,
+      4.052960945997952,
+      0.5477989248546721,
+      0.7074193196898362,
+      0.29655845113348983,
+      0.27404688897948765,
+      1.2185327880691872
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 6.957982864479556,
+    "perturbed_prediction": 26.372923992967777,
+    "delta_response": [
+      12.54503606882154,
+      12.54503606882154,
+      12.54503606882154,
+      12.54503606882154,
+      12.54503606882154
+    ],
+    "spectral_features": [
+      3.9869022575607453,
+      3.786555196722377,
+      2.3415454035481273,
+      0.9430417867786002,
+      0.8978855147743574,
+      0.61533635699753,
+      0.163380239655842,
+      1.1086207105120378
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.21666666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.46666666666666673,
+      0.8,
+      0.36000000000000004,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 10,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      2.0,
+      0.62,
+      0.9,
+      0.2,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.0801346789065596,
+    "perturbed_prediction": 1.9756157564474974,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      2.909504987631928,
+      8.935271636174367,
+      2.1272742760873573,
+      0.5453111360646554,
+      0.9621071240860268,
+      0.10781407305069629,
+      0.3026383904903713,
+      0.9107774493353851
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 150.1913703657186,
+    "perturbed_prediction": 106.01092344390212,
+    "delta_response": [
+      16.76774833774341,
+      16.76774833774341,
+      16.76774833774341,
+      16.76774833774341,
+      16.76774833774341
+    ],
+    "spectral_features": [
+      2.9185238217814864,
+      6.95279582610501,
+      2.9662457132188536,
+      0.340195516692214,
+      0.4460963894666655,
+      0.47647299686816735,
+      0.29279626709475637,
+      0.8055943617142614
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 5.472535380905935,
+    "perturbed_prediction": 19.208923617314404,
+    "delta_response": [
+      7.060644313869626,
+      7.060644313869626,
+      7.060644313869626,
+      7.060644313869626,
+      7.060644313869626
+    ],
+    "spectral_features": [
+      5.201432908966684,
+      10.192257153175044,
+      3.4316085143446498,
+      0.2593637035394638,
+      0.434169171967538,
+      0.2591073756726268,
+      0.27376882799538393,
+      0.8803634342559952
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_003",
+    "is_byzantine": true,
+    "base_prediction": 3.26054904359754,
+    "perturbed_prediction": 2.5548612109335505,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.250422241254502,
+      7.929108458154678,
+      3.3745685079425236,
+      0.7152131949883876,
+      0.6614957051807375,
+      0.20696233725280583,
+      0.3095882009634499,
+      0.8369868915204883
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.37333333333333335,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.4666666666666666,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.5166666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 11,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 1.7097681577504935,
+    "perturbed_prediction": 4.302246950931437,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      2.665688661389627,
+      8.729024835567612,
+      2.9189256625795466,
+      0.4379166942958601,
+      1.1952092370538843,
+      0.1698913370240578,
+      0.3190469835590994,
+      1.2540912627944707
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 241.99203712878298,
+    "perturbed_prediction": 189.79301397479662,
+    "delta_response": [
+      43.973437754033725,
+      43.973437754033725,
+      43.973437754033725,
+      43.973437754033725,
+      43.973437754033725
+    ],
+    "spectral_features": [
+      6.694945439665102,
+      6.752277498200677,
+      3.035598983503397,
+      0.5976479009371614,
+      0.7989087469046271,
+      0.5481092619446843,
+      0.2145653480607968,
+      1.064754132711509
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 21.68105737360839,
+    "perturbed_prediction": 9.938515642819238,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.413024935271258,
+      6.334821907610483,
+      3.11657062311982,
+      0.44904313432839216,
+      0.9903458756992235,
+      0.4256055958046613,
+      0.4343816309963185,
+      1.2152769894571893
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_003",
+    "is_byzantine": true,
+    "base_prediction": 2.5590101539863355,
+    "perturbed_prediction": 4.248748587071918,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.202190649708802,
+      6.08347809091377,
+      3.512826449089778,
+      0.6936160327768788,
+      0.6757465896115822,
+      0.11819570088515254,
+      0.2901780400556148,
+      0.8848828805841857
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5399999999999999,
+      0.8,
+      0.4093333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.4746666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 12,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.4988085888453067,
+    "perturbed_prediction": 1.6993603575310352,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      6.562908475370288,
+      3.0959747435186697,
+      3.943143956508198,
+      0.4567958696737779,
+      1.1508444720961841,
+      0.09959955590968697,
+      0.27035325688492234,
+      0.8388696827952503
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 149.5892274569597,
+    "perturbed_prediction": 182.45364899094042,
+    "delta_response": [
+      36.993620440833546,
+      36.993620440833546,
+      36.993620440833546,
+      36.993620440833546,
+      36.993620440833546
+    ],
+    "spectral_features": [
+      2.8972548706386076,
+      7.225248635383022,
+      4.1182642725591165,
+      0.6781029200572853,
+      0.5527150576813392,
+      0.6447963466963477,
+      0.29195856020159006,
+      1.2626842010599535
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.46666666666666673,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.49999999999999994,
+      0.7,
+      0.37333333333333335,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5714285714285714,
+      0.8,
+      0.48666666666666664,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 13,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5166666666666666,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5399999999999999,
+      0.8,
+      0.4093333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.324,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.58,
+      0.8,
+      0.5533333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 14,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 1.557613026022163,
+    "perturbed_prediction": 2.9319756249143794,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.603202028354592,
+      3.7496285323634018,
+      2.859925562690184,
+      0.546928618302423,
+      0.936716669056967,
+      0.1525659433020283,
+      0.44954938676265926,
+      0.5899809647736007
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.4666666666666666,
+      0.8,
+      0.45999999999999996,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5571428571428572,
+      0.8,
+      0.48666666666666664,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.8,
+      0.5158333333333334,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6833333333333332,
+      0.9,
+      0.19999999999999998,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.32666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 15,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.32866666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 2.442543153893571,
+    "perturbed_prediction": 4.079030340250364,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      6.871826998139196,
+      3.471026660788074,
+      2.0191247331817586,
+      0.7305308799663609,
+      0.4365527383626179,
+      0.11748399487080217,
+      0.2071854233701092,
+      1.2636557798638817
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 92.35130824940956,
+    "perturbed_prediction": 242.03738666445844,
+    "delta_response": [
+      36.34678457880008,
+      36.34678457880008,
+      36.34678457880008,
+      36.34678457880008,
+      36.34678457880008
+    ],
+    "spectral_features": [
+      2.988177021632275,
+      6.4418906016473425,
+      2.5907311052318156,
+      0.4453469178625032,
+      0.8749971480612584,
+      0.36251764255558205,
+      0.18831967652385012,
+      0.5331267450401027
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.9,
+      0.46799999999999997,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 16,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 4.228278263606317,
+    "perturbed_prediction": 2.2841128136884032,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      2.630518264283398,
+      7.147881177123205,
+      1.6250625736294402,
+      0.7007285039484386,
+      0.6514365522986427,
+      0.24934359889521376,
+      0.17847582377925353,
+      1.0616280113028393
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4506666666666667,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4200000000000001,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.65,
+      0.8,
+      0.48666666666666664,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 17,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6249999999999999,
+      0.8,
+      0.4366666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5399999999999999,
+      0.8,
+      0.4093333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5714285714285714,
+      0.8,
+      0.4200000000000001,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 190.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5642857142857143,
+      0.8,
+      0.4200000000000001,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 18,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.44999999999999996,
+      0.6,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.49866666666666676,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.5428571428571428,
+      0.8,
+      0.45333333333333337,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5249999999999999,
+      0.7,
+      0.37333333333333335,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.7,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 19,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 4.109739169436294,
+    "perturbed_prediction": 3.8254382932564006,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      4.985845573590034,
+      4.959350632543725,
+      2.3029534088091257,
+      0.40303852915698263,
+      1.0737265330931482,
+      0.21192775819986198,
+      0.17409910758288508,
+      1.2369370325495574
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 134.97261893376708,
+    "perturbed_prediction": 298.79593776750636,
+    "delta_response": [
+      31.430621130151486,
+      31.430621130151486,
+      31.430621130151486,
+      31.430621130151486,
+      31.430621130151486
+    ],
+    "spectral_features": [
+      4.328729304280534,
+      7.034868893351723,
+      4.011223204581569,
+      0.7806611178553581,
+      1.0962547133043152,
+      0.5306196091949077,
+      0.3172639206895972,
+      0.5482207425040486
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.3933333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5199999999999999,
+      0.8,
+      0.37466666666666665,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.8,
+      0.5066666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6166666666666666,
+      0.8,
+      0.4200000000000001,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 20,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.8695176650966783,
+    "perturbed_prediction": 2.5671584814873194,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.876924710183471,
+      8.870443700678466,
+      1.6431189511774402,
+      0.2822114865238675,
+      0.6182303878222684,
+      0.2433201581671113,
+      0.4210059954452916,
+      0.4262329607751547
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 248.44832256739352,
+    "perturbed_prediction": 108.30634120255453,
+    "delta_response": [
+      18.73301905123338,
+      18.73301905123338,
+      18.73301905123338,
+      18.73301905123338,
+      18.73301905123338
+    ],
+    "spectral_features": [
+      7.269726892888051,
+      4.076674034113314,
+      3.8112382389504993,
+      0.34092904836081783,
+      0.9267364869554964,
+      0.37434735260560587,
+      0.13456948244713465,
+      1.0133074022632094
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 14.830247298320485,
+    "perturbed_prediction": 14.717853655280146,
+    "delta_response": [
+      3.4195218356016572,
+      3.4195218356016572,
+      3.4195218356016572,
+      3.4195218356016572,
+      3.4195218356016572
+    ],
+    "spectral_features": [
+      4.064590853110083,
+      8.813905425084016,
+      2.6313275879272524,
+      0.3750218117924297,
+      0.8145744602068685,
+      0.5597785540765263,
+      0.16147007399024596,
+      0.7414488986343855
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_003",
+    "is_byzantine": true,
+    "base_prediction": 2.3166861714771008,
+    "perturbed_prediction": 3.8687777892346573,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      3.3170582309161114,
+      4.5076822912392895,
+      1.9613748890325593,
+      0.4783427119195559,
+      0.4422628361866212,
+      0.15677923750855427,
+      0.23248103821516727,
+      0.9722630283572441
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.49866666666666676,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.557142857142857,
+      0.8,
+      0.45999999999999996,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.4666666666666666,
+      0.8,
+      0.29066666666666663,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 21,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.428,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.6,
+      0.8,
+      0.4613333333333334,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.57,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 15.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.557142857142857,
+      0.8,
+      0.45999999999999996,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 22,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5666666666666667,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_000",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_001",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.36133333333333334,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_002",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6666666666666666,
+      0.8,
+      0.5066666666666667,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.58,
+      0.8,
+      0.4093333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6,
+      0.8,
+      0.41,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.5599999999999999,
+      0.8,
+      0.39066666666666666,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 10.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      10.0,
+      10.0,
+      10.0,
+      10.0,
+      10.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.3253333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 23,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_000",
+    "is_byzantine": true,
+    "base_prediction": 3.5641330066863963,
+    "perturbed_prediction": 4.213281557149156,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.354931895704615,
+      8.687013026296487,
+      1.9998931245916542,
+      0.49284343375377165,
+      0.9257625686270455,
+      0.16402693803947282,
+      0.350253536422046,
+      1.1739936545053313
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_001",
+    "is_byzantine": true,
+    "base_prediction": 156.71774482491938,
+    "perturbed_prediction": 293.45425772675515,
+    "delta_response": [
+      20.253984201412212,
+      20.253984201412212,
+      20.253984201412212,
+      20.253984201412212,
+      20.253984201412212
+    ],
+    "spectral_features": [
+      7.011947072087629,
+      7.585323302176041,
+      3.940163264767583,
+      0.7847105184985708,
+      1.0858740032292873,
+      0.6459839247076473,
+      0.17570281244414107,
+      0.8151112210786332
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_002",
+    "is_byzantine": true,
+    "base_prediction": 13.213991548050023,
+    "perturbed_prediction": 9.895972048239626,
+    "delta_response": [
+      3.0995648604372574,
+      3.0995648604372574,
+      3.0995648604372574,
+      3.0995648604372574,
+      3.0995648604372574
+    ],
+    "spectral_features": [
+      6.621194728238724,
+      6.489262547954565,
+      4.093586294918901,
+      0.5129724677864103,
+      1.1749462461440279,
+      0.24182370572261752,
+      0.33476120844880947,
+      0.49070279900730346
+    ],
+    "confidence": 0.6,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_003",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5,
+      0.7,
+      0.09999999999999999,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_004",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5499999999999999,
+      0.8,
+      0.45333333333333337,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_005",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      7.0,
+      3.0,
+      0.55,
+      0.8,
+      0.48666666666666664,
+      0.35,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 7"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_006",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333334,
+      0.8,
+      0.16666666666666666,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_007",
+    "is_byzantine": false,
+    "base_prediction": 180.0,
+    "perturbed_prediction": 210.0,
+    "delta_response": [
+      30.0,
+      30.0,
+      30.0,
+      30.0,
+      30.0
+    ],
+    "spectral_features": [
+      5.0,
+      5.0,
+      3.0,
+      0.4999999999999999,
+      0.8,
+      0.3933333333333333,
+      0.25,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 原材料成本上涨对产品价格的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 5"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_008",
+    "is_byzantine": false,
+    "base_prediction": 15.0,
+    "perturbed_prediction": 20.0,
+    "delta_response": [
+      5.0,
+      5.0,
+      5.0,
+      5.0,
+      5.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.6083333333333333,
+      0.8,
+      0.445,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: AI投资对企业效率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  },
+  {
+    "round_id": 24,
+    "agent_id": "agent_009",
+    "is_byzantine": false,
+    "base_prediction": 3.0,
+    "perturbed_prediction": 3.0,
+    "delta_response": [
+      0.0,
+      0.0,
+      0.0,
+      0.0,
+      0.0
+    ],
+    "spectral_features": [
+      5.0,
+      6.0,
+      3.0,
+      0.5833333333333333,
+      0.8,
+      0.13333333333333333,
+      0.3,
+      0.85
+    ],
+    "confidence": 0.9,
+    "reasoning": "基于场景: 央行提高利率对通胀率的影响",
+    "causal_graph_summary": "节点数: 5, 边数: 6"
+  }
+]
