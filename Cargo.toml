@@ -1,15 +1,13 @@
 [package]
 name = "multi-agent-oracle"
-version = "0.1.0"
+version = "0.2.0"
 edition = "2021"
-# description = "基于DIAP身份的多智能体预言机系统"
+description = "基于因果指纹的多智能体预言机系统 SDK"
 authors = ["liuyuanjie <2844169590@qq.com>"]
 license = "MIT"
 repository = "https://github.com/logos-42/multi-agent-oracle"
 readme = "README.md"
-
-# 更多元数据
-# keywords = ["oracle", "blockchain", "decentralized", "diap", "multi-agent"]
+keywords = ["oracle", "blockchain", "decentralized", "causal-fingerprint", "multi-agent"]
 categories = ["cryptography", "blockchain", "network-programming"]
 
 [features]
@@ -150,6 +148,10 @@ path = "examples/secure_commitment_reveal.rs"
 [[example]]
 name = "zk_fingerprint_experiment"
 path = "examples/zk_fingerprint_experiment.rs"
+
+[[example]]
+name = "sdk_quick_start"
+path = "examples/sdk_quick_start.rs"
 
 [profile.dev]
 opt-level = 0
